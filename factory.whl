@@ -15,31 +15,44 @@ Robot2 robot2
 Robot3 robot3
 Robot4 robot4
 
+^RobotWithMoves robots[4]
+
+number activeRobot = 0
+
 proc conveyorTest()
     barUp()
     moveCarToRobot2()
     barDown()
 end
 
-proc test() 
+proc initRobots()
+    robots[0] = @robot1
+    robots[1] = @robot2
+    robots[2] = @robot3
+    robots[3] = @robot4
+
     robot1.init()
     robot2.init()
     robot3.init()
     robot4.init()
+end
 
-    robot1.reset()
+proc initFactory()
+    ;robot1.reset()
     ;robot2.reset()
     ;robot3.reset()
     ;robot4.reset()
+    ;robots[0].reset()
     
     robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
     robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
     robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
     robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
-    repeat
-        ;robot1.updateSequence()
-        ;robot2.updateSequence()
-        ;robot3.updateSequence()
-        ;robot4.updateSequence()
-    end
+end
+
+proc updateFactory() 
+    ;robot1.updateSequence()
+    ;robot2.updateSequence()
+    ;robot3.updateSequence()
+    ;robot4.updateSequence()
 end

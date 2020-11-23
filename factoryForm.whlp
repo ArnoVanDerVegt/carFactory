@@ -1,71 +1,215 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
-
 #project "Factory form"
+
+#include "lib/device.whl"
+#include "lib/light.whl"
+#include "lib/motor.whl"
+#include "lib/poweredUp.whl"
+#include "lib/sensor.whl"
+#include "lib/standard.whl"
 
 #include "lib/components/component.whl"
 #include "lib/components/form.whl"
-#include "lib/standard.whl"
 #include "lib/components/tabs.whl"
 #include "lib/components/selectButton.whl"
 #include "lib/components/button.whl"
 #include "lib/components/label.whl"
 #include "lib/components/title.whl"
 
+#include "devices.whl"
+#include "factory.whl"
+#include "lib/components/image.whl"
+
+#rangecheck "off"
+#heap       40900
+
 #define FACTORY_FORM_LABEL_MOTOR_1     0x4925780C
 #define FACTORY_FORM_LABEL_MOTOR_2     0xE8065F64
 #define FACTORY_FORM_LABEL_MOTOR_3     0x0728854D
 #define FACTORY_FORM_BUTTON_DOWN       0x8A1F6E75
 #define FACTORY_FORM_BUTTON_LEFT       0xE026EE80
+#define FACTORY_FORM_BUTTON_MOTOR_A1   0xF609DD46
+#define FACTORY_FORM_BUTTON_MOTOR_A2   0xCEDD8E66
+#define FACTORY_FORM_BUTTON_MOTOR_B1   0xBE951D0C
+#define FACTORY_FORM_BUTTON_MOTOR_B2   0x37ECD490
+#define FACTORY_FORM_BUTTON_MOTOR_C1   0xCBF97685
+#define FACTORY_FORM_BUTTON_MOTOR_C2   0xEAB1FA2D
+#define FACTORY_FORM_BUTTON_RESET      0x99C1B371
 #define FACTORY_FORM_BUTTON_RIGHT      0x8B1277C2
 #define FACTORY_FORM_BUTTON_TURN_LEFT  0x5F901C69
 #define FACTORY_FORM_BUTTON_TURN_RIGHT 0x13408F90
 #define FACTORY_FORM_BUTTON_UP         0x2A3DD20E
+#define FACTORY_FORM_IMAGE1            0xCB7FFF70
+#define FACTORY_FORM_LABEL_MOTOR1      0x4925780C
+#define FACTORY_FORM_LABEL_MOTOR2      0xE8065F64
+#define FACTORY_FORM_LABEL_MOTOR3      0x0728854D
 #define FACTORY_FORM_LABEL_X           0x090DA5CD
 #define FACTORY_FORM_LABEL_Y           0xF7CECDF3
 #define FACTORY_FORM_MAIN_TABS         0xC9EA066D
 #define FACTORY_FORM_SELECT_ROBOT      0x9A4E0D42
-#define FACTORY_FORM_TITLE_IK_POS      0x0E5C4A39
-#define FACTORY_FORM_TITLE_MOTOR       0xE59C3436
 
 #resource "factoryForm.wfrm"
 
-proc onFactoryFormButtonDownMouseDown(number windowHandle)
-    printS("Mousedown ButtonDown button.")
+#define CMD_NONE   0
+#define CMD_REV    1
+#define CMD_FWD    2
+#define CMD_STOP   3
+#define CMD_RESET  4
+
+number mainWindow
+number command
+number motorIndex
+
+proc onFactoryFormButtonMotorA1MouseDown(number windowHandle)
+    command    = CMD_REV
+    motorIndex = 0
 end
 
-proc onFactoryFormButtonLeftMouseDown(number windowHandle)
-    printS("Mousedown ButtonLeft button.")
+proc onFactoryFormButtonMotorA1MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 0
 end
 
-proc onFactoryFormButtonRightMouseDown(number windowHandle)
-    printS("Mousedown ButtonRight button.")
+proc onFactoryFormButtonMotorA1MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 0
 end
 
-proc onFactoryFormButtonTurnLeftMouseDown(number windowHandle)
-    printS("Mousedown ButtonTurnLeft button.")
+proc onFactoryFormButtonMotorA2MouseDown(number windowHandle)
+    command    = CMD_FWD
+    motorIndex = 0
 end
 
-proc onFactoryFormButtonTurnRightMouseDown(number windowHandle)
-    printS("Mousedown ButtonTurnRight button.")
+proc onFactoryFormButtonMotorA2MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 0
 end
 
-proc onFactoryFormButtonUpMouseDown(number windowHandle)
-    printS("Mousedown ButtonUp button.")
+proc onFactoryFormButtonMotorA2MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 0
+end
+
+proc onFactoryFormButtonMotorB1MouseDown(number windowHandle)
+    command    = CMD_REV
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorB1MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorB1MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorB2MouseDown(number windowHandle)
+    command    = CMD_FWD
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorB2MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorB2MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 1
+end
+
+proc onFactoryFormButtonMotorC1MouseDown(number windowHandle)
+    command    = CMD_REV
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonMotorC1MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonMotorC1MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonMotorC2MouseDown(number windowHandle)
+    command    = CMD_FWD
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonMotorC2MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonMotorC2MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 2
+end
+
+proc onFactoryFormButtonResetClick(number windowHandle)
+    command = CMD_RESET
 end
 
 proc onFactoryFormSelectRobotChange(number windowHandle, number value)
-    printS("Change SelectRobot select button, value:")
-    printN(value)
+    activeRobot = value
 end
 
 ; @proc                   Show the form.
 ; @ret                    The handle to the form.
 proc showFactoryFormForm()
-    ret components.form.show("factoryForm.wfrm")
+    mainWindow = components.form.show("factoryForm.wfrm")
+end
+
+proc setFormDisabled(number disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RESET,      disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_TURN_LEFT,  disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_TURN_RIGHT, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_LEFT,       disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RIGHT,      disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_UP,         disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_DOWN,       disabled)
+
+    components.selectButton.setDisabled(mainWindow, FACTORY_FORM_SELECT_ROBOT, disabled)
+end
+
+proc updateCommand()
+    select command
+        case CMD_REV:
+            robots[activeRobot].rev(motorIndex)        
+        case CMD_FWD:
+            robots[activeRobot].fwd(motorIndex)                
+        case CMD_STOP:
+            robots[activeRobot].stop(motorIndex)                
+        case CMD_RESET:
+            setFormDisabled(TRUE)
+            robots[activeRobot].reset()                
+    end
+    command = CMD_NONE
+    setFormDisabled(FALSE)
 end
 
 proc main()
+    initDevices()
+    initRobots()
+    initFactory()
+
     showFactoryFormForm()
-    halt()
+
+    repeat
+        updateFactory() 
+        if command != CMD_NONE
+            updateCommand()
+        end
+    end
 end

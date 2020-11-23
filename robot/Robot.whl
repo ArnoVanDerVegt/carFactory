@@ -10,6 +10,14 @@
 #define HAND_CLOSE 0x0001
 #define HAND_STOP  0x0002
 
+#define ROBOT0     0
+#define ROBOT1     1
+#define ROBOT2     2
+#define ROBOT3     3
+
+#define ROBOT_REV  -1
+#define ROBOT_FWD  1
+
 record ReadyBits
     number layer
     number bits
@@ -189,4 +197,24 @@ proc Robot.reset()
     motorWait()
     
     motorZero()
+end
+
+proc Robot.rev(number motor)
+    with robotConfig.motors[motor]
+        motorLayerSetSpeed(layer, port, 50)
+        motorLayerOn(layer, port) 
+    end
+end
+
+proc Robot.fwd(number motor)
+    with robotConfig.motors[motor]
+        motorLayerSetSpeed(layer, port, -50)
+        motorLayerOn(layer, port)           
+    end
+end
+
+proc Robot.stop(number motor)
+    with robotConfig.motors[motor]
+        motorLayerStop(layer, port) 
+    end
 end

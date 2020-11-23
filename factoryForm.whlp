@@ -1,0 +1,71 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#project "Factory form"
+
+#include "lib/components/component.whl"
+#include "lib/components/form.whl"
+#include "lib/standard.whl"
+#include "lib/components/tabs.whl"
+#include "lib/components/selectButton.whl"
+#include "lib/components/button.whl"
+#include "lib/components/label.whl"
+#include "lib/components/title.whl"
+
+#define FACTORY_FORM_LABEL_MOTOR_1     0x4925780C
+#define FACTORY_FORM_LABEL_MOTOR_2     0xE8065F64
+#define FACTORY_FORM_LABEL_MOTOR_3     0x0728854D
+#define FACTORY_FORM_BUTTON_DOWN       0x8A1F6E75
+#define FACTORY_FORM_BUTTON_LEFT       0xE026EE80
+#define FACTORY_FORM_BUTTON_RIGHT      0x8B1277C2
+#define FACTORY_FORM_BUTTON_TURN_LEFT  0x5F901C69
+#define FACTORY_FORM_BUTTON_TURN_RIGHT 0x13408F90
+#define FACTORY_FORM_BUTTON_UP         0x2A3DD20E
+#define FACTORY_FORM_LABEL_X           0x090DA5CD
+#define FACTORY_FORM_LABEL_Y           0xF7CECDF3
+#define FACTORY_FORM_MAIN_TABS         0xC9EA066D
+#define FACTORY_FORM_SELECT_ROBOT      0x9A4E0D42
+#define FACTORY_FORM_TITLE_IK_POS      0x0E5C4A39
+#define FACTORY_FORM_TITLE_MOTOR       0xE59C3436
+
+#resource "factoryForm.wfrm"
+
+proc onFactoryFormButtonDownMouseDown(number windowHandle)
+    printS("Mousedown ButtonDown button.")
+end
+
+proc onFactoryFormButtonLeftMouseDown(number windowHandle)
+    printS("Mousedown ButtonLeft button.")
+end
+
+proc onFactoryFormButtonRightMouseDown(number windowHandle)
+    printS("Mousedown ButtonRight button.")
+end
+
+proc onFactoryFormButtonTurnLeftMouseDown(number windowHandle)
+    printS("Mousedown ButtonTurnLeft button.")
+end
+
+proc onFactoryFormButtonTurnRightMouseDown(number windowHandle)
+    printS("Mousedown ButtonTurnRight button.")
+end
+
+proc onFactoryFormButtonUpMouseDown(number windowHandle)
+    printS("Mousedown ButtonUp button.")
+end
+
+proc onFactoryFormSelectRobotChange(number windowHandle, number value)
+    printS("Change SelectRobot select button, value:")
+    printN(value)
+end
+
+; @proc                   Show the form.
+; @ret                    The handle to the form.
+proc showFactoryFormForm()
+    ret components.form.show("factoryForm.wfrm")
+end
+
+proc main()
+    showFactoryFormForm()
+    halt()
+end

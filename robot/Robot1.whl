@@ -1,0 +1,121 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "robot/RobotWithMoves.whl"
+
+#define ROBOT1_MOVE_TO_CONVEYOR 0
+#define ROBOT1_PICKUP1          1
+#define ROBOT1_PICKUP2          2
+
+#define ROBOT1_SEQUENCE_PICKUP1 0
+#define ROBOT1_SEQUENCE_PICKUP2 3
+
+object Robot1 extends RobotWithMoves
+    RobotMoves moveToConveyorList
+    RobotMoves pickup1List
+    RobotMoves pickup2List
+    RobotMoves loadCarsList
+end
+
+proc Robot1.initMoveToConveyorList()
+    with moveToConveyorList
+        initList()
+        add(99,  0,       1450,    -2100,   NO_MOVE)    ; Move to conveyor
+        add(99,  NO_MOVE, 1650,    -2400,   NO_MOVE)    ; Drop car
+        add(99,  NO_MOVE, 2650,    -3450,   NO_MOVE)    ; Drop car
+        add(99,  800,     NO_MOVE, NO_MOVE, NO_MOVE)    ; Release car
+        add(99,  NO_MOVE, 1030,    -1400,   NO_MOVE)    ; Move up
+        add(99,  0,       0,       0,       NO_MOVE)    ; Reset
+    end
+end
+
+proc Robot1.initPickup1List()
+    with pickup1List
+        initList()
+        add(99,  6000,    1200,    -2800,   NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 2200,    -3650,   NO_MOVE)    ; Move down
+        add(99,  4650,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
+        add(99,  NO_MOVE, 1000,    -2600,   NO_MOVE)    ; Lift car
+        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+    end
+end
+
+proc Robot1.initPickup2List()
+    with pickup2List
+        initList()
+        add(99,  5700,    2650,    -1600,   NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 3600,    NO_MOVE, NO_MOVE)    ; Move down
+        add(99,  4850,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
+        add(99,  NO_MOVE, 2350,    -1250,   NO_MOVE)    ; Lift car
+        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+    end
+end
+
+proc Robot1.initLoadCarsList()
+    with loadCarsList
+        initList()
+        add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move up
+        add(99,  8950,     NO_MOVE, NO_MOVE, NO_MOVE)   ; Move to the lever
+        add(99,  NO_MOVE,  2000,    -1200,   NO_MOVE)   ; Press lever
+        add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move away from lever
+        add(99,  0,        NO_MOVE, NO_MOVE, NO_MOVE)   ; Return
+    end
+end
+
+proc Robot1.initSequence()
+    addSequence(ROBOT1_PICKUP1)
+    addSequence(ROBOT1_MOVE_TO_CONVEYOR)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT1_PICKUP2)
+    addSequence(ROBOT1_MOVE_TO_CONVEYOR)
+    addSequence(SEQUENCE_END)
+end
+
+proc Robot1.init()
+    super()
+    
+    with robotConfig.motor0
+        resetDir    = -1
+        layer       = LAYER_1
+        port        = OUTPUT_A
+        sensorLayer = LAYER_2
+        sensorPort  = OUTPUT_D
+    end
+    with robotConfig.motor1
+        resetDir    = -1
+        layer       = LAYER_2
+        port        = OUTPUT_C
+        sensorLayer = LAYER_2
+        sensorPort  = OUTPUT_A
+    end
+    with robotConfig.motor2
+        resetDir    = 1
+        layer       = LAYER_1
+        port        = OUTPUT_D
+        sensorLayer = LAYER_1
+        sensorPort  = OUTPUT_B
+    end
+    with robotConfig.readyBits0
+        layer       = LAYER_1
+        bits        = MOTOR_BITS_AD
+    end
+    with robotConfig.readyBits1
+        layer       = LAYER_2
+        bits        = MOTOR_BITS_C
+    end
+    
+    robotConfig.turnReset = 1400
+    
+    initMoveToConveyorList()
+    initPickup1List()
+    initPickup2List()
+    initLoadCarsList()
+        
+    addMovesList(@moveToConveyorList)
+    addMovesList(@pickup1List)
+    addMovesList(@pickup2List)
+    addMovesList(@loadCarsList)
+
+    initSequence()
+end

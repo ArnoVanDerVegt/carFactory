@@ -1,0 +1,133 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "robot/RobotWithMoves.whl"
+
+#define ROBOT4_PICKUP1          0
+#define ROBOT4_PICKUP2          1
+#define ROBOT4_MOVE_TO_CONVEYOR 2
+#define ROBOT4_DROP             3
+
+#define ROBOT4_SEQUENCE_PICKUP1 0
+#define ROBOT4_SEQUENCE_PICKUP2 4
+
+object Robot4 extends RobotWithMoves
+    RobotMoves pickup1List
+    RobotMoves pickup2List
+    RobotMoves moveToConveyorList
+    RobotMoves dropList
+end
+
+proc Robot4.initPickup1List()
+    with pickup1List
+        initList()
+        add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
+        add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
+
+        add(99,  5100,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 1250,    -3050,   NO_MOVE)    ; Move down
+        add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
+
+        add(99,  NO_MOVE, 500,     -800,    NO_MOVE)    ; Move up
+        add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
+    end
+end
+
+proc Robot4.initPickup2List()
+    with pickup2List
+        initList()
+        add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
+        add(99,  NO_MOVE, 1800,    -1000,   NO_MOVE)    ; Move down
+
+        add(99,  5100,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
+        add(75,  NO_MOVE, 2950,    -2000,   NO_MOVE)    ; Move down
+        add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
+
+        add(99,  NO_MOVE, 1250,    -500,    NO_MOVE)    ; Move up
+        add(99,  NO_MOVE, 500,     -800,    NO_MOVE)    ; Move up
+        add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
+    end
+end
+
+proc Robot4.initMoveToConveyorList()
+    with moveToConveyorList
+        initList()
+        add(99,  -450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(0,   NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Stop hand
+    end
+end
+
+proc Robot4.initDropList()
+    with dropList
+        initList()
+        add(99,  NO_MOVE, 700,     -1500,   NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 1300,    -2500,   NO_MOVE)    ; Move down
+        add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
+        add(99,  NO_MOVE, NO_MOVE, -200,    NO_MOVE)    ; Move up
+        add(99,  0,       0,       0,       NO_MOVE)    ; Reset
+    end
+end
+
+proc Robot4.initSequence()
+    addSequence(ROBOT4_PICKUP1)
+    addSequence(ROBOT4_MOVE_TO_CONVEYOR)
+    addSequence(ROBOT4_DROP)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT4_PICKUP2)
+    addSequence(ROBOT4_MOVE_TO_CONVEYOR)
+    addSequence(ROBOT4_DROP)
+    addSequence(SEQUENCE_END)
+end
+
+proc Robot4.init()
+    super()
+    
+    with robotConfig.motor0
+        resetDir    = -1
+        layer       = LAYER_7
+        port        = OUTPUT_A
+        sensorLayer = LAYER_8
+        sensorPort  = OUTPUT_B
+    end
+    with robotConfig.motor1
+        resetDir    = -1
+        layer       = LAYER_7
+        port        = OUTPUT_D
+        sensorLayer = LAYER_7
+        sensorPort  = OUTPUT_B
+    end
+    with robotConfig.motor2
+        resetDir    = 1
+        layer       = LAYER_8
+        port        = OUTPUT_C
+        sensorLayer = LAYER_8
+        sensorPort  = OUTPUT_A
+    end
+    with robotConfig.motor3
+        layer       = LAYER_9
+        port        = OUTPUT_D
+    end
+    with robotConfig.readyBits0
+        layer   = LAYER_7
+        bits    = MOTOR_BITS_AD
+    end
+    with robotConfig.readyBits1
+        layer   = LAYER_8
+        bits    = MOTOR_BITS_C
+    end
+
+    robotConfig.turnReset = 1400
+
+    initPickup1List()
+    initPickup2List()
+    initMoveToConveyorList()
+    initDropList()
+        
+    addMovesList(@pickup1List)
+    addMovesList(@pickup2List)
+    addMovesList(@moveToConveyorList)
+    addMovesList(@dropList)
+    
+    initSequence()
+end

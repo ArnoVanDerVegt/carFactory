@@ -1,0 +1,39 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "lib/motor.whl"
+#include "lib/sensor.whl"
+#include "lib/standard.whl"
+
+proc barMove(number speed)
+    motorLayerSetSpeed(LAYER_2, OUTPUT_B, speed)
+    motorLayerOn(LAYER_2, OUTPUT_B)
+    sleep(1500)
+    motorLayerStop(LAYER_2, OUTPUT_B)
+end
+
+proc barUp()
+    barMove(100)
+end
+
+proc barDown()
+    barMove(-100)
+end
+
+proc moveCarToRobot2()
+    motorLayerSetSpeed(LAYER_1, OUTPUT_C, -50)
+    motorLayerOn(LAYER_1, OUTPUT_C)
+    
+    repeat    
+        if sensorLayerRead(LAYER_4, OUTPUT_D) == COLOR_WHITE
+            break
+        end
+    end
+    
+    motorLayerStop(LAYER_1, OUTPUT_C)
+    motorLayerReset(LAYER_1, OUTPUT_C)
+    motorLayerSetSpeed(LAYER_1, OUTPUT_C, 25)
+    motorLayerMoveTo(LAYER_1, OUTPUT_C, 120)
+
+    sleep(1000)
+end

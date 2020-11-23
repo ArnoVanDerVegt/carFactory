@@ -1,0 +1,192 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "lib/motor.whl"
+#include "lib/sensor.whl"
+#include "lib/standard.whl"
+
+#define NO_MOVE    0xFFFF
+#define HAND_OPEN  0x0000
+#define HAND_CLOSE 0x0001
+#define HAND_STOP  0x0002
+
+record ReadyBits
+    number layer
+    number bits
+end
+
+record RobotMotor
+    number resetDir
+    number layer
+    number port
+    number sensorLayer
+    number sensorPort
+end
+
+record RobotConfig
+    RobotMotor motor0
+    RobotMotor motor1
+    RobotMotor motor2
+    RobotMotor motor3
+    ReadyBits  readyBits0
+    ReadyBits  readyBits1
+    number     turnReset
+union
+    RobotMotor motors[4]
+    ReadyBits  readyBitsA
+    ReadyBits  readyBitsB
+    number     turnResetA
+end
+
+object Robot
+    RobotConfig robotConfig
+    number      isReady
+end
+
+proc Robot.init()
+end
+
+proc Robot.preReset(number time, number speed)
+    number i
+
+    for i = 0 to 2
+        with robotConfig.motors[i]
+            motorLayerSetSpeed(layer, port, resetDir * speed)
+            motorLayerThreshold(layer, port, 50)    
+            motorLayerOn(layer, port)    
+        end
+    end
+        
+    sleep(time)
+
+    for i = 0 to 2
+        with robotConfig.motors[i]
+            motorLayerStop(layer, port)    
+        end
+    end
+end
+
+proc Robot.motorIsReady()
+    isReady = FALSE
+    with robotConfig
+        if motorLayerReadyBits(readyBits0.layer, readyBits0.bits) and motorLayerReadyBits(readyBits1.layer, readyBits1.bits)
+            isReady = TRUE
+        end
+    end
+end
+
+proc Robot.motorWait()
+    repeat
+        motorIsReady()
+        if isReady
+            break
+        end
+    end
+end
+
+proc Robot.moveTo(number speed, number a, number b, number c, number d)
+    number i
+
+    for i = 0 to 2
+        with robotConfig.motors[i]
+            motorLayerSetSpeed(layer, port, speed)    
+        end
+    end
+
+    if a != NO_MOVE
+        with robotConfig.motor0
+            motorLayerMoveTo(layer, port, a)
+        end
+    end
+    if b != NO_MOVE
+        with robotConfig.motor1
+            motorLayerMoveTo(layer, port, b)
+        end
+    end
+    if c != NO_MOVE
+        with robotConfig.motor2
+            motorLayerMoveTo(layer, port, c)
+        end
+    end
+    if d == NO_MOVE
+        ret
+    end
+    with robotConfig.motor3
+        select d
+            case HAND_OPEN:
+                motorLayerSetSpeed(layer, port, speed)
+                motorLayerOn(layer, port)
+                sleep(750)
+                motorLayerStop(layer, port)
+            case HAND_CLOSE:
+                motorLayerSetSpeed(layer, port, speed)
+                motorLayerOn(layer, port)
+            case HAND_STOP:
+                motorLayerStop(layer, port)
+        end
+    end
+end
+
+proc Robot.motorZero()
+    number i
+    
+    for i = 0 to 2
+        with robotConfig.motors[i]
+            motorLayerReset(layer, port)    
+        end
+    end
+end
+
+proc Robot.resetMotors(number speed)
+    number motor0Ready = FALSE ; Turn table
+    number motor1Ready = FALSE ; Lower arm
+    number motor2Ready = FALSE ; Upper arm
+    number i
+
+    for i = 0 to 2
+        with robotConfig.motors[i]
+            motorLayerSetSpeed(layer, port, resetDir * speed)
+            motorLayerOn(layer, port)    
+        end
+    end
+
+    repeat
+        with robotConfig.motor0
+            if not motor0Ready and sensorLayerRead(sensorLayer, sensorPort) == COLOR_WHITE
+                motorLayerStop(layer, port)
+                motor0Ready = TRUE
+            end
+        end
+        with robotConfig.motor1
+            if not motor1Ready and sensorLayerRead(sensorLayer, sensorPort) == COLOR_WHITE
+                motorLayerStop(layer, port)
+                motor1Ready = TRUE
+            end
+        end       
+        with robotConfig.motor2
+            if not motor2Ready and sensorLayerRead(sensorLayer, sensorPort) == COLOR_WHITE
+                motorLayerStop(layer, port)
+                motor2Ready = TRUE
+            end
+        end
+        if motor0Ready and motor1Ready and motor2Ready
+            break
+        end
+    end
+end
+
+proc Robot.reset()
+    preReset(500, -50)
+    resetMotors(60)
+    sleep(250)
+    motorZero()
+    moveTo(99, 2000, 500, -500, NO_MOVE)
+    motorWait()
+    resetMotors(35)    
+    motorZero()
+    
+    moveTo(99, robotConfig.turnReset, NO_MOVE, NO_MOVE, NO_MOVE)
+    motorWait()
+    
+    motorZero()
+end

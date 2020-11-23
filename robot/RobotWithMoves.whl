@@ -1,0 +1,86 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "robot/Robot.whl"
+#include "robot/RobotMoves.whl"
+
+#define SEQUENCE_END -1
+
+object RobotWithMoves extends Robot
+    ; Lists with steps to do a move like pickup a car,
+    ; move to the conveyor or pickup a seat:
+    ^RobotMoves robotMoves[10]
+    number      movesCount
+    number      movesIndex
+    
+    ; A sequence is a list of moves.
+    ; For example: a robot can do the move to pickup a car
+    ; followed by a move to move the car to the conveyor...
+    number      sequence[20]
+    number      sequenceCount
+    number      sequenceIndex
+    number      sequenceActive
+    number      sequenceStarted
+end
+
+proc RobotWithMoves.init()
+    movesCount      = 0
+    movesIndex      = 0 
+    sequenceCount   = 0
+    sequenceActive  = -1
+    sequenceStarted = FALSE
+end
+
+proc RobotWithMoves.addMovesList(RobotMoves ^robotMoves)
+    self.robotMoves[movesCount] = robotMoves
+    movesCount++
+end
+
+proc RobotWithMoves.startMoveList(number index)
+    robotMoves[index].startList()
+end
+
+proc RobotWithMoves.updateMoveList(number index)
+    with robotMoves[index]
+        while working
+            updateMove(self)
+        end
+    end
+end
+
+; A sequence number referes to a move which is an index in the robotMoves array...
+proc RobotWithMoves.addSequence(number robotMovesIndex)
+    sequence[sequenceCount] = robotMovesIndex
+    sequenceCount++
+end
+
+proc RobotWithMoves.startSequence(number index)
+    sequenceActive  = index
+    sequenceStarted = FALSE
+end
+
+proc RobotWithMoves.updateSequence()
+    if sequenceActive == -1
+        ret
+    end
+    
+    number robotMovesIndex
+    robotMovesIndex = sequence[sequenceActive]
+    if not sequenceStarted
+        if robotMovesIndex == SEQUENCE_END
+            sequenceActive  = -1
+            sequenceStarted = FALSE
+            ret
+        end
+        startMoveList(robotMovesIndex)
+        sequenceStarted = TRUE
+    end
+    
+    with robotMoves[robotMovesIndex]
+        updateMove(self)
+        if not working
+            sequenceStarted = FALSE
+            sequenceActive++
+        end
+    end
+end

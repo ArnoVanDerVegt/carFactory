@@ -1,0 +1,68 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "lib/motor.whl"
+#include "lib/sensor.whl"
+#include "lib/standard.whl"
+
+#include "robot/Robot.whl"
+
+#define POSITION_COUNT 10
+
+record RobotPosition
+    number speed
+    number a
+    number b
+    number c
+    number d    
+end
+
+object RobotMoves
+    number        count
+    number        index
+    number        working
+    number        readyA
+    number        readyB
+    number        readyC
+    RobotPosition position[POSITION_COUNT]
+end
+
+proc RobotMoves.initList()
+    count = 0
+    index = 0
+end
+
+proc RobotMoves.startList()
+    index   = 0
+    working = TRUE
+end
+
+proc RobotMoves.add(number s, number aa, number bb, number cc, number dd)
+    if count >= POSITION_COUNT
+        printS("Error: Move overflow.")
+    else
+        with position[count]
+            speed = s
+            a     = aa
+            b     = bb
+            c     = cc
+            d     = dd
+        end
+        count++
+    end
+end
+
+proc RobotMoves.updateMove(Robot ^robot)
+    robot.motorIsReady()
+    if not robot.isReady
+        ret
+    end
+    if index < count
+        with position[index]
+            robot.moveTo(speed, a, b, c, d)
+        end
+        index++
+    else
+        working = FALSE
+    end
+end

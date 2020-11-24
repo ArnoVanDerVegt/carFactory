@@ -17,7 +17,7 @@ Robot4 robot4
 
 ^RobotWithMoves robots[4]
 
-number activeRobot = 0
+RobotWithMoves ^activeRobot
 
 proc conveyorTest()
     barUp()
@@ -30,6 +30,8 @@ proc initRobots()
     robots[1] = @robot2
     robots[2] = @robot3
     robots[3] = @robot4
+
+    activeRobot = robots[0]
 
     robot1.init()
     robot2.init()

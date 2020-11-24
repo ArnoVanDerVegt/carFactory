@@ -71,18 +71,18 @@
 
 
     <!-- Turn table -->
-    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:10;stroke:rgb(39,174,96);stroke-linecap:round;"/>
-    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:6;stroke:rgb(46,204,113);stroke-linecap:round;"/>
+    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
 
     <!-- Shoulder -->
-    <line x1="6" y1="160" x2="90" y2="160" style="stroke-width:10;stroke:rgb(39,174,96);stroke-linecap:round;"/>
-    <line x1="6" y1="160" x2="90" y2="160" style="stroke-width:6;stroke:rgb(46,204,113);stroke-linecap:round;"/>
+    <line x1="6" y1="160" x2="90" y2="160" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="6" y1="160" x2="90" y2="160" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
 
     <!-- Elbow -->
-    <line x1="160" y1="40" x2="248" y2="40" style="stroke-width:10;stroke:rgb(39,174,96);stroke-linecap:round;"/>
-    <line x1="160" y1="40" x2="248" y2="40" style="stroke-width:6;stroke:rgb(46,204,113);stroke-linecap:round;"/>
+    <line x1="160" y1="40" x2="248" y2="40" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="160" y1="40" x2="248" y2="40" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
 
     <!-- Actuator -->
-    <line x1="210" y1="188" x2="248" y2="188" style="stroke-width:10;stroke:rgb(39,174,96);stroke-linecap:round;"/>
-    <line x1="210" y1="188" x2="248" y2="188" style="stroke-width:6;stroke:rgb(46,204,113);stroke-linecap:round;"/>
+    <line x1="210" y1="188" x2="248" y2="188" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="210" y1="188" x2="248" y2="188" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
 </svg>

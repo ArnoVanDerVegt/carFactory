@@ -138,7 +138,7 @@
         "type": "label",
         "name": "LabelMotor1",
         "zIndex": 0,
-        "text": "0",
+        "text": "",
         "halign": "center",
         "value": "",
         "width": "65"
@@ -155,7 +155,7 @@
         "type": "label",
         "name": "LabelMotor2",
         "zIndex": 0,
-        "text": "0",
+        "text": "",
         "halign": "center",
         "value": "",
         "width": "65"
@@ -172,7 +172,7 @@
         "type": "label",
         "name": "LabelMotor3",
         "zIndex": 0,
-        "text": "0",
+        "text": "",
         "halign": "center",
         "value": "",
         "width": "65"
@@ -411,5 +411,19 @@
         "onMouseDown": "onFactoryFormButtonMotorD2MouseDown",
         "onMouseUp": "onFactoryFormButtonMotorD2MouseUp",
         "onMouseOut": "onFactoryFormButtonMotorD2MouseOut"
+    },
+    {
+        "x": 10,
+        "y": 10,
+        "parentId": 3,
+        "id": 23,
+        "uid": "0xF4BC22B5",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "interval",
+        "name": "UpdatePosInterval",
+        "time": "50",
+        "onInterval": "onFactoryFormUpdatePosIntervalInterval"
     }
 ]

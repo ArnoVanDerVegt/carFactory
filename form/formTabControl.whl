@@ -104,27 +104,21 @@ proc onFactoryFormButtonMotorC2MouseUp(number windowHandle)
 end
 
 proc onFactoryFormButtonMotorD1MouseDown(number windowHandle)
-    printS("Mousedown ButtonMotorD1 button.")
 end
 
 proc onFactoryFormButtonMotorD1MouseOut(number windowHandle)
-    printS("Mouseout ButtonMotorD1 button.")
 end
 
 proc onFactoryFormButtonMotorD1MouseUp(number windowHandle)
-    printS("Mouseup ButtonMotorD1 button.")
 end
 
 proc onFactoryFormButtonMotorD2MouseDown(number windowHandle)
-    printS("Mousedown ButtonMotorD2 button.")
 end
 
 proc onFactoryFormButtonMotorD2MouseOut(number windowHandle)
-    printS("Mouseout ButtonMotorD2 button.")
 end
 
 proc onFactoryFormButtonMotorD2MouseUp(number windowHandle)
-    printS("Mouseup ButtonMotorD2 button.")
 end
 
 proc onFactoryFormButtonResetClick(number windowHandle)

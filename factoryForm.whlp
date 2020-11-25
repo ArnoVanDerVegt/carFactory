@@ -2,27 +2,27 @@
 ; Distributed under an {yourLicense}
 #project "Factory form"
 
-#include "lib/device.whl"
-#include "lib/light.whl"
-#include "lib/motor.whl"
-#include "lib/poweredUp.whl"
-#include "lib/sensor.whl"
-#include "lib/standard.whl"
+#include "lib/modules/device.whl"
+#include "lib/modules/light.whl"
+#include "lib/modules/motor.whl"
+#include "lib/modules/poweredUp.whl"
+#include "lib/modules/sensor.whl"
+#include "lib/modules/standard.whl"
 
-#include "lib/components/component.whl"
-#include "lib/components/form.whl"
-#include "lib/components/tabs.whl"
-#include "lib/components/selectButton.whl"
-#include "lib/components/button.whl"
-#include "lib/components/label.whl"
-#include "lib/components/title.whl"
-#include "lib/components/image.whl"
+#include "lib/modules/components/component.whl"
+#include "lib/modules/components/form.whl"
+#include "lib/modules/components/tabs.whl"
+#include "lib/modules/components/selectButton.whl"
+#include "lib/modules/components/button.whl"
+#include "lib/modules/components/label.whl"
+#include "lib/modules/components/title.whl"
+#include "lib/modules/components/image.whl"
 
 #include "form/formTabControl.whl"
 
 #include "devices.whl"
 #include "factory.whl"
-#include "lib/components/interval.whl"
+#include "lib/modules/components/interval.whl"
 
 #rangecheck "off"
 #heap       40900
@@ -31,6 +31,7 @@
 #define FACTORY_FORM_LABEL_MOTOR_2   0xE8065F64
 #define FACTORY_FORM_LABEL_MOTOR_3   0x0728854D
 #define FACTORY_FORM_INTERVAL1       0xF4BC22B5
+#define FACTORY_FORM_BUTTON1             0x7D0EA2DE
 #define FACTORY_FORM_BUTTON_DOWN         0x8A1F6E75
 #define FACTORY_FORM_BUTTON_LEFT         0xE026EE80
 #define FACTORY_FORM_BUTTON_MOTOR_A1     0xF609DD46
@@ -95,14 +96,14 @@ end
 proc updateCommand()
     select command
         case CMD_REV:
-            activeRobot.rev(motorIndex)        
+            activeRobot.rev(motorIndex)
         case CMD_FWD:
-            activeRobot.fwd(motorIndex)                
+            activeRobot.fwd(motorIndex)
         case CMD_STOP:
-            activeRobot.stop(motorIndex)                
+            activeRobot.stop(motorIndex)
         case CMD_RESET:
             setFormDisabled(TRUE)
-            activeRobot.reset()                
+            activeRobot.reset()
     end
     command = CMD_NONE
     setFormDisabled(FALSE)
@@ -116,7 +117,7 @@ proc main()
     showFactoryFormForm()
 
     repeat
-        updateFactory() 
+        updateFactory()
         if command != CMD_NONE
             updateCommand()
         end

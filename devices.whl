@@ -1,11 +1,11 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "lib/device.whl"
-#include "lib/light.whl"
-#include "lib/motor.whl"
-#include "lib/poweredUp.whl"
-#include "lib/sensor.whl"
+#include "lib/modules/device.whl"
+#include "lib/modules/light.whl"
+#include "lib/modules/motor.whl"
+#include "lib/modules/poweredUp.whl"
+#include "lib/modules/sensor.whl"
 
 ; Initialize the `Technic hub` device.
 proc initDevice1()

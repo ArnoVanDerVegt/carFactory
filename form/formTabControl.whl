@@ -14,7 +14,7 @@ number command
 number motorIndex
 
 proc onFactoryFormButtonMotorA1MouseDown(number windowHandle)
-    command    = CMD_REV
+    command    = CMD_FWD
     motorIndex = 0
 end
 
@@ -29,7 +29,7 @@ proc onFactoryFormButtonMotorA1MouseUp(number windowHandle)
 end
 
 proc onFactoryFormButtonMotorA2MouseDown(number windowHandle)
-    command    = CMD_FWD
+    command    = CMD_REV
     motorIndex = 0
 end
 
@@ -44,7 +44,7 @@ proc onFactoryFormButtonMotorA2MouseUp(number windowHandle)
 end
 
 proc onFactoryFormButtonMotorB1MouseDown(number windowHandle)
-    command    = CMD_REV
+    command    = CMD_FWD
     motorIndex = 1
 end
 
@@ -59,7 +59,7 @@ proc onFactoryFormButtonMotorB1MouseUp(number windowHandle)
 end
 
 proc onFactoryFormButtonMotorB2MouseDown(number windowHandle)
-    command    = CMD_FWD
+    command    = CMD_REV
     motorIndex = 1
 end
 

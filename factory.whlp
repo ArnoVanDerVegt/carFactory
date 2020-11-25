@@ -6,17 +6,17 @@
 #rangecheck "off"
 #heap       40900
 
-#include "lib/device.whl"
-#include "lib/light.whl"
-#include "lib/motor.whl"
-#include "lib/poweredUp.whl"
-#include "lib/sensor.whl"
-#include "lib/standard.whl"
+#include "lib/modules/device.whl"
+#include "lib/modules/light.whl"
+#include "lib/modules/motor.whl"
+#include "lib/modules/poweredUp.whl"
+#include "lib/modules/sensor.whl"
+#include "lib/modules/standard.whl"
 
 #include "devices.whl"
 #include "factory.whl"
 
 proc main()
-    initDevices()    
+    initDevices()
     test()
 end

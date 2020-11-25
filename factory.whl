@@ -1,7 +1,7 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
-#include "lib/standard.whl"
-#include "lib/math.whl"
+#include "lib/modules/standard.whl"
+#include "lib/modules/math.whl"
 
 #include "robot/Robot1.whl"
 #include "robot/Robot2.whl"
@@ -45,14 +45,14 @@ proc initFactory()
     ;robot3.reset()
     ;robot4.reset()
     ;robots[0].reset()
-    
+
     robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
     robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
     robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
     robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
 end
 
-proc updateFactory() 
+proc updateFactory()
     ;robot1.updateSequence()
     ;robot2.updateSequence()
     ;robot3.updateSequence()

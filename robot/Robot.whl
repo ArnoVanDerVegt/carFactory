@@ -1,9 +1,9 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "lib/motor.whl"
-#include "lib/sensor.whl"
-#include "lib/standard.whl"
+#include "lib/modules/motor.whl"
+#include "lib/modules/sensor.whl"
+#include "lib/modules/standard.whl"
 
 #define NO_MOVE    0xFFFF
 #define HAND_OPEN  0x0000
@@ -60,16 +60,16 @@ proc Robot.preReset(number time, number speed)
     for i = 0 to 2
         with robotConfig.motors[i]
             motorLayerSetSpeed(layer, port, resetDir * speed)
-            motorLayerThreshold(layer, port, 50)    
-            motorLayerOn(layer, port)    
+            motorLayerThreshold(layer, port, 50)
+            motorLayerOn(layer, port)
         end
     end
-        
+
     sleep(time)
 
     for i = 0 to 2
         with robotConfig.motors[i]
-            motorLayerStop(layer, port)    
+            motorLayerStop(layer, port)
         end
     end
 end
@@ -97,7 +97,7 @@ proc Robot.moveTo(number speed, number a, number b, number c, number d)
 
     for i = 0 to 2
         with robotConfig.motors[i]
-            motorLayerSetSpeed(layer, port, speed)    
+            motorLayerSetSpeed(layer, port, speed)
         end
     end
 
@@ -137,10 +137,10 @@ end
 
 proc Robot.motorZero()
     number i
-    
+
     for i = 0 to 2
         with robotConfig.motors[i]
-            motorLayerReset(layer, port)    
+            motorLayerReset(layer, port)
         end
     end
 end
@@ -154,7 +154,7 @@ proc Robot.resetMotors(number speed)
     for i = 0 to 2
         with robotConfig.motors[i]
             motorLayerSetSpeed(layer, port, resetDir * speed)
-            motorLayerOn(layer, port)    
+            motorLayerOn(layer, port)
         end
     end
 
@@ -170,7 +170,7 @@ proc Robot.resetMotors(number speed)
                 motorLayerStop(layer, port)
                 motor1Ready = TRUE
             end
-        end       
+        end
         with robotConfig.motor2
             if not motor2Ready and sensorLayerRead(sensorLayer, sensorPort) == COLOR_WHITE
                 motorLayerStop(layer, port)
@@ -190,31 +190,32 @@ proc Robot.reset()
     motorZero()
     moveTo(99, 2000, 500, -500, NO_MOVE)
     motorWait()
-    resetMotors(35)    
+    resetMotors(35)
     motorZero()
-    
-    moveTo(99, robotConfig.turnReset, NO_MOVE, NO_MOVE, NO_MOVE)
+
+    moveTo(50, robotConfig.turnReset, NO_MOVE, NO_MOVE, NO_MOVE)
     motorWait()
-    
+
+    sleep(250)
     motorZero()
 end
 
 proc Robot.rev(number motor)
     with robotConfig.motors[motor]
         motorLayerSetSpeed(layer, port, 50)
-        motorLayerOn(layer, port) 
+        motorLayerOn(layer, port)
     end
 end
 
 proc Robot.fwd(number motor)
     with robotConfig.motors[motor]
         motorLayerSetSpeed(layer, port, -50)
-        motorLayerOn(layer, port)           
+        motorLayerOn(layer, port)
     end
 end
 
 proc Robot.stop(number motor)
     with robotConfig.motors[motor]
-        motorLayerStop(layer, port) 
+        motorLayerStop(layer, port)
     end
 end

@@ -1,9 +1,9 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "lib/motor.whl"
-#include "lib/sensor.whl"
-#include "lib/standard.whl"
+#include "lib/modules/motor.whl"
+#include "lib/modules/sensor.whl"
+#include "lib/modules/standard.whl"
 
 proc barMove(number speed)
     motorLayerSetSpeed(LAYER_2, OUTPUT_B, speed)
@@ -23,13 +23,13 @@ end
 proc moveCarToRobot2()
     motorLayerSetSpeed(LAYER_1, OUTPUT_C, -50)
     motorLayerOn(LAYER_1, OUTPUT_C)
-    
-    repeat    
+
+    repeat
         if sensorLayerRead(LAYER_4, OUTPUT_D) == COLOR_WHITE
             break
         end
     end
-    
+
     motorLayerStop(LAYER_1, OUTPUT_C)
     motorLayerReset(LAYER_1, OUTPUT_C)
     motorLayerSetSpeed(LAYER_1, OUTPUT_C, 25)

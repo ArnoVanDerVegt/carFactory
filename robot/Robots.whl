@@ -1,0 +1,75 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "robot/Robot1.whl"
+#include "robot/Robot2.whl"
+#include "robot/Robot3.whl"
+#include "robot/Robot4.whl"
+
+record RobotCommand
+    number command
+    number motorIndex
+end
+
+object Robots
+    Robot1             robot1
+    Robot2             robot2
+    Robot3             robot3
+    Robot4             robot4
+    ^RobotWithMoves    robots[4]
+    RobotWithMoves     ^activeRobot
+end
+
+proc Robots.init()
+    robots[0] = @robot1
+    robots[1] = @robot2
+    robots[2] = @robot3
+    robots[3] = @robot4
+
+    activeRobot = robots[0]
+
+    robot1.init()
+    robot2.init()
+    robot3.init()
+    robot4.init()
+end
+
+proc Robots.initFactory()
+    ;robot1.reset()
+    ;robot2.reset()
+    ;robot3.reset()
+    ;robot4.reset()
+    ;robots[0].reset()
+
+    robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
+    robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
+    robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
+    robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
+end
+
+proc Robots.updateFactory()
+    ;robot1.updateSequence()
+    ;robot2.updateSequence()
+    ;robot3.updateSequence()
+    ;robot4.updateSequence()
+end
+
+proc Robots.setActiveRobot(number value)
+    activeRobot = robots[value]
+end
+
+proc Robots.reset()
+    activeRobot.reset()
+end
+
+proc Robots.rev(number motorIndex)
+    activeRobot.rev(motorIndex)
+end
+
+proc Robots.fwd(number motorIndex)
+    activeRobot.fwd(motorIndex)
+end
+
+proc Robots.stop(number motorIndex)
+    activeRobot.stop(motorIndex)
+end

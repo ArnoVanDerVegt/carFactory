@@ -126,5 +126,5 @@ proc onFactoryFormButtonResetClick(number windowHandle)
 end
 
 proc onFactoryFormSelectRobotChange(number windowHandle, number value)
-    activeRobot = robots[value]
+    robots.setActiveRobot(value)
 end

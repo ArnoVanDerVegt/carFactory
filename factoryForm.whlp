@@ -60,7 +60,7 @@
 proc onFactoryFormUpdatePosIntervalInterval(number windowHandle)
     number labels[3] = [FACTORY_FORM_LABEL_MOTOR_1, FACTORY_FORM_LABEL_MOTOR_2, FACTORY_FORM_LABEL_MOTOR_3]
     number i
-    with activeRobot.robotConfig
+    with robots.activeRobot.robotConfig
         for i = 0 to 2
             with motors[i]
                 components.label.setValueNumber(mainWindow, labels[i], motorLayerRead(layer, port))
@@ -96,14 +96,14 @@ end
 proc updateCommand()
     select command
         case CMD_REV:
-            activeRobot.rev(motorIndex)
+            robots.rev(motorIndex)
         case CMD_FWD:
-            activeRobot.fwd(motorIndex)
+            robots.fwd(motorIndex)
         case CMD_STOP:
-            activeRobot.stop(motorIndex)
+            robots.stop(motorIndex)
         case CMD_RESET:
             setFormDisabled(TRUE)
-            activeRobot.reset()
+            robots.reset()
     end
     command = CMD_NONE
     setFormDisabled(FALSE)
@@ -111,13 +111,13 @@ end
 
 proc main()
     initDevices()
-    initRobots()
-    initFactory()
+    robots.init()
+    robots.initFactory()
 
     showFactoryFormForm()
 
     repeat
-        updateFactory()
+        robots.updateFactory()
         if command != CMD_NONE
             updateCommand()
         end

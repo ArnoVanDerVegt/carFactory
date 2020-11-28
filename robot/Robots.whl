@@ -32,26 +32,18 @@ proc Robots.init()
     robot2.init()
     robot3.init()
     robot4.init()
+
+    ;robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
+    ;robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
+    ;robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
+    ;robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
 end
 
-proc Robots.initFactory()
-    ;robot1.reset()
-    ;robot2.reset()
-    ;robot3.reset()
-    ;robot4.reset()
-    ;robots[0].reset()
-
-    robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
-    robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
-    robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
-    robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
-end
-
-proc Robots.updateFactory()
-    ;robot1.updateSequence()
-    ;robot2.updateSequence()
-    ;robot3.updateSequence()
-    ;robot4.updateSequence()
+proc Robots.update()
+    robot1.updateSequence()
+    robot2.updateSequence()
+    robot3.updateSequence()
+    robot4.updateSequence()
 end
 
 proc Robots.setActiveRobot(number value)
@@ -72,4 +64,8 @@ end
 
 proc Robots.stop(number motorIndex)
     activeRobot.stop(motorIndex)
+end
+
+proc Robots.startSequence(number index, number sequence)
+    robots[index].startSequence(sequence)
 end

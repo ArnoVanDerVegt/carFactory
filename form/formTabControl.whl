@@ -104,21 +104,33 @@ proc onFactoryFormButtonMotorC2MouseUp(number windowHandle)
 end
 
 proc onFactoryFormButtonMotorD1MouseDown(number windowHandle)
+    command    = CMD_FWD
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonMotorD1MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonMotorD1MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseDown(number windowHandle)
+    command    = CMD_REV
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseOut(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseUp(number windowHandle)
+    command    = CMD_STOP
+    motorIndex = 3
 end
 
 proc onFactoryFormButtonResetClick(number windowHandle)

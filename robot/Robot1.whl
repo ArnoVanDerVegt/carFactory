@@ -20,10 +20,9 @@ end
 proc Robot1.initMoveToConveyorList()
     with moveToConveyorList
         initList()
-        add(99,  0,       1450,    -2100,   NO_MOVE)    ; Move to conveyor
-        add(99,  NO_MOVE, 1650,    -2400,   NO_MOVE)    ; Drop car
-        add(99,  NO_MOVE, 2650,    -3450,   NO_MOVE)    ; Drop car
-        add(99,  800,     NO_MOVE, NO_MOVE, NO_MOVE)    ; Release car
+        add(99,  0,       NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to conveyor
+        add(99,  NO_MOVE, 2200,    -2650,   NO_MOVE)    ; Drop car
+        add(99,  950,     NO_MOVE, NO_MOVE, NO_MOVE)    ; Release car
         add(99,  NO_MOVE, 1030,    -1400,   NO_MOVE)    ; Move up
         add(99,  0,       0,       0,       NO_MOVE)    ; Reset
     end
@@ -32,22 +31,22 @@ end
 proc Robot1.initPickup1List()
     with pickup1List
         initList()
-        add(99,  6000,    1200,    -2800,   NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 2200,    -3650,   NO_MOVE)    ; Move down
-        add(99,  4650,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
+        add(99,  5850,    1200,    -2600,   NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 1700,    -3000,   NO_MOVE)    ; Move down
+        add(99,  4800,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
         add(99,  NO_MOVE, 1000,    -2600,   NO_MOVE)    ; Lift car
-        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(99,  2450,    1000,    -1550,   NO_MOVE)    ; Turn to conveyor
     end
 end
 
 proc Robot1.initPickup2List()
     with pickup2List
         initList()
-        add(99,  5700,    2650,    -1600,   NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 3600,    NO_MOVE, NO_MOVE)    ; Move down
-        add(99,  4850,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
+        add(99,  5500,    2500,    -1200,   NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 3000,    NO_MOVE, NO_MOVE)    ; Move down
+        add(99,  4700,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
         add(99,  NO_MOVE, 2350,    -1250,   NO_MOVE)    ; Lift car
-        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(99,  2450,    1000,    -1550,   NO_MOVE)    ; Turn to conveyor
     end
 end
 
@@ -105,7 +104,7 @@ proc Robot1.init()
         bits        = MOTOR_BITS_C
     end
     
-    robotConfig.turnReset = 1400
+    robotConfig.turnReset = 1100
     
     initMoveToConveyorList()
     initPickup1List()

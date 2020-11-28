@@ -1,0 +1,30 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "factory.whl"
+
+#include "robot/robot1.whl"
+
+proc onFactoryFormButtonRobot1Pickup1Click(number windowHandle)
+    robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
+end
+
+proc onFactoryFormButtonRobot1Pickup2Click(number windowHandle)
+    robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
+end
+
+proc onFactoryFormButtonRobot2Pickup1Click(number windowHandle)
+    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP1)
+end
+
+proc onFactoryFormButtonRobot2Pickup2Click(number windowHandle)
+    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP2)
+end
+
+proc onFactoryFormButtonRobot3Pickup1Click(number windowHandle)
+    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP1)
+end
+
+proc onFactoryFormButtonRobot3Pickup2Click(number windowHandle)
+    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP1)
+end

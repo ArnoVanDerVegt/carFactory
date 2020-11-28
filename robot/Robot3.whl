@@ -24,12 +24,12 @@ proc Robot3.initPickup1List()
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
-        add(99,  5100,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 1250,    -3050,   NO_MOVE)    ; Move down
-        add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
+        ;add(99,  5100,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
+        ;add(99,  NO_MOVE, 1250,    -3050,   NO_MOVE)    ; Move down
+        ;add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 
-        add(99,  NO_MOVE, 500,     -800,    NO_MOVE)    ; Move up
-        add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
+        ;add(99,  NO_MOVE, 500,     -800,    NO_MOVE)    ; Move up
+        ;add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
     end
 end
 
@@ -70,8 +70,8 @@ end
 
 proc Robot3.initSequence()
     addSequence(ROBOT3_PICKUP1)
-    addSequence(ROBOT3_MOVE_TO_CONVEYOR)
-    addSequence(ROBOT3_DROP)
+    ;addSequence(ROBOT3_MOVE_TO_CONVEYOR)
+    ;addSequence(ROBOT3_DROP)
     addSequence(SEQUENCE_END)
 
     addSequence(ROBOT3_PICKUP2)

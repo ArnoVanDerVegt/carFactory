@@ -55,8 +55,10 @@ proc RobotWithMoves.addSequence(number robotMovesIndex)
 end
 
 proc RobotWithMoves.startSequence(number index)
-    sequenceActive  = index
-    sequenceStarted = FALSE
+    if sequenceActive == -1
+        sequenceActive  = index
+        sequenceStarted = FALSE
+    end
 end
 
 proc RobotWithMoves.updateSequence()

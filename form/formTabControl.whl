@@ -3,7 +3,7 @@
 
 #include "lib/modules/components/button.whl"
 
-#include "factory.whl"
+#include "Factory.whl"
 
 number mainWindow
 number command

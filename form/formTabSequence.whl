@@ -1,7 +1,7 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "factory.whl"
+#include "Factory.whl"
 
 #include "robot/robot1.whl"
 

@@ -22,7 +22,7 @@
 #include "form/formTabSequence.whl"
 
 #include "devices.whl"
-#include "factory.whl"
+#include "Factory.whl"
 #include "lib/modules/components/interval.whl"
 
 #rangecheck "off"

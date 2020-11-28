@@ -1,13 +1,16 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
+#include "lib/modules/components/button.whl"
+
 #include "factory.whl"
 
-#define CMD_NONE   0
-#define CMD_REV    1
-#define CMD_FWD    2
-#define CMD_STOP   3
-#define CMD_RESET  4
+#define CMD_NONE     0
+#define CMD_REV      1
+#define CMD_FWD      2
+#define CMD_STOP     3
+#define CMD_STOP_ALL 4
+#define CMD_RESET    5
 
 number mainWindow
 number command
@@ -139,4 +142,17 @@ end
 
 proc onFactoryFormSelectRobotChange(number windowHandle, number value)
     robots.setActiveRobot(value)
+    if value == 0    
+        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
+        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)    
+        components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "robot1.svg")
+    else
+        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, FALSE)
+        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, FALSE)    
+        components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "robot2.svg")
+    end
+end
+
+proc onFactoryFormButtonStopClick(number windowHandle)
+    command = CMD_STOP_ALL
 end

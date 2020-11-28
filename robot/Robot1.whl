@@ -35,7 +35,7 @@ proc Robot1.initPickup1List()
         add(99,  NO_MOVE, 1700,    -3000,   NO_MOVE)    ; Move down
         add(99,  4800,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
         add(99,  NO_MOVE, 1000,    -2600,   NO_MOVE)    ; Lift car
-        add(99,  2450,    1000,    -1550,   NO_MOVE)    ; Turn to conveyor
+        add(99,  2450,    900,     -1500,   NO_MOVE)    ; Turn to conveyor
     end
 end
 
@@ -43,10 +43,10 @@ proc Robot1.initPickup2List()
     with pickup2List
         initList()
         add(99,  5500,    2500,    -1200,   NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 3000,    NO_MOVE, NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 3100,    NO_MOVE, NO_MOVE)    ; Move down
         add(99,  4700,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
         add(99,  NO_MOVE, 2350,    -1250,   NO_MOVE)    ; Lift car
-        add(99,  2450,    1000,    -1550,   NO_MOVE)    ; Turn to conveyor
+        add(99,  2450,    900,     -1500,   NO_MOVE)    ; Turn to conveyor
     end
 end
 
@@ -94,6 +94,9 @@ proc Robot1.init()
         port        = OUTPUT_D
         sensorLayer = LAYER_1
         sensorPort  = OUTPUT_B
+    end
+    with robotConfig.motor3
+        layer       = -1
     end
     with robotConfig.readyBits0
         layer       = LAYER_1

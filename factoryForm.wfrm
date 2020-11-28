@@ -35,7 +35,7 @@
     },
     {
         "x": 170,
-        "y": 20,
+        "y": 50,
         "parentId": 3,
         "id": 3,
         "uid": "0x9A4E0D42",
@@ -264,7 +264,7 @@
         "zIndex": "0",
         "width": "256",
         "height": "256",
-        "src": "robot.svg",
+        "src": "robot1.svg",
         "naturalSize": true
     },
     {
@@ -514,5 +514,43 @@
         "width": "80",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot3Pickup2Click"
+    },
+    {
+        "x": 320,
+        "y": 60,
+        "parentId": 4,
+        "id": 29,
+        "uid": "0x436BB2AD",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonRobot4Pickup1",
+        "zIndex": 0,
+        "value": "Pickup 1",
+        "title": "",
+        "color": "green",
+        "width": "80",
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Pickup1Click"
+    },
+    {
+        "x": 320,
+        "y": 110,
+        "parentId": 4,
+        "id": 30,
+        "uid": "0x62EB1567",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonRobot4Pickup2",
+        "zIndex": 0,
+        "value": "Pickup 2",
+        "title": "",
+        "color": "green",
+        "width": "80",
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Pickup2Click"
     }
 ]

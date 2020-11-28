@@ -36,7 +36,7 @@ proc Robot2.initPickup1List()
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
         add(99,  2550,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 1050,    -2600,   NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 950,     -2600,   NO_MOVE)    ; Move down
         add(99,  4800,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
         add(99,  NO_MOVE, 2200,    -4100,   NO_MOVE)    ; Move down
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
@@ -52,8 +52,8 @@ proc Robot2.initPickup2List()
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
         add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 2100,    -1250,   NO_MOVE)    ; Move down
-        add(99,  5100,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
+        add(99,  NO_MOVE, 2200,    -1250,   NO_MOVE)    ; Move down
+        add(99,  5050,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
         add(99,  NO_MOVE, 3400,    -1500,   NO_MOVE)    ; Move down
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 

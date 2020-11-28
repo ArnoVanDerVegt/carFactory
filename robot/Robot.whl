@@ -227,3 +227,15 @@ proc Robot.stop(number motor)
         motorLayerStop(layer, port)
     end
 end
+
+proc Robot.stopAll()
+    number i
+
+    for i = 0 to 3
+        with robotConfig.motors[i]
+            if layer != -1
+                motorLayerStop(layer, port)
+            end
+        end
+    end
+end

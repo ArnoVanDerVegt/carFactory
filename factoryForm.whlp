@@ -44,6 +44,8 @@
 #define FACTORY_FORM_BUTTON_ROBOT2_PICKUP2 0xFCFE304F
 #define FACTORY_FORM_BUTTON_ROBOT3_PICKUP1 0x5FFFDB15
 #define FACTORY_FORM_BUTTON_ROBOT3_PICKUP2 0xF446D8AE
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP1 0x436BB2AD
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP2 0x62EB1567
 #define FACTORY_FORM_BUTTON_STOP           0x7D0EA2DE
 #define FACTORY_FORM_IMAGE1                0xCB7FFF70
 #define FACTORY_FORM_LABEL_MOTOR1          0x4925780C
@@ -59,9 +61,7 @@
 
 #resource "factoryForm.wfrm"
 
-proc onFactoryFormButtonStopClick(number windowHandle)
-    printS("Click ButtonStop button.")
-end
+number needsReset[4] = [TRUE, TRUE, TRUE, TRUE]
 
 proc onFactoryFormUpdatePosIntervalInterval(number windowHandle)
     number labels[3] = [FACTORY_FORM_LABEL_MOTOR1, FACTORY_FORM_LABEL_MOTOR2, FACTORY_FORM_LABEL_MOTOR3]
@@ -95,6 +95,17 @@ proc setFormDisabled(number disabled)
     components.selectButton.setDisabled(mainWindow, FACTORY_FORM_SELECT_ROBOT, disabled)
 end
 
+proc setSequenceDisabled()
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1, needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2, needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1, needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2, needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP1, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP2, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP1, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP2, needsReset[3])
+end
+
 proc updateCommand()
     select command
         case CMD_REV:
@@ -103,19 +114,33 @@ proc updateCommand()
             robots.fwd(motorIndex)
         case CMD_STOP:
             robots.stop(motorIndex)
+        case CMD_STOP_ALL:
+            robots.stopAll()            
         case CMD_RESET:
             setFormDisabled(TRUE)
+            number active = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)            
+            needsReset[active] = FALSE
             robots.reset()
     end
     command = CMD_NONE
     setFormDisabled(FALSE)
+    setSequenceDisabled()
+end
+
+proc initUI()
+    showFactoryFormForm()
+
+    components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
+    components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)    
+
+    setSequenceDisabled()
 end
 
 proc main()
     initDevices()
-    robots.init()
+    initUI()
 
-    showFactoryFormForm()
+    robots.init()
 
     repeat
         robots.update()

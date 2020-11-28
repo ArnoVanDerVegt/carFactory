@@ -32,11 +32,6 @@ proc Robots.init()
     robot2.init()
     robot3.init()
     robot4.init()
-
-    ;robot1.startSequence(ROBOT1_SEQUENCE_PICKUP1)
-    ;robot2.startSequence(ROBOT2_SEQUENCE_PICKUP1)
-    ;robot3.startSequence(ROBOT3_SEQUENCE_PICKUP1)
-    ;robot4.startSequence(ROBOT4_SEQUENCE_PICKUP1)
 end
 
 proc Robots.update()
@@ -68,4 +63,12 @@ end
 
 proc Robots.startSequence(number index, number sequence)
     robots[index].startSequence(sequence)
+end
+
+proc Robots.stopAll()
+    number i
+
+    for i = 0 to 3
+        robots[i].stopAll()
+    end
 end

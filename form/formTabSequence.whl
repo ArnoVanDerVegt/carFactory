@@ -26,5 +26,13 @@ proc onFactoryFormButtonRobot3Pickup1Click(number windowHandle)
 end
 
 proc onFactoryFormButtonRobot3Pickup2Click(number windowHandle)
-    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP1)
+    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP2)
+end
+
+proc onFactoryFormButtonRobot4Pickup1Click(number windowHandle)
+    robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP1)
+end
+
+proc onFactoryFormButtonRobot4Pickup2Click(number windowHandle)
+    robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP2)
 end

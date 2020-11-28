@@ -51,7 +51,7 @@ end
 proc Robot4.initMoveToConveyorList()
     with moveToConveyorList
         initList()
-        add(99,  -450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(99,  -500,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
         add(0,   NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Stop hand
     end
 end
@@ -59,7 +59,7 @@ end
 proc Robot4.initDropList()
     with dropList
         initList()
-        add(99,  NO_MOVE, 700,     -1500,   NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 600,     -1550,   NO_MOVE)    ; Move down
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, NO_MOVE, -200,    NO_MOVE)    ; Move up
         add(99,  0,       0,       0,       NO_MOVE)    ; Reset

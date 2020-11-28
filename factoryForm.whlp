@@ -129,10 +129,6 @@ end
 
 proc initUI()
     showFactoryFormForm()
-
-    components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
-    components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)    
-
     setSequenceDisabled()
 end
 

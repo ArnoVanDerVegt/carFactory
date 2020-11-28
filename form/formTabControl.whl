@@ -5,13 +5,6 @@
 
 #include "factory.whl"
 
-#define CMD_NONE     0
-#define CMD_REV      1
-#define CMD_FWD      2
-#define CMD_STOP     3
-#define CMD_STOP_ALL 4
-#define CMD_RESET    5
-
 number mainWindow
 number command
 number motorIndex

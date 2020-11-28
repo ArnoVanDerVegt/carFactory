@@ -5,6 +5,8 @@
 
 #include "robot/robot1.whl"
 
+; ============================== ROBOT 1 ==============================
+
 proc onFactoryFormButtonRobot1Pickup1Click(number windowHandle)
     robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
 end
@@ -12,6 +14,8 @@ end
 proc onFactoryFormButtonRobot1Pickup2Click(number windowHandle)
     robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
 end
+
+; ============================== ROBOT 2 ==============================
 
 proc onFactoryFormButtonRobot2Pickup1Click(number windowHandle)
     robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP1)
@@ -21,18 +25,44 @@ proc onFactoryFormButtonRobot2Pickup2Click(number windowHandle)
     robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP2)
 end
 
-proc onFactoryFormButtonRobot3Pickup1Click(number windowHandle)
+; ============================== ROBOT 3 ==============================
+
+proc onFactoryFormButtonRobot3PickupDrop1Click(number windowHandle)
     robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP1)
 end
 
-proc onFactoryFormButtonRobot3Pickup2Click(number windowHandle)
+proc onFactoryFormButtonRobot3PickupDrop2Click(number windowHandle)
     robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP2)
 end
 
-proc onFactoryFormButtonRobot4Pickup1Click(number windowHandle)
+; ============================== ROBOT 4 ==============================
+
+proc onFactoryFormButtonRobot4PickupDrop1Click(number windowHandle)
     robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP1)
 end
 
-proc onFactoryFormButtonRobot4Pickup2Click(number windowHandle)
+proc onFactoryFormButtonRobot4PickupDrop2Click(number windowHandle)
     robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP2)
+end
+
+; ============================== CONVERYOR ==============================
+
+proc onFactoryFormButtonConveyorBarDownClick(number windowHandle)
+    command = CMD_CONVEYOR_BAR_DOWN
+end
+
+proc onFactoryFormButtonConveyorBarUpClick(number windowHandle)
+    command = CMD_CONVEYOR_BAR_UP
+end
+
+proc onFactoryFormButtonConveyor1to2Click(number windowHandle)
+    command = CMD_CONVEYOR_FROM_1_TO_2
+end
+
+proc onFactoryFormButtonConveyor2to3Click(number windowHandle)
+    command = CMD_CONVEYOR_FROM_2_TO_3
+end
+
+proc onFactoryFormButtonConveyor3to4Click(number windowHandle)
+    command = CMD_CONVEYOR_FROM_3_TO_4
 end

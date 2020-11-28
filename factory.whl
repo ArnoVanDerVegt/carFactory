@@ -7,11 +7,17 @@
 
 #include "Conveyor.whl"
 
-Robots robots
+#define CMD_NONE                  0
+#define CMD_REV                   1
+#define CMD_FWD                   2
+#define CMD_STOP                  3
+#define CMD_STOP_ALL              4
+#define CMD_RESET                 5
+#define CMD_CONVEYOR_BAR_UP       6
+#define CMD_CONVEYOR_BAR_DOWN     7
+#define CMD_CONVEYOR_FROM_1_TO_2  8
+#define CMD_CONVEYOR_FROM_2_TO_3  9
+#define CMD_CONVEYOR_FROM_3_TO_4 10
 
-proc conveyorTest()
-    barUp()
-    moveCarToRobot2()
-    barDown()
-end
-
+Robots   robots
+Conveyor conveyor

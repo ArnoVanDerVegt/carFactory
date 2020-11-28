@@ -28,36 +28,43 @@
 #rangecheck "off"
 #heap       40900
 
-#define FACTORY_FORM_INTERVAL1             0xF4BC22B5
-#define FACTORY_FORM_BUTTON_MOTOR_A1       0xF609DD46
-#define FACTORY_FORM_BUTTON_MOTOR_A2       0xCEDD8E66
-#define FACTORY_FORM_BUTTON_MOTOR_B1       0xBE951D0C
-#define FACTORY_FORM_BUTTON_MOTOR_B2       0x37ECD490
-#define FACTORY_FORM_BUTTON_MOTOR_C1       0xCBF97685
-#define FACTORY_FORM_BUTTON_MOTOR_C2       0xEAB1FA2D
-#define FACTORY_FORM_BUTTON_MOTOR_D1       0x43C6EA33
-#define FACTORY_FORM_BUTTON_MOTOR_D2       0xEDF83F7F
-#define FACTORY_FORM_BUTTON_RESET          0x99C1B371
-#define FACTORY_FORM_BUTTON_ROBOT1_PICKUP1 0xCBA522FC
-#define FACTORY_FORM_BUTTON_ROBOT1_PICKUP2 0xB05E3061
-#define FACTORY_FORM_BUTTON_ROBOT2_PICKUP1 0x295945A3
-#define FACTORY_FORM_BUTTON_ROBOT2_PICKUP2 0xFCFE304F
-#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP1 0x5FFFDB15
-#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP2 0xF446D8AE
-#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP1 0x436BB2AD
-#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP2 0x62EB1567
-#define FACTORY_FORM_BUTTON_STOP           0x7D0EA2DE
-#define FACTORY_FORM_IMAGE1                0xCB7FFF70
-#define FACTORY_FORM_LABEL_MOTOR1          0x4925780C
-#define FACTORY_FORM_LABEL_MOTOR2          0xE8065F64
-#define FACTORY_FORM_LABEL_MOTOR3          0x0728854D
-#define FACTORY_FORM_MAIN_TABS             0xC9EA066D
-#define FACTORY_FORM_SELECT_ROBOT          0x9A4E0D42
-#define FACTORY_FORM_TITLE_ROBOT1          0xDE321435
-#define FACTORY_FORM_TITLE_ROBOT2          0xC6ED624B
-#define FACTORY_FORM_TITLE_ROBOT3          0x70BA54D1
-#define FACTORY_FORM_TITLE_ROBOT4          0x792BB19F
-#define FACTORY_FORM_UPDATE_POS_INTERVAL   0xF4BC22B5
+#define FACTORY_FORM_INTERVAL1                  0xF4BC22B5
+#define FACTORY_FORM_BUTTON_CONVEYOR1TO2        0x218FA9CA
+#define FACTORY_FORM_BUTTON_CONVEYOR2TO3        0xE3CB1067
+#define FACTORY_FORM_BUTTON_CONVEYOR3TO4        0xA0EFE184
+#define FACTORY_FORM_BUTTON_CONVEYOR_BAR_DOWN   0xAEED0D77
+#define FACTORY_FORM_BUTTON_CONVEYOR_BAR_UP     0x4E637E50
+#define FACTORY_FORM_BUTTON_MOTOR_A1            0xF609DD46
+#define FACTORY_FORM_BUTTON_MOTOR_A2            0xCEDD8E66
+#define FACTORY_FORM_BUTTON_MOTOR_B1            0xBE951D0C
+#define FACTORY_FORM_BUTTON_MOTOR_B2            0x37ECD490
+#define FACTORY_FORM_BUTTON_MOTOR_C1            0xCBF97685
+#define FACTORY_FORM_BUTTON_MOTOR_C2            0xEAB1FA2D
+#define FACTORY_FORM_BUTTON_MOTOR_D1            0x43C6EA33
+#define FACTORY_FORM_BUTTON_MOTOR_D2            0xEDF83F7F
+#define FACTORY_FORM_BUTTON_RESET               0x99C1B371
+#define FACTORY_FORM_BUTTON_ROBOT1_PICKUP1      0xCBA522FC
+#define FACTORY_FORM_BUTTON_ROBOT1_PICKUP2      0xB05E3061
+#define FACTORY_FORM_BUTTON_ROBOT2_PICKUP1      0x295945A3
+#define FACTORY_FORM_BUTTON_ROBOT2_PICKUP2      0xFCFE304F
+#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1 0x5FFFDB15
+#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2 0xF446D8AE
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1 0x436BB2AD
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2 0x62EB1567
+#define FACTORY_FORM_BUTTON_STOP                0x7D0EA2DE
+#define FACTORY_FORM_BUTTON_STORAGE             0xAFEFFDF1
+#define FACTORY_FORM_IMAGE1                     0xCB7FFF70
+#define FACTORY_FORM_LABEL_MOTOR1               0x4925780C
+#define FACTORY_FORM_LABEL_MOTOR2               0xE8065F64
+#define FACTORY_FORM_LABEL_MOTOR3               0x0728854D
+#define FACTORY_FORM_MAIN_TABS                  0xC9EA066D
+#define FACTORY_FORM_SELECT_ROBOT               0x9A4E0D42
+#define FACTORY_FORM_TITLE_CONVEYOR             0x5BD33922
+#define FACTORY_FORM_TITLE_ROBOT1               0xDE321435
+#define FACTORY_FORM_TITLE_ROBOT2               0xC6ED624B
+#define FACTORY_FORM_TITLE_ROBOT3               0x70BA54D1
+#define FACTORY_FORM_TITLE_ROBOT4               0x792BB19F
+#define FACTORY_FORM_UPDATE_POS_INTERVAL        0xF4BC22B5
 
 #resource "factoryForm.wfrm"
 
@@ -96,14 +103,14 @@ proc setFormDisabled(number disabled)
 end
 
 proc setSequenceDisabled()
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1, needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2, needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1, needsReset[1])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2, needsReset[1])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP1, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP2, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP1, needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP2, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1,      needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2,      needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1,      needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2,      needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2, needsReset[3])
 end
 
 proc updateCommand()
@@ -121,6 +128,16 @@ proc updateCommand()
             number active = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)            
             needsReset[active] = FALSE
             robots.reset()
+        case CMD_CONVEYOR_BAR_DOWN:
+            conveyor.barDown()
+        case CMD_CONVEYOR_BAR_UP:
+            conveyor.barUp()
+        case CMD_CONVEYOR_FROM_1_TO_2:
+            conveyor.move1to2()
+        case CMD_CONVEYOR_FROM_2_TO_3:
+            conveyor.move2to3()
+        case CMD_CONVEYOR_FROM_3_TO_4:
+            conveyor.move3to4()
     end
     command = CMD_NONE
     setFormDisabled(FALSE)

@@ -5,22 +5,25 @@
 #include "lib/modules/sensor.whl"
 #include "lib/modules/standard.whl"
 
-proc barMove(number speed)
+object Conveyor
+end
+
+proc Conveyor.barMove(number speed)
     motorLayerSetSpeed(LAYER_2, OUTPUT_B, speed)
     motorLayerOn(LAYER_2, OUTPUT_B)
     sleep(1500)
     motorLayerStop(LAYER_2, OUTPUT_B)
 end
 
-proc barUp()
+proc Conveyor.barUp()
     barMove(100)
 end
 
-proc barDown()
+proc Conveyor.barDown()
     barMove(-100)
 end
 
-proc moveCarToRobot2()
+proc Conveyor.move1to2()
     motorLayerSetSpeed(LAYER_1, OUTPUT_C, -50)
     motorLayerOn(LAYER_1, OUTPUT_C)
 
@@ -33,7 +36,43 @@ proc moveCarToRobot2()
     motorLayerStop(LAYER_1, OUTPUT_C)
     motorLayerReset(LAYER_1, OUTPUT_C)
     motorLayerSetSpeed(LAYER_1, OUTPUT_C, 25)
-    motorLayerMoveTo(LAYER_1, OUTPUT_C, 120)
+    motorLayerMoveTo(LAYER_1, OUTPUT_C, 140)
+end
 
-    sleep(1000)
+proc Conveyor.move2to3()
+    motorLayerSetSpeed(LAYER_1, OUTPUT_C, -50)
+    motorLayerSetSpeed(LAYER_5, OUTPUT_A, -50)
+    motorLayerOn(LAYER_1, OUTPUT_C)
+    motorLayerOn(LAYER_5, OUTPUT_A)
+
+    repeat
+        if sensorLayerRead(LAYER_6, OUTPUT_D) == COLOR_WHITE
+            break
+        end
+    end
+
+    motorLayerStop(LAYER_1, OUTPUT_C)
+    motorLayerStop(LAYER_5, OUTPUT_A)
+    motorLayerReset(LAYER_5, OUTPUT_A)
+    motorLayerSetSpeed(LAYER_5, OUTPUT_A, 25)
+    motorLayerMoveTo(LAYER_5, OUTPUT_A, 140)
+end
+
+proc Conveyor.move3to4()
+    motorLayerSetSpeed(LAYER_5, OUTPUT_A, -50)
+    motorLayerSetSpeed(LAYER_7, OUTPUT_C, -50)
+    motorLayerOn(LAYER_5, OUTPUT_A)
+    motorLayerOn(LAYER_7, OUTPUT_C)
+
+    repeat
+        if sensorLayerRead(LAYER_8, OUTPUT_D) == COLOR_WHITE
+            break
+        end
+    end
+
+    motorLayerStop(LAYER_5, OUTPUT_A)
+    motorLayerStop(LAYER_7, OUTPUT_C)
+    motorLayerReset(LAYER_7, OUTPUT_C)
+    motorLayerSetSpeed(LAYER_7, OUTPUT_C, 25)
+    motorLayerMoveTo(LAYER_7, OUTPUT_C, 140)
 end

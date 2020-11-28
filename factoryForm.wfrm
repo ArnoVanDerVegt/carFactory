@@ -4,7 +4,7 @@
         "uid": "0x8AA28F89",
         "name": "FactoryForm",
         "title": "Car Factory",
-        "width": "684",
+        "width": "884",
         "height": "502",
         "id": 1
     },
@@ -25,7 +25,7 @@
             "Sequence",
             "Plan"
         ],
-        "width": "620",
+        "width": "820",
         "height": "470",
         "containerIds": [
             3,
@@ -34,7 +34,7 @@
         ]
     },
     {
-        "x": 170,
+        "x": "260",
         "y": 50,
         "parentId": 3,
         "id": 3,
@@ -55,7 +55,7 @@
         "onChange": "onFactoryFormSelectRobotChange"
     },
     {
-        "x": "110",
+        "x": "210",
         "y": "340",
         "parentId": 3,
         "id": 4,
@@ -72,7 +72,7 @@
         "width": "65"
     },
     {
-        "x": "110",
+        "x": "210",
         "y": "285",
         "parentId": 3,
         "id": 5,
@@ -89,7 +89,7 @@
         "width": "65"
     },
     {
-        "x": "440",
+        "x": "540",
         "y": "165",
         "parentId": 3,
         "id": 6,
@@ -106,7 +106,7 @@
         "width": "65"
     },
     {
-        "x": "110",
+        "x": "210",
         "y": "310",
         "parentId": 3,
         "id": 7,
@@ -127,7 +127,7 @@
         "onMouseOut": "onFactoryFormButtonMotorA1MouseOut"
     },
     {
-        "x": "145",
+        "x": "245",
         "y": "310",
         "parentId": 3,
         "id": 8,
@@ -148,7 +148,7 @@
         "onMouseOut": "onFactoryFormButtonMotorA2MouseOut"
     },
     {
-        "x": "110",
+        "x": "210",
         "y": "255",
         "parentId": 3,
         "id": 9,
@@ -169,7 +169,7 @@
         "onMouseOut": "onFactoryFormButtonMotorB1MouseOut"
     },
     {
-        "x": "145",
+        "x": "245",
         "y": "255",
         "parentId": 3,
         "id": 10,
@@ -190,7 +190,7 @@
         "onMouseOut": "onFactoryFormButtonMotorB2MouseOut"
     },
     {
-        "x": "440",
+        "x": "540",
         "y": "135",
         "parentId": 3,
         "id": 11,
@@ -211,7 +211,7 @@
         "onMouseOut": "onFactoryFormButtonMotorC1MouseOut"
     },
     {
-        "x": "475",
+        "x": "575",
         "y": "135",
         "parentId": 3,
         "id": 12,
@@ -232,7 +232,7 @@
         "onMouseOut": "onFactoryFormButtonMotorC2MouseOut"
     },
     {
-        "x": 440,
+        "x": "540",
         "y": "310",
         "parentId": 3,
         "id": 13,
@@ -251,7 +251,7 @@
         "height": "30"
     },
     {
-        "x": "180",
+        "x": "280",
         "y": "110",
         "parentId": 3,
         "id": 14,
@@ -268,7 +268,7 @@
         "naturalSize": true
     },
     {
-        "x": "440",
+        "x": "540",
         "y": "260",
         "parentId": 3,
         "id": 15,
@@ -289,7 +289,7 @@
         "onMouseOut": "onFactoryFormButtonMotorD1MouseOut"
     },
     {
-        "x": "475",
+        "x": "575",
         "y": "260",
         "parentId": 3,
         "id": 16,
@@ -324,7 +324,7 @@
         "onInterval": "onFactoryFormUpdatePosIntervalInterval"
     },
     {
-        "x": "572",
+        "x": "772",
         "y": "10",
         "parentId": 1,
         "id": 18,
@@ -357,7 +357,7 @@
         "halign": "left"
     },
     {
-        "x": "120",
+        "x": 150,
         "y": 20,
         "parentId": 4,
         "id": 20,
@@ -372,7 +372,7 @@
         "halign": "left"
     },
     {
-        "x": "220",
+        "x": 280,
         "y": 20,
         "parentId": 4,
         "id": 21,
@@ -387,7 +387,7 @@
         "halign": "left"
     },
     {
-        "x": "320",
+        "x": 410,
         "y": 20,
         "parentId": 4,
         "id": 22,
@@ -416,7 +416,7 @@
         "value": "Pickup 1",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot1Pickup1Click"
     },
@@ -435,12 +435,12 @@
         "value": "Pickup 2",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot1Pickup2Click"
     },
     {
-        "x": "120",
+        "x": 150,
         "y": 60,
         "parentId": 4,
         "id": 25,
@@ -454,12 +454,12 @@
         "value": "Pickup 1",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot2Pickup1Click"
     },
     {
-        "x": "120",
+        "x": 150,
         "y": 110,
         "parentId": 4,
         "id": 26,
@@ -473,12 +473,12 @@
         "value": "Pickup 2",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot2Pickup2Click"
     },
     {
-        "x": "220",
+        "x": 280,
         "y": 60,
         "parentId": 4,
         "id": 27,
@@ -487,17 +487,17 @@
         "hidden": false,
         "disabled": false,
         "type": "button",
-        "name": "ButtonRobot3Pickup1",
+        "name": "ButtonRobot3PickupDrop1",
         "zIndex": 0,
-        "value": "Pickup 1",
+        "value": "Pickup+drop 1",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
-        "onClick": "onFactoryFormButtonRobot3Pickup1Click"
+        "onClick": "onFactoryFormButtonRobot3PickupDrop1Click"
     },
     {
-        "x": "220",
+        "x": 280,
         "y": 110,
         "parentId": 4,
         "id": 28,
@@ -506,17 +506,17 @@
         "hidden": false,
         "disabled": false,
         "type": "button",
-        "name": "ButtonRobot3Pickup2",
+        "name": "ButtonRobot3PickupDrop2",
         "zIndex": 0,
-        "value": "Pickup 2",
+        "value": "Pickup+drop 2",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
-        "onClick": "onFactoryFormButtonRobot3Pickup2Click"
+        "onClick": "onFactoryFormButtonRobot3PickupDrop2Click"
     },
     {
-        "x": 320,
+        "x": 410,
         "y": 60,
         "parentId": 4,
         "id": 29,
@@ -525,17 +525,17 @@
         "hidden": false,
         "disabled": false,
         "type": "button",
-        "name": "ButtonRobot4Pickup1",
+        "name": "ButtonRobot4PickupDrop1",
         "zIndex": 0,
-        "value": "Pickup 1",
+        "value": "Pickup+drop 1",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
-        "onClick": "onFactoryFormButtonRobot4Pickup1Click"
+        "onClick": "onFactoryFormButtonRobot4PickupDrop1Click"
     },
     {
-        "x": 320,
+        "x": 410,
         "y": 110,
         "parentId": 4,
         "id": 30,
@@ -544,13 +544,141 @@
         "hidden": false,
         "disabled": false,
         "type": "button",
-        "name": "ButtonRobot4Pickup2",
+        "name": "ButtonRobot4PickupDrop2",
         "zIndex": 0,
-        "value": "Pickup 2",
+        "value": "Pickup+drop 2",
         "title": "",
         "color": "green",
-        "width": "80",
+        "width": "120",
         "height": "40",
-        "onClick": "onFactoryFormButtonRobot4Pickup2Click"
+        "onClick": "onFactoryFormButtonRobot4PickupDrop2Click"
+    },
+    {
+        "x": 540,
+        "y": 20,
+        "parentId": 4,
+        "id": 31,
+        "uid": "0x5BD33922",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "title",
+        "name": "TitleConveyor",
+        "zIndex": 0,
+        "text": "Conveyor",
+        "halign": "left"
+    },
+    {
+        "x": 540,
+        "y": 60,
+        "parentId": 4,
+        "id": 32,
+        "uid": "0x4E637E50",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonConveyorBarUp",
+        "zIndex": 0,
+        "value": "Bar up",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonConveyorBarUpClick"
+    },
+    {
+        "x": 540,
+        "y": 110,
+        "parentId": 4,
+        "id": 33,
+        "uid": "0xAEED0D77",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonConveyorBarDown",
+        "zIndex": 0,
+        "value": "Bar down",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonConveyorBarDownClick"
+    },
+    {
+        "x": 540,
+        "y": 160,
+        "parentId": 4,
+        "id": 34,
+        "uid": "0x218FA9CA",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonConveyor1to2",
+        "zIndex": 0,
+        "value": "1 to 2",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonConveyor1to2Click"
+    },
+    {
+        "x": 540,
+        "y": 210,
+        "parentId": 4,
+        "id": 35,
+        "uid": "0xE3CB1067",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonConveyor2to3",
+        "zIndex": 0,
+        "value": "2 to 3",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonConveyor2to3Click"
+    },
+    {
+        "x": 540,
+        "y": 260,
+        "parentId": 4,
+        "id": 36,
+        "uid": "0xA0EFE184",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonConveyor3to4",
+        "zIndex": 0,
+        "value": "3 to 4",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonConveyor3to4Click"
+    },
+    {
+        "x": 670,
+        "y": 60,
+        "parentId": 4,
+        "id": 37,
+        "uid": "0xAFEFFDF1",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonStorage",
+        "zIndex": 0,
+        "value": "Storage",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40"
     }
 ]

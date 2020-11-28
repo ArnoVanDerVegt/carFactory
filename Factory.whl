@@ -3,21 +3,127 @@
 #include "lib/modules/standard.whl"
 #include "lib/modules/math.whl"
 
+#include "lib/modules/components/component.whl"
+#include "lib/modules/components/form.whl"
+#include "lib/modules/components/tabs.whl"
+#include "lib/modules/components/selectButton.whl"
+#include "lib/modules/components/button.whl"
+#include "lib/modules/components/label.whl"
+#include "lib/modules/components/title.whl"
+#include "lib/modules/components/image.whl"
+#include "lib/modules/components/interval.whl"
+
 #include "robot/Robots.whl"
 
 #include "Conveyor.whl"
 
-#define CMD_NONE                  0
-#define CMD_REV                   1
-#define CMD_FWD                   2
-#define CMD_STOP                  3
-#define CMD_STOP_ALL              4
-#define CMD_RESET                 5
-#define CMD_CONVEYOR_BAR_UP       6
-#define CMD_CONVEYOR_BAR_DOWN     7
-#define CMD_CONVEYOR_FROM_1_TO_2  8
-#define CMD_CONVEYOR_FROM_2_TO_3  9
-#define CMD_CONVEYOR_FROM_3_TO_4 10
+#include "factoryData.whl"
 
-Robots   robots
-Conveyor conveyor
+object Factory
+    Robots   robots
+    Conveyor conveyor
+    number needsReset[4]
+end
+
+proc Factory.setFormDisabled(number disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2,   disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RESET,      disabled)
+
+    components.selectButton.setDisabled(mainWindow, FACTORY_FORM_SELECT_ROBOT, disabled)
+end
+
+proc Factory.setSequenceDisabled()
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1,      needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2,      needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1,      needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2,      needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2, needsReset[3])
+end
+
+proc Factory.updateCommand()
+    select command
+        case CMD_SELECT_ROBOT:
+            robots.setActiveRobot(commandIndex)
+            if commandIndex == 0
+                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
+                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)
+                components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot1.svg")
+            else
+                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, FALSE)
+                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, FALSE)
+                components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot2.svg")
+            end
+        case CMD_REV:
+            robots.rev(commandIndex)
+        case CMD_FWD:
+            robots.fwd(commandIndex)
+        case CMD_STOP:
+            robots.stop(commandIndex)
+        case CMD_STOP_ALL:
+            robots.stopAll()
+        case CMD_RESET:
+            setFormDisabled(TRUE)
+            number active = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)
+            needsReset[active] = FALSE
+            robots.reset()
+        case CMD_CONVEYOR_BAR_DOWN:
+            conveyor.barDown()
+        case CMD_CONVEYOR_BAR_UP:
+            conveyor.barUp()
+        case CMD_CONVEYOR_FROM_1_TO_2:
+            conveyor.move1to2()
+        case CMD_CONVEYOR_FROM_2_TO_3:
+            conveyor.move2to3()
+        case CMD_CONVEYOR_FROM_3_TO_4:
+            conveyor.move3to4()
+        case CMD_START_SEQUENCE0:
+            robots.startSequence(0, commandIndex)
+        case CMD_START_SEQUENCE1:
+            robots.startSequence(1, commandIndex)
+        case CMD_START_SEQUENCE2:
+            robots.startSequence(2, commandIndex)
+        case CMD_START_SEQUENCE3:
+            robots.startSequence(3, commandIndex)
+    end
+    command = CMD_NONE
+    setFormDisabled(FALSE)
+    setSequenceDisabled()
+end
+
+proc Factory.interval()
+    number labels[3] = [FACTORY_FORM_LABEL_MOTOR1, FACTORY_FORM_LABEL_MOTOR2, FACTORY_FORM_LABEL_MOTOR3]
+    number i
+    with robots.activeRobot.robotConfig
+        for i = 0 to 2
+            with motors[i]
+                components.label.setValueNumber(mainWindow, labels[i], motorLayerRead(layer, port))
+            end
+        end
+    end
+end
+
+proc Factory.update()
+    robots.update()
+    if command != CMD_NONE
+        updateCommand()
+    end
+end
+
+proc Factory.init()
+    needsReset = [TRUE, TRUE, TRUE, TRUE]
+    mainWindow = components.form.show("factoryForm.wfrm")
+    setSequenceDisabled()
+    robots.init()
+end
+
+Factory factory

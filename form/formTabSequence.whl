@@ -1,48 +1,54 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "Factory.whl"
-
-#include "robot/robot1.whl"
+#include "factoryData.whl"
 
 ; ============================== ROBOT 1 ==============================
 
 proc onFactoryFormButtonRobot1Pickup1Click(number windowHandle)
-    robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
+    command      = CMD_START_SEQUENCE0
+    commandIndex = ROBOT1_SEQUENCE_PICKUP1
 end
 
 proc onFactoryFormButtonRobot1Pickup2Click(number windowHandle)
-    robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
+    command      = CMD_START_SEQUENCE0
+    commandIndex = ROBOT1_SEQUENCE_PICKUP2
 end
 
 ; ============================== ROBOT 2 ==============================
 
 proc onFactoryFormButtonRobot2Pickup1Click(number windowHandle)
-    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP1)
+    command      = CMD_START_SEQUENCE1
+    commandIndex = ROBOT2_SEQUENCE_PICKUP1
 end
 
 proc onFactoryFormButtonRobot2Pickup2Click(number windowHandle)
-    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP2)
+    command      = CMD_START_SEQUENCE1
+    commandIndex = ROBOT2_SEQUENCE_PICKUP2
 end
 
 ; ============================== ROBOT 3 ==============================
 
 proc onFactoryFormButtonRobot3PickupDrop1Click(number windowHandle)
-    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP1)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP1
 end
 
 proc onFactoryFormButtonRobot3PickupDrop2Click(number windowHandle)
-    robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP2)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP2
 end
 
 ; ============================== ROBOT 4 ==============================
 
 proc onFactoryFormButtonRobot4PickupDrop1Click(number windowHandle)
-    robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP1)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_PICKUP1
 end
 
 proc onFactoryFormButtonRobot4PickupDrop2Click(number windowHandle)
-    robots.startSequence(3, ROBOT3_SEQUENCE_PICKUP2)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_PICKUP2
 end
 
 ; ============================== CONVERYOR ==============================

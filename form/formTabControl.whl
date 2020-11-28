@@ -1,151 +1,137 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "lib/modules/components/button.whl"
-
-#include "Factory.whl"
-
-number mainWindow
-number command
-number motorIndex
+#include "factoryData.whl"
 
 proc onFactoryFormButtonMotorA1MouseDown(number windowHandle)
-    command    = CMD_FWD
-    motorIndex = 0
+    command      = CMD_FWD
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorA1MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 0
+    command      = CMD_STOP
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorA1MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 0
+    command      = CMD_STOP
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorA2MouseDown(number windowHandle)
-    command    = CMD_REV
-    motorIndex = 0
+    command      = CMD_REV
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorA2MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 0
+    command      = CMD_STOP
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorA2MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 0
+    command      = CMD_STOP
+    commandIndex = 0
 end
 
 proc onFactoryFormButtonMotorB1MouseDown(number windowHandle)
-    command    = CMD_FWD
-    motorIndex = 1
+    command      = CMD_FWD
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorB1MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 1
+    command      = CMD_STOP
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorB1MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 1
+    command      = CMD_STOP
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorB2MouseDown(number windowHandle)
-    command    = CMD_REV
-    motorIndex = 1
+    command      = CMD_REV
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorB2MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 1
+    command      = CMD_STOP
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorB2MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 1
+    command      = CMD_STOP
+    commandIndex = 1
 end
 
 proc onFactoryFormButtonMotorC1MouseDown(number windowHandle)
-    command    = CMD_REV
-    motorIndex = 2
+    command      = CMD_REV
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorC1MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 2
+    command      = CMD_STOP
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorC1MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 2
+    command      = CMD_STOP
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorC2MouseDown(number windowHandle)
-    command    = CMD_FWD
-    motorIndex = 2
+    command      = CMD_FWD
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorC2MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 2
+    command      = CMD_STOP
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorC2MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 2
+    command      = CMD_STOP
+    commandIndex = 2
 end
 
 proc onFactoryFormButtonMotorD1MouseDown(number windowHandle)
-    command    = CMD_FWD
-    motorIndex = 3
+    command      = CMD_FWD
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonMotorD1MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 3
+    command      = CMD_STOP
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonMotorD1MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 3
+    command      = CMD_STOP
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseDown(number windowHandle)
-    command    = CMD_REV
-    motorIndex = 3
+    command      = CMD_REV
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseOut(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 3
+    command      = CMD_STOP
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonMotorD2MouseUp(number windowHandle)
-    command    = CMD_STOP
-    motorIndex = 3
+    command      = CMD_STOP
+    commandIndex = 3
 end
 
 proc onFactoryFormButtonResetClick(number windowHandle)
-    command = CMD_RESET
+    command      = CMD_RESET
 end
 
 proc onFactoryFormSelectRobotChange(number windowHandle, number value)
-    robots.setActiveRobot(value)
-    if value == 0    
-        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
-        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)    
-        components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "robot1.svg")
-    else
-        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, FALSE)
-        components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, FALSE)    
-        components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "robot2.svg")
-    end
+    command      = CMD_SELECT_ROBOT
+    commandIndex = value
 end
 
 proc onFactoryFormButtonStopClick(number windowHandle)
-    command = CMD_STOP_ALL
+    command      = CMD_STOP_ALL
 end

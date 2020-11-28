@@ -3,13 +3,7 @@
 
 #include "robot/RobotWithMoves.whl"
 
-#define ROBOT3_PICKUP1          0
-#define ROBOT3_PICKUP2          1
-#define ROBOT3_MOVE_TO_CONVEYOR 2
-#define ROBOT3_DROP             3
-
-#define ROBOT3_SEQUENCE_PICKUP1 0
-#define ROBOT3_SEQUENCE_PICKUP2 4
+#include "factoryData.whl"
 
 object Robot3 extends RobotWithMoves
     RobotMoves pickup1List

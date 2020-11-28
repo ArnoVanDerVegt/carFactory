@@ -1,0 +1,63 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+; ============================== COMMANDS ==============================
+
+#define CMD_NONE                      0
+#define CMD_SELECT_ROBOT              1
+#define CMD_REV                       2
+#define CMD_FWD                       3
+#define CMD_STOP                      4
+#define CMD_STOP_ALL                  5
+#define CMD_RESET                     6
+#define CMD_CONVEYOR_BAR_UP           7
+#define CMD_CONVEYOR_BAR_DOWN         8
+#define CMD_CONVEYOR_FROM_1_TO_2      9
+#define CMD_CONVEYOR_FROM_2_TO_3     10
+#define CMD_CONVEYOR_FROM_3_TO_4     11
+#define CMD_START_SEQUENCE0          12
+#define CMD_START_SEQUENCE1          13
+#define CMD_START_SEQUENCE2          14
+#define CMD_START_SEQUENCE3          15
+
+; ============================== ROBOT 1 ==============================
+
+#define ROBOT1_MOVE_TO_CONVEYOR       0
+#define ROBOT1_PICKUP1                1
+#define ROBOT1_PICKUP2                2
+
+#define ROBOT1_SEQUENCE_PICKUP1       0
+#define ROBOT1_SEQUENCE_PICKUP2       3
+
+; ============================== ROBOT 2 ==============================
+
+#define ROBOT2_MOVE_TO_CONVEYOR       0
+#define ROBOT2_PICKUP1                1
+#define ROBOT2_PICKUP2                2
+
+#define ROBOT2_SEQUENCE_PICKUP1       0
+#define ROBOT2_SEQUENCE_PICKUP2       3
+
+; ============================== ROBOT 3 ==============================
+
+#define ROBOT3_PICKUP1                0
+#define ROBOT3_PICKUP2                1
+#define ROBOT3_MOVE_TO_CONVEYOR       2
+#define ROBOT3_DROP                   3
+
+#define ROBOT3_SEQUENCE_PICKUP1       0
+#define ROBOT3_SEQUENCE_PICKUP2       4
+
+; ============================== ROBOT 4 ==============================
+
+#define ROBOT4_PICKUP1                0
+#define ROBOT4_PICKUP2                1
+#define ROBOT4_MOVE_TO_CONVEYOR       2
+#define ROBOT4_DROP                   3
+
+#define ROBOT4_SEQUENCE_PICKUP1       0
+#define ROBOT4_SEQUENCE_PICKUP2       4
+
+number mainWindow
+number command
+number commandIndex

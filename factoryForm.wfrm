@@ -264,7 +264,7 @@
         "zIndex": "0",
         "width": "256",
         "height": "256",
-        "src": "robot1.svg",
+        "src": "images/robot1.svg",
         "naturalSize": true
     },
     {

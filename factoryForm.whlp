@@ -2,28 +2,11 @@
 ; Distributed under an {yourLicense}
 #project "Factory form"
 
-#include "lib/modules/device.whl"
-#include "lib/modules/light.whl"
-#include "lib/modules/motor.whl"
-#include "lib/modules/poweredUp.whl"
-#include "lib/modules/sensor.whl"
-#include "lib/modules/standard.whl"
-
-#include "lib/modules/components/component.whl"
-#include "lib/modules/components/form.whl"
-#include "lib/modules/components/tabs.whl"
-#include "lib/modules/components/selectButton.whl"
-#include "lib/modules/components/button.whl"
-#include "lib/modules/components/label.whl"
-#include "lib/modules/components/title.whl"
-#include "lib/modules/components/image.whl"
-
 #include "form/formTabControl.whl"
 #include "form/formTabSequence.whl"
 
 #include "devices.whl"
 #include "Factory.whl"
-#include "lib/modules/components/interval.whl"
 
 #rangecheck "off"
 #heap       40900
@@ -68,97 +51,16 @@
 
 #resource "factoryForm.wfrm"
 
-number needsReset[4] = [TRUE, TRUE, TRUE, TRUE]
-
 proc onFactoryFormUpdatePosIntervalInterval(number windowHandle)
-    number labels[3] = [FACTORY_FORM_LABEL_MOTOR1, FACTORY_FORM_LABEL_MOTOR2, FACTORY_FORM_LABEL_MOTOR3]
-    number i
-    with robots.activeRobot.robotConfig
-        for i = 0 to 2
-            with motors[i]
-                components.label.setValueNumber(mainWindow, labels[i], motorLayerRead(layer, port))
-            end
-        end
-    end
-end
-
-; @proc                   Show the form.
-; @ret                    The handle to the form.
-proc showFactoryFormForm()
-    mainWindow = components.form.show("factoryForm.wfrm")
-end
-
-proc setFormDisabled(number disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RESET,      disabled)
-
-    components.selectButton.setDisabled(mainWindow, FACTORY_FORM_SELECT_ROBOT, disabled)
-end
-
-proc setSequenceDisabled()
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1,      needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2,      needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1,      needsReset[1])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2,      needsReset[1])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1, needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2, needsReset[3])
-end
-
-proc updateCommand()
-    select command
-        case CMD_REV:
-            robots.rev(motorIndex)
-        case CMD_FWD:
-            robots.fwd(motorIndex)
-        case CMD_STOP:
-            robots.stop(motorIndex)
-        case CMD_STOP_ALL:
-            robots.stopAll()            
-        case CMD_RESET:
-            setFormDisabled(TRUE)
-            number active = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)            
-            needsReset[active] = FALSE
-            robots.reset()
-        case CMD_CONVEYOR_BAR_DOWN:
-            conveyor.barDown()
-        case CMD_CONVEYOR_BAR_UP:
-            conveyor.barUp()
-        case CMD_CONVEYOR_FROM_1_TO_2:
-            conveyor.move1to2()
-        case CMD_CONVEYOR_FROM_2_TO_3:
-            conveyor.move2to3()
-        case CMD_CONVEYOR_FROM_3_TO_4:
-            conveyor.move3to4()
-    end
-    command = CMD_NONE
-    setFormDisabled(FALSE)
-    setSequenceDisabled()
-end
-
-proc initUI()
-    showFactoryFormForm()
-    setSequenceDisabled()
+    factory.interval()
 end
 
 proc main()
     initDevices()
-    initUI()
 
-    robots.init()
+    factory.init()
 
     repeat
-        robots.update()
-        if command != CMD_NONE
-            updateCommand()
-        end
+        factory.update()
     end
 end

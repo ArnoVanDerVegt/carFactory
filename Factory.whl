@@ -120,6 +120,7 @@ proc Factory.update()
 end
 
 proc Factory.init()
+    command    = CMD_NONE
     needsReset = [TRUE, TRUE, TRUE, TRUE]
     mainWindow = components.form.show("factoryForm.wfrm")
     setSequenceDisabled()

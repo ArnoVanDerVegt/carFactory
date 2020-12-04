@@ -9,6 +9,7 @@
 #include "Factory.whl"
 
 #rangecheck "off"
+#datatype   "int"
 #heap       40900
 
 #define FACTORY_FORM_INTERVAL1                  0xF4BC22B5

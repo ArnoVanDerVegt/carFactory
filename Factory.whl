@@ -14,10 +14,9 @@
 #include "lib/modules/components/interval.whl"
 
 #include "robot/Robots.whl"
-
 #include "Conveyor.whl"
-
 #include "factoryData.whl"
+#include "inventory/Inventory.whl"
 
 object Factory
     Robots   robots

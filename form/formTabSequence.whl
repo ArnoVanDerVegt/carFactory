@@ -34,9 +34,29 @@ proc onFactoryFormButtonRobot3PickupDrop1Click(number windowHandle)
     commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP1
 end
 
+proc onFactoryFormButtonRobot3Pickup1Click(number windowHandle)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP1
+end
+
+proc onFactoryFormButtonRobot3Drop1Click(number windowHandle)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_DROP1
+end
+
 proc onFactoryFormButtonRobot3PickupDrop2Click(number windowHandle)
     command      = CMD_START_SEQUENCE2
     commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP2
+end
+
+proc onFactoryFormButtonRobot3Pickup2Click(number windowHandle)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP2
+end
+
+proc onFactoryFormButtonRobot3Drop2Click(number windowHandle)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_DROP2
 end
 
 ; ============================== ROBOT 4 ==============================
@@ -46,9 +66,29 @@ proc onFactoryFormButtonRobot4PickupDrop1Click(number windowHandle)
     commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP1
 end
 
+proc onFactoryFormButtonRobot4Pickup1Click(number windowHandle)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_PICKUP1
+end
+
+proc onFactoryFormButtonRobot4Drop1Click(number windowHandle)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_DROP1
+end
+
 proc onFactoryFormButtonRobot4PickupDrop2Click(number windowHandle)
     command      = CMD_START_SEQUENCE3
     commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP2
+end
+
+proc onFactoryFormButtonRobot4Pickup2Click(number windowHandle)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_PICKUP2
+end
+
+proc onFactoryFormButtonRobot4Drop2Click(number windowHandle)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT3_SEQUENCE_DROP2
 end
 
 ; ============================== CONVERYOR ==============================

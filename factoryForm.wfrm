@@ -697,7 +697,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot3Pickup1Click"
     },
     {
         "x": 280,
@@ -715,7 +716,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot3Drop1Click"
     },
     {
         "x": 280,
@@ -733,7 +735,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot3Pickup2Click"
     },
     {
         "x": 280,
@@ -751,7 +754,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot3Drop2Click"
     },
     {
         "x": 410,
@@ -769,7 +773,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Pickup1Click"
     },
     {
         "x": 410,
@@ -787,7 +792,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Drop1Click"
     },
     {
         "x": 410,
@@ -805,7 +811,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Pickup2Click"
     },
     {
         "x": 410,
@@ -823,7 +830,8 @@
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonRobot4Drop2Click"
     },
     {
         "x": 670,

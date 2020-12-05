@@ -30,8 +30,9 @@ proc Robot1.initPickup1List()
         add(99,  5850,    1200,    -2600,   NO_MOVE)    ; Move to position rack
         add(99,  NO_MOVE, 1700,    -3000,   NO_MOVE)    ; Move down
         add(99,  4800,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
-        add(99,  NO_MOVE, 1000,    -2600,   NO_MOVE)    ; Lift car
-        add(99,  2450,    900,     -1500,   NO_MOVE)    ; Turn to conveyor
+        add(99,  NO_MOVE, 900,     -2300,   NO_MOVE)    ; Lift car
+        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(99,  NO_MOVE, NO_MOVE, -1500,   NO_MOVE)    ; Move up
     end
 end
 
@@ -41,8 +42,9 @@ proc Robot1.initPickup2List()
         add(99,  5500,    2500,    -1200,   NO_MOVE)    ; Move to position rack
         add(99,  NO_MOVE, 3100,    NO_MOVE, NO_MOVE)    ; Move down
         add(99,  4700,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Lock car
-        add(99,  NO_MOVE, 2350,    -1250,   NO_MOVE)    ; Lift car
-        add(99,  2450,    900,     -1500,   NO_MOVE)    ; Turn to conveyor
+        add(99,  NO_MOVE, 2450,    -1000,   NO_MOVE)    ; Lift car
+        add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
+        add(99,  NO_MOVE, 900,     -1500,   NO_MOVE)    ; Move up
     end
 end
 

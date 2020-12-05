@@ -31,24 +31,24 @@ end
 
 proc onFactoryFormButtonRobot3PickupDrop1Click(number windowHandle)
     command      = CMD_START_SEQUENCE2
-    commandIndex = ROBOT3_SEQUENCE_PICKUP1
+    commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP1
 end
 
 proc onFactoryFormButtonRobot3PickupDrop2Click(number windowHandle)
     command      = CMD_START_SEQUENCE2
-    commandIndex = ROBOT3_SEQUENCE_PICKUP2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP2
 end
 
 ; ============================== ROBOT 4 ==============================
 
 proc onFactoryFormButtonRobot4PickupDrop1Click(number windowHandle)
     command      = CMD_START_SEQUENCE3
-    commandIndex = ROBOT3_SEQUENCE_PICKUP1
+    commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP1
 end
 
 proc onFactoryFormButtonRobot4PickupDrop2Click(number windowHandle)
     command      = CMD_START_SEQUENCE3
-    commandIndex = ROBOT3_SEQUENCE_PICKUP2
+    commandIndex = ROBOT3_SEQUENCE_PICKUP_DROP2
 end
 
 ; ============================== CONVERYOR ==============================

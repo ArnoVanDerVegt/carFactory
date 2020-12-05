@@ -7,6 +7,14 @@
 
 #include "devices.whl"
 #include "Factory.whl"
+#include "lib/modules/components/title.whl"
+#include "lib/modules/components/tabs.whl"
+#include "lib/modules/components/selectButton.whl"
+#include "lib/modules/components/label.whl"
+#include "lib/modules/components/interval.whl"
+#include "lib/modules/components/image.whl"
+#include "lib/modules/components/form.whl"
+#include "lib/modules/components/button.whl"
 
 #rangecheck "off"
 #datatype   "int"
@@ -31,8 +39,16 @@
 #define FACTORY_FORM_BUTTON_ROBOT1_PICKUP2      0xB05E3061
 #define FACTORY_FORM_BUTTON_ROBOT2_PICKUP1      0x295945A3
 #define FACTORY_FORM_BUTTON_ROBOT2_PICKUP2      0xFCFE304F
+#define FACTORY_FORM_BUTTON_ROBOT3_DROP1        0x648B4F2E
+#define FACTORY_FORM_BUTTON_ROBOT3_DROP2        0x62E540A8
+#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP1      0x2EED6805
+#define FACTORY_FORM_BUTTON_ROBOT3_PICKUP2      0x55D11E40
 #define FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1 0x5FFFDB15
 #define FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2 0xF446D8AE
+#define FACTORY_FORM_BUTTON_ROBOT4_DROP1        0x6B7272E1
+#define FACTORY_FORM_BUTTON_ROBOT4_DROP2        0xEC2638AE
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP1      0x79CCFE9E
+#define FACTORY_FORM_BUTTON_ROBOT4_PICKUP2      0xD0337F85
 #define FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1 0x436BB2AD
 #define FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2 0x62EB1567
 #define FACTORY_FORM_BUTTON_STOP                0x7D0EA2DE
@@ -43,6 +59,7 @@
 #define FACTORY_FORM_LABEL_MOTOR3               0x0728854D
 #define FACTORY_FORM_MAIN_TABS                  0xC9EA066D
 #define FACTORY_FORM_SELECT_ROBOT               0x9A4E0D42
+#define FACTORY_FORM_TITLE_STORAGE              0x04C7CA72
 #define FACTORY_FORM_TITLE_CONVEYOR             0x5BD33922
 #define FACTORY_FORM_TITLE_ROBOT1               0xDE321435
 #define FACTORY_FORM_TITLE_ROBOT2               0xC6ED624B

@@ -61,13 +61,33 @@ proc Robot3.initDropList()
 end
 
 proc Robot3.initSequence()
+    ; 0 = ROBOT3_SEQUENCE_PICKUP_DROP1
     addSequence(ROBOT3_PICKUP1)
     addSequence(ROBOT3_MOVE_TO_CONVEYOR)
     addSequence(ROBOT3_DROP)
     addSequence(SEQUENCE_END)
 
+    ; 4 = ROBOT3_SEQUENCE_PICKUP1
+    addSequence(ROBOT3_PICKUP1)
+    addSequence(ROBOT3_MOVE_TO_CONVEYOR)
+    addSequence(SEQUENCE_END)
+
+    ; 7 = ROBOT3_SEQUENCE_DROP1
+    addSequence(ROBOT3_DROP)
+    addSequence(SEQUENCE_END)
+
+    ; 9 = ROBOT3_SEQUENCE_PICKUP_DROP2
     addSequence(ROBOT3_PICKUP2)
     addSequence(ROBOT3_MOVE_TO_CONVEYOR)
+    addSequence(ROBOT3_DROP)
+    addSequence(SEQUENCE_END)
+
+    ; 13 = ROBOT3_SEQUENCE_PICKUP2
+    addSequence(ROBOT3_PICKUP2)
+    addSequence(ROBOT3_MOVE_TO_CONVEYOR)
+    addSequence(SEQUENCE_END)
+
+    ; 16 = ROBOT3_SEQUENCE_DROP2
     addSequence(ROBOT3_DROP)
     addSequence(SEQUENCE_END)
 end

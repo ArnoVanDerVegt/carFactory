@@ -152,9 +152,11 @@ proc Robot.resetMotors()
     number motor2Ready = FALSE ; Upper arm
     number i
 
+    number speeds[3] = [99, 50, 50]
+
     for i = 0 to 2
         with robotConfig.motors[i]
-            motorLayerSetSpeed(layer, port, resetDir * 99)
+            motorLayerSetSpeed(layer, port, resetDir * speeds[i])
             motorLayerOn(layer, port)
         end
     end
@@ -183,7 +185,7 @@ proc Robot.resetMotors()
         end
     end
 
-    number speeds[3] = [-30, -20, -20]
+    speeds = [-30, -20, -20]
     for i = 0 to 2
         with robotConfig.motors[i]
             motorLayerSetSpeed(layer, port, resetDir * speeds[i])

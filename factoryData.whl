@@ -45,8 +45,12 @@
 #define ROBOT3_MOVE_TO_CONVEYOR       2
 #define ROBOT3_DROP                   3
 
-#define ROBOT3_SEQUENCE_PICKUP1       0
-#define ROBOT3_SEQUENCE_PICKUP2       4
+#define ROBOT3_SEQUENCE_PICKUP_DROP1  0
+#define ROBOT3_SEQUENCE_PICKUP1       4
+#define ROBOT3_SEQUENCE_DROP1         7
+#define ROBOT3_SEQUENCE_PICKUP_DROP2  9
+#define ROBOT3_SEQUENCE_PICKUP2      13
+#define ROBOT3_SEQUENCE_DROP2        16
 
 ; ============================== ROBOT 4 ==============================
 
@@ -55,8 +59,12 @@
 #define ROBOT4_MOVE_TO_CONVEYOR       2
 #define ROBOT4_DROP                   3
 
-#define ROBOT4_SEQUENCE_PICKUP1       0
-#define ROBOT4_SEQUENCE_PICKUP2       4
+#define ROBOT4_SEQUENCE_PICKUP_DROP1  0
+#define ROBOT4_SEQUENCE_PICKUP1       4
+#define ROBOT4_SEQUENCE_DROP1         7
+#define ROBOT4_SEQUENCE_PICKUP_DROP2  9
+#define ROBOT4_SEQUENCE_PICKUP2      13
+#define ROBOT4_SEQUENCE_DROP2        16
 
 number mainWindow
 number command

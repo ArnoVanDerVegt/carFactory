@@ -53,7 +53,7 @@ proc Robot1.initLoadCarsList()
         initList()
         add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move up
         add(99,  9000,     NO_MOVE, NO_MOVE, NO_MOVE)   ; Move to the lever
-        add(99,  NO_MOVE,  1000,    -500,    NO_MOVE)   ; Press lever
+        add(99,  NO_MOVE,  1500,    -500,    NO_MOVE)   ; Press lever
         add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move away from lever
         add(99,  0,        0,       0,       NO_MOVE)   ; Return
     end

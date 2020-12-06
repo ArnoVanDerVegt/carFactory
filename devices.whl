@@ -285,6 +285,29 @@ proc initDevice10()
     ; Set the device type:
     poweredUpSetDevice(LAYER_10, POWERED_UP_TECHNIC_HUB)
     lightLayer(LAYER_10, LIGHT_PU_WHITE)
+    ; Configure the ports...
+
+    ; Set the motor type:
+    motorLayerSetType(LAYER_10, OUTPUT_A, POWERED_UP_DEVICE_BASIC_MOTOR)
+    ; Set brake style to `MOTOR_COAST` or `MOTOR_BRAKE`...
+    motorLayerSetBrake(LAYER_10, OUTPUT_A, MOTOR_BRAKE)
+    motorLayerSetSpeed(LAYER_10, OUTPUT_A, 50)
+
+    ; Select the color/distance sensor:
+    sensorLayerSetType(LAYER_10, OUTPUT_B, POWERED_UP_DEVICE_BOOST_DISTANCE)
+    ; Set the mode to `POWERED_UP_SENSOR_MODE_DISTANCE` or `POWERED_UP_SENSOR_MODE_COLOR`...
+    sensorLayerSetMode(LAYER_10, OUTPUT_B, POWERED_UP_SENSOR_MODE_COLOR)
+
+    ; Set the motor type:
+    motorLayerSetType(LAYER_10, OUTPUT_C, POWERED_UP_DEVICE_BOOST_TACHO_MOTOR)
+    ; Set brake style to `MOTOR_COAST` or `MOTOR_BRAKE`...
+    motorLayerSetBrake(LAYER_10, OUTPUT_C, MOTOR_BRAKE)
+    motorLayerSetSpeed(LAYER_10, OUTPUT_C, 50)
+
+    ; Select the color/distance sensor:
+    sensorLayerSetType(LAYER_10, OUTPUT_D, POWERED_UP_DEVICE_BOOST_DISTANCE)
+    ; Set the mode to `POWERED_UP_SENSOR_MODE_DISTANCE` or `POWERED_UP_SENSOR_MODE_COLOR`...
+    sensorLayerSetMode(LAYER_10, OUTPUT_D, POWERED_UP_SENSOR_MODE_COLOR)
 end
 
 proc initDevices()

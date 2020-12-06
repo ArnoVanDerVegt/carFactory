@@ -121,12 +121,12 @@ proc Robot3.init()
         port        = OUTPUT_B
     end
     with robotConfig.readyBits0
-        layer   = LAYER_5
-        bits    = MOTOR_BITS_CD
+        layer       = LAYER_5
+        bits        = MOTOR_BITS_CD
     end
     with robotConfig.readyBits1
-        layer   = LAYER_6
-        bits    = MOTOR_BITS_C
+        layer       = LAYER_6
+        bits        = MOTOR_BITS_C
     end
 
     robotConfig.turnReset = 1000

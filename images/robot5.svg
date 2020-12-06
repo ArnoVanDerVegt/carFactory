@@ -1,0 +1,38 @@
+<svg version="1.1" baseProfile="full" width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <filter id="dropShadow" x="0" y="0" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceAlpha" dx="4" dy="4" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="4" />
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+        </filter>
+    </defs>
+
+
+    <!-- Shadow -->
+
+    <!-- Foot -->
+    <rect rx="2" ry="2" x="50" y="190" width="180" height="50" style="stroke-width:0;stroke:transparent;fill:rgba(255,255,255);stroke-linecap:round;" filter="url(#dropShadow)"/>
+
+    <!-- Robot -->
+
+    <!-- Conveyor -->
+    <line x1="80" y1="195" x2="200" y2="195" style="stroke-width:40;stroke:rgb(0,0,0);stroke-linecap:round;"/>
+
+    <line x1="80" y1="195" x2="200" y2="195" style="stroke-width:32;stroke:rgb(255,255,255);stroke-linecap:round;"/>
+
+    <!-- Foot -->
+    <rect rx="2" ry="2" x="50" y="190" width="180" height="50" style="stroke-width:0;stroke:transparent;fill:rgba(255,255,255);stroke-linecap:round;"/>
+
+    <!-- Foot -->
+    <rect rx="2" ry="2" x="50" y="190" width="180" height="50" style="stroke-width:4;stroke:rgb(0,0,0);fill:transparent;stroke-linecap:round;"/>
+
+    <!-- Turn table -->
+    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="6" y1="215" x2="90" y2="215" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
+
+    <!-- Conveyor -->
+    <line x1="140" y1="166" x2="248" y2="166" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="140" y1="166" x2="140" y2="180" style="stroke-width:10;stroke:rgb(68,189,50);stroke-linecap:round;"/>
+    <line x1="140" y1="166" x2="248" y2="166" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
+    <line x1="140" y1="166" x2="140" y2="180" style="stroke-width:6;stroke:rgb(76,209,55);stroke-linecap:round;"/>
+</svg>

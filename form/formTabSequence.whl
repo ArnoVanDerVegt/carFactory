@@ -91,6 +91,28 @@ proc onFactoryFormButtonRobot4Drop2Click(number windowHandle)
     commandIndex = ROBOT3_SEQUENCE_DROP2
 end
 
+; ============================== ROBOT 4 ==============================
+
+proc onFactoryFormButtonStorage1Click(number windowHandle)
+    command      = CMD_START_SEQUENCE4
+    commandIndex = ROBOT4_SEQUENCE_MOVE_TO1
+end
+
+proc onFactoryFormButtonStorage2Click(number windowHandle)
+    command      = CMD_START_SEQUENCE4
+    commandIndex = ROBOT4_SEQUENCE_MOVE_TO2
+end
+
+proc onFactoryFormButtonStorage3Click(number windowHandle)
+    command      = CMD_START_SEQUENCE4
+    commandIndex = ROBOT4_SEQUENCE_MOVE_TO3
+end
+
+proc onFactoryFormButtonStorage4Click(number windowHandle)
+    command      = CMD_START_SEQUENCE4
+    commandIndex = ROBOT4_SEQUENCE_MOVE_TO4
+end
+
 ; ============================== CONVERYOR ==============================
 
 proc onFactoryFormButtonConveyorBarDownClick(number windowHandle)

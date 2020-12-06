@@ -19,6 +19,7 @@
 #define CMD_START_SEQUENCE1          13
 #define CMD_START_SEQUENCE2          14
 #define CMD_START_SEQUENCE3          15
+#define CMD_START_SEQUENCE4          16
 
 ; ============================== ROBOT 1 ==============================
 
@@ -65,6 +66,17 @@
 #define ROBOT4_SEQUENCE_PICKUP_DROP2  9
 #define ROBOT4_SEQUENCE_PICKUP2      13
 #define ROBOT4_SEQUENCE_DROP2        16
+
+; ============================== ROBOT 5 ==============================
+#define ROBOT5_MOVE_TO1               0
+#define ROBOT5_MOVE_TO2               1
+#define ROBOT5_MOVE_TO3               2
+#define ROBOT5_MOVE_TO4               3
+
+#define ROBOT4_SEQUENCE_MOVE_TO1      0
+#define ROBOT4_SEQUENCE_MOVE_TO2      2
+#define ROBOT4_SEQUENCE_MOVE_TO3      4
+#define ROBOT4_SEQUENCE_MOVE_TO4      6
 
 number mainWindow
 number command

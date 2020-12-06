@@ -5,6 +5,7 @@
 #include "robot/Robot2.whl"
 #include "robot/Robot3.whl"
 #include "robot/Robot4.whl"
+#include "robot/Robot5.whl"
 
 record RobotCommand
     number command
@@ -16,7 +17,8 @@ object Robots
     Robot2             robot2
     Robot3             robot3
     Robot4             robot4
-    ^RobotWithMoves    robots[4]
+    Robot5             robot5
+    ^RobotWithMoves    robots[5]
     RobotWithMoves     ^activeRobot
 end
 
@@ -25,6 +27,7 @@ proc Robots.init()
     robots[1] = @robot2
     robots[2] = @robot3
     robots[3] = @robot4
+    robots[4] = @robot5
 
     activeRobot = robots[0]
 
@@ -32,13 +35,14 @@ proc Robots.init()
     robot2.init()
     robot3.init()
     robot4.init()
+    robot5.init()
 end
 
 proc Robots.update()
-    robot1.updateSequence()
-    robot2.updateSequence()
-    robot3.updateSequence()
-    robot4.updateSequence()
+    number i
+    for i = 0 to 4    
+        robots[i].updateSequence()
+    end
 end
 
 proc Robots.setActiveRobot(number value)

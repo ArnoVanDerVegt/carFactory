@@ -21,7 +21,7 @@
 object Factory
     Robots   robots
     Conveyor conveyor
-    number needsReset[4]
+    number needsReset[5]
 end
 
 proc Factory.setFormDisabled(number disabled)
@@ -58,21 +58,43 @@ proc Factory.setSequenceDisabled()
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2, needsReset[3])
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP2,      needsReset[3])
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_DROP2,        needsReset[3])
+
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE1,            needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE2,            needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE3,            needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE4,            needsReset[4])
 end
 
 proc Factory.updateCommand()
     select command
         case CMD_SELECT_ROBOT:
             robots.setActiveRobot(commandIndex)
+            number motorBHidden = FALSE
+            number motorCHidden = FALSE
+            number motorDHidden = FALSE
+            
             if commandIndex == 0
-                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, TRUE)
-                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, TRUE)
+                motorDHidden = TRUE
                 components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot1.svg")
             else
-                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, FALSE)
-                components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, FALSE)
-                components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot2.svg")
+                if commandIndex == 4
+                    motorBHidden = TRUE
+                    motorCHidden = TRUE
+                    components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot5.svg")
+                else
+                    components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot2.svg")
+                end
             end
+
+            components.label.setHidden(mainWindow, FACTORY_FORM_LABEL_MOTOR2, motorBHidden)
+            components.label.setHidden(mainWindow, FACTORY_FORM_LABEL_MOTOR3, motorCHidden)
+
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1, motorBHidden)
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2, motorBHidden)
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1, motorCHidden)
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2, motorCHidden)
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, motorDHidden)
+            components.button.setHidden(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, motorDHidden)
         case CMD_REV:
             robots.rev(commandIndex)
         case CMD_FWD:
@@ -104,6 +126,8 @@ proc Factory.updateCommand()
             robots.startSequence(2, commandIndex)
         case CMD_START_SEQUENCE3:
             robots.startSequence(3, commandIndex)
+        case CMD_START_SEQUENCE4:
+            robots.startSequence(4, commandIndex)
     end
     command = CMD_NONE
     setFormDisabled(FALSE)
@@ -131,7 +155,7 @@ end
 
 proc Factory.init()
     command    = CMD_NONE
-    needsReset = [TRUE, TRUE, TRUE, TRUE]
+    needsReset = [TRUE, TRUE, TRUE, TRUE, TRUE]
     mainWindow = components.form.show("factoryForm.wfrm")
     setSequenceDisabled()
     robots.init()

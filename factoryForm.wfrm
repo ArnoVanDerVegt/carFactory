@@ -36,7 +36,7 @@
         ]
     },
     {
-        "x": "260",
+        "x": 230,
         "y": 50,
         "parentId": 3,
         "id": 3,
@@ -51,7 +51,8 @@
             "Robot 1",
             "Robot 2",
             "Robot 3",
-            "Robot 4"
+            "Robot 4",
+            "Robot 5"
         ],
         "color": "green",
         "onChange": "onFactoryFormSelectRobotChange"
@@ -678,13 +679,14 @@
         "hidden": false,
         "disabled": false,
         "type": "button",
-        "name": "ButtonStorage",
+        "name": "ButtonStorage1",
         "zIndex": 0,
-        "value": "Storage",
+        "value": "Moveto 1",
         "title": "",
         "color": "green",
         "width": "120",
-        "height": "40"
+        "height": "40",
+        "onClick": "onFactoryFormButtonStorage1Click"
     },
     {
         "x": 280,
@@ -1092,5 +1094,62 @@
         "height": "40",
         "width": "120",
         "onClick": "onFactoryFormButtonResetInventoryClick"
+    },
+    {
+        "x": 670,
+        "y": 110,
+        "parentId": 4,
+        "id": 62,
+        "uid": "0x72C1241E",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonStorage2",
+        "zIndex": 0,
+        "value": "Moveto 2",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonStorage2Click"
+    },
+    {
+        "x": 670,
+        "y": 160,
+        "parentId": 4,
+        "id": 63,
+        "uid": "0x05232AFF",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonStorage3",
+        "zIndex": 0,
+        "value": "Moveto 3",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonStorage3Click"
+    },
+    {
+        "x": 670,
+        "y": 210,
+        "parentId": 4,
+        "id": 64,
+        "uid": "0x6585BC25",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonStorage4",
+        "zIndex": 0,
+        "value": "Moveto 4",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonStorage4Click"
     }
 ]

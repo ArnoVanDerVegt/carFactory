@@ -35,7 +35,6 @@
 
     <rect rx="2" ry="2" x="200" y="140" width="20" height="40" style="stroke-width:4;stroke:rgb(0,0,0);fill:transparent;stroke-linecap:round;"/>
 
-
     <!-- Upper arm -->
     <line x1="160" y1="40" x2="210" y2="140" style="stroke-width:40;stroke:rgb(0,0,0);stroke-linecap:round;"/>
 

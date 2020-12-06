@@ -1,0 +1,119 @@
+; Wheel, copyright (c) 2020 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "robot/RobotWithMoves.whl"
+
+#include "factoryData.whl"
+
+object Robot5 extends RobotWithMoves
+    RobotMoves moveTo1
+    RobotMoves moveTo2
+    RobotMoves moveTo3
+    RobotMoves moveTo4
+end
+
+proc Robot5.initMoveTo1()
+    with moveTo1
+        initList()
+        add(99,  0,       NO_MOVE, NO_MOVE, NO_MOVE)
+    end
+end
+
+proc Robot5.initMoveTo2()
+    with moveTo2
+        initList()
+        add(99,  -3325,   NO_MOVE, NO_MOVE, NO_MOVE)
+    end
+end
+
+proc Robot5.initMoveTo3()
+    with moveTo3
+        initList()
+        add(99,  -6675,   NO_MOVE, NO_MOVE, NO_MOVE)
+    end
+end
+
+proc Robot5.initMoveTo4()
+    with moveTo4
+        initList()
+        add(99,  -10100,  NO_MOVE, NO_MOVE, NO_MOVE)
+    end
+end
+
+proc Robot5.initSequence()
+    addSequence(ROBOT5_MOVE_TO1)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT5_MOVE_TO2)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT5_MOVE_TO3)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT5_MOVE_TO4)
+    addSequence(SEQUENCE_END)
+end
+
+proc Robot5.init()
+    super()
+    
+    with robotConfig.motor0
+        resetDir    = 1
+        layer       = LAYER_10
+        port        = OUTPUT_C
+        sensorLayer = LAYER_10
+        sensorPort  = OUTPUT_B
+    end
+    with robotConfig.motor1
+        layer       = -1
+    end
+    with robotConfig.motor2
+        layer       = -1
+    end
+    with robotConfig.motor3
+        layer       = LAYER_10
+        port        = OUTPUT_A
+    end
+    with robotConfig.readyBits0
+        layer       = LAYER_10
+        bits        = MOTOR_BITS_C
+    end
+    with robotConfig.readyBits1
+        layer       = LAYER_10
+        bits        = MOTOR_BITS_C
+    end
+
+    initMoveTo1()
+    initMoveTo2()
+    initMoveTo3()
+    initMoveTo4()
+    
+    addMovesList(@moveTo1)
+    addMovesList(@moveTo2)
+    addMovesList(@moveTo3)
+    addMovesList(@moveTo4)
+
+    initSequence()    
+end
+
+proc Robot5.reset()
+    number i
+    number speeds[2] = [40, -20]
+    number colors[2] = [COLOR_WHITE, COLOR_BLACK]
+    with robotConfig.motor0
+        for i = 0 to 1
+            motorLayerSetSpeed(layer, port, speeds[i])
+            motorLayerOn(layer, port)
+
+            repeat
+                if sensorLayerRead(sensorLayer, sensorPort) == colors[i]
+                    motorLayerStop(layer, port)
+                    break
+                end
+            end
+        end
+        sleep(200)
+        motorLayerReset(layer, port)
+    end
+end
+

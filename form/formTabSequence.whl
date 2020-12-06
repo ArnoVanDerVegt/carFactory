@@ -15,6 +15,11 @@ proc onFactoryFormButtonRobot1Pickup2Click(number windowHandle)
     commandIndex = ROBOT1_SEQUENCE_PICKUP2
 end
 
+proc onFactoryFormButtonRobot1LoadClick(number windowHandle)
+    command      = CMD_START_SEQUENCE0
+    commandIndex = ROBOT1_SEQUENCE_LOAD
+end
+
 ; ============================== ROBOT 2 ==============================
 
 proc onFactoryFormButtonRobot2Pickup1Click(number windowHandle)
@@ -59,6 +64,12 @@ proc onFactoryFormButtonRobot3Drop2Click(number windowHandle)
     commandIndex = ROBOT3_SEQUENCE_DROP2
 end
 
+proc onFactoryFormButtonRobot3LoadClick(number windowHandle)
+    command      = CMD_START_SEQUENCE2
+    commandIndex = ROBOT3_SEQUENCE_LOAD
+    printN(1)
+end
+
 ; ============================== ROBOT 4 ==============================
 
 proc onFactoryFormButtonRobot4PickupDrop1Click(number windowHandle)
@@ -89,6 +100,11 @@ end
 proc onFactoryFormButtonRobot4Drop2Click(number windowHandle)
     command      = CMD_START_SEQUENCE3
     commandIndex = ROBOT3_SEQUENCE_DROP2
+end
+
+proc onFactoryFormButtonRobot4LoadClick(number windowHandle)
+    command      = CMD_START_SEQUENCE3
+    commandIndex = ROBOT4_SEQUENCE_LOAD
 end
 
 ; ============================== ROBOT 4 ==============================

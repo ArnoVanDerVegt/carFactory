@@ -52,10 +52,10 @@ proc Robot1.initLoadCarsList()
     with loadCarsList
         initList()
         add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move up
-        add(99,  8950,     NO_MOVE, NO_MOVE, NO_MOVE)   ; Move to the lever
-        add(99,  NO_MOVE,  2000,    -1200,   NO_MOVE)   ; Press lever
+        add(99,  9000,     NO_MOVE, NO_MOVE, NO_MOVE)   ; Move to the lever
+        add(99,  NO_MOVE,  1000,    -500,    NO_MOVE)   ; Press lever
         add(99,  NO_MOVE,  500,     -1200,   NO_MOVE)   ; Move away from lever
-        add(99,  0,        NO_MOVE, NO_MOVE, NO_MOVE)   ; Return
+        add(99,  0,        0,       0,       NO_MOVE)   ; Return
     end
 end
 
@@ -66,6 +66,9 @@ proc Robot1.initSequence()
 
     addSequence(ROBOT1_PICKUP2)
     addSequence(ROBOT1_MOVE_TO_CONVEYOR)
+    addSequence(SEQUENCE_END)
+
+    addSequence(ROBOT1_LOAD)
     addSequence(SEQUENCE_END)
 end
 

@@ -15,7 +15,7 @@ end
 proc Robot5.initMoveTo1()
     with moveTo1
         initList()
-        add(99,  0,       NO_MOVE, NO_MOVE, NO_MOVE)
+        add(99,  -50,     NO_MOVE, NO_MOVE, NO_MOVE)
     end
 end
 

@@ -10,6 +10,7 @@ object Robot3 extends RobotWithMoves
     RobotMoves pickup2List
     RobotMoves moveToConveyorList
     RobotMoves dropList
+    RobotMoves loadBodyList
 end
 
 proc Robot3.initPickup1List()
@@ -60,6 +61,17 @@ proc Robot3.initDropList()
     end
 end
 
+proc Robot3.initLoadBodyList()
+    with loadBodyList
+        initList()
+        add(99,  NO_MOVE,  NO_MOVE, -1300,   NO_MOVE)   ; Move up
+        add(99,  8200,     NO_MOVE, NO_MOVE, NO_MOVE)   ; Move to the lever
+        add(99,  NO_MOVE,  800,     -800,    NO_MOVE)   ; Press lever
+        add(99,  NO_MOVE,  0,       -1300,   NO_MOVE)   ; Move back
+        add(99,  0,        NO_MOVE, 0,       NO_MOVE)   ; Return
+    end
+end
+
 proc Robot3.initSequence()
     ; 0 = ROBOT3_SEQUENCE_PICKUP_DROP1
     addSequence(ROBOT3_PICKUP1)
@@ -89,6 +101,10 @@ proc Robot3.initSequence()
 
     ; 16 = ROBOT3_SEQUENCE_DROP2
     addSequence(ROBOT3_DROP)
+    addSequence(SEQUENCE_END)
+
+    ; 18 = ROBOT3_SEQUENCE_LOAD
+    addSequence(ROBOT3_LOAD)
     addSequence(SEQUENCE_END)
 end
 
@@ -135,11 +151,13 @@ proc Robot3.init()
     initPickup2List()
     initMoveToConveyorList()
     initDropList()
+    initLoadBodyList()
         
     addMovesList(@pickup1List)
     addMovesList(@pickup2List)
     addMovesList(@moveToConveyorList)
     addMovesList(@dropList)
+    addMovesList(@loadBodyList)
     
     initSequence()
 end

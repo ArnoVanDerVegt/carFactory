@@ -26,9 +26,11 @@
 #define ROBOT1_MOVE_TO_CONVEYOR       0
 #define ROBOT1_PICKUP1                1
 #define ROBOT1_PICKUP2                2
+#define ROBOT1_LOAD                   3
 
 #define ROBOT1_SEQUENCE_PICKUP1       0
 #define ROBOT1_SEQUENCE_PICKUP2       3
+#define ROBOT1_SEQUENCE_LOAD          6
 
 ; ============================== ROBOT 2 ==============================
 
@@ -45,6 +47,7 @@
 #define ROBOT3_PICKUP2                1
 #define ROBOT3_MOVE_TO_CONVEYOR       2
 #define ROBOT3_DROP                   3
+#define ROBOT3_LOAD                   4
 
 #define ROBOT3_SEQUENCE_PICKUP_DROP1  0
 #define ROBOT3_SEQUENCE_PICKUP1       4
@@ -52,6 +55,7 @@
 #define ROBOT3_SEQUENCE_PICKUP_DROP2  9
 #define ROBOT3_SEQUENCE_PICKUP2      13
 #define ROBOT3_SEQUENCE_DROP2        16
+#define ROBOT3_SEQUENCE_LOAD         18
 
 ; ============================== ROBOT 4 ==============================
 
@@ -59,6 +63,7 @@
 #define ROBOT4_PICKUP2                1
 #define ROBOT4_MOVE_TO_CONVEYOR       2
 #define ROBOT4_DROP                   3
+#define ROBOT4_LOAD                   4
 
 #define ROBOT4_SEQUENCE_PICKUP_DROP1  0
 #define ROBOT4_SEQUENCE_PICKUP1       4
@@ -66,6 +71,7 @@
 #define ROBOT4_SEQUENCE_PICKUP_DROP2  9
 #define ROBOT4_SEQUENCE_PICKUP2      13
 #define ROBOT4_SEQUENCE_DROP2        16
+#define ROBOT4_SEQUENCE_LOAD         18
 
 ; ============================== ROBOT 5 ==============================
 #define ROBOT5_MOVE_TO1               0

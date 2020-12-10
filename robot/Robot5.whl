@@ -15,28 +15,28 @@ end
 proc Robot5.initMoveTo1()
     with moveTo1
         initList()
-        add(99,  -50,     NO_MOVE, NO_MOVE, NO_MOVE)
+        add(99, -50, NO_MOVE, NO_MOVE, NO_MOVE)
     end
 end
 
 proc Robot5.initMoveTo2()
     with moveTo2
         initList()
-        add(99,  -3325,   NO_MOVE, NO_MOVE, NO_MOVE)
+        add(99, -3325, NO_MOVE, NO_MOVE, NO_MOVE)
     end
 end
 
 proc Robot5.initMoveTo3()
     with moveTo3
         initList()
-        add(99,  -6675,   NO_MOVE, NO_MOVE, NO_MOVE)
+        add(99, -6675, NO_MOVE, NO_MOVE, NO_MOVE)
     end
 end
 
 proc Robot5.initMoveTo4()
     with moveTo4
         initList()
-        add(99,  -10100,  NO_MOVE, NO_MOVE, NO_MOVE)
+        add(99, -10100, NO_MOVE, NO_MOVE, NO_MOVE)
     end
 end
 
@@ -56,7 +56,7 @@ end
 
 proc Robot5.init()
     super()
-    
+
     with robotConfig.motor0
         resetDir    = 1
         layer       = LAYER_10
@@ -65,35 +65,35 @@ proc Robot5.init()
         sensorPort  = OUTPUT_B
     end
     with robotConfig.motor1
-        layer       = -1
+        layer = -1
     end
     with robotConfig.motor2
-        layer       = -1
+        layer = -1
     end
     with robotConfig.motor3
-        layer       = LAYER_10
-        port        = OUTPUT_A
+        layer = LAYER_10
+        port  = OUTPUT_A
     end
     with robotConfig.readyBits0
-        layer       = LAYER_10
-        bits        = MOTOR_BITS_C
+        layer = LAYER_10
+        bits  = MOTOR_BITS_C
     end
     with robotConfig.readyBits1
-        layer       = LAYER_10
-        bits        = MOTOR_BITS_C
+        layer = LAYER_10
+        bits  = MOTOR_BITS_C
     end
 
     initMoveTo1()
     initMoveTo2()
     initMoveTo3()
     initMoveTo4()
-    
+
     addMovesList(@moveTo1)
     addMovesList(@moveTo2)
     addMovesList(@moveTo3)
     addMovesList(@moveTo4)
 
-    initSequence()    
+    initSequence()
 end
 
 proc Robot5.reset()
@@ -116,4 +116,3 @@ proc Robot5.reset()
         motorLayerReset(layer, port)
     end
 end
-

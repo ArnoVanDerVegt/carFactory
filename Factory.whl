@@ -79,14 +79,12 @@ proc Factory.updateCommand()
             if commandIndex == 0
                 motorDHidden = TRUE
                 components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot1.svg")
+            elseif commandIndex == 4
+                motorBHidden = TRUE
+                motorCHidden = TRUE
+                components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot5.svg")
             else
-                if commandIndex == 4
-                    motorBHidden = TRUE
-                    motorCHidden = TRUE
-                    components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot5.svg")
-                else
-                    components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot2.svg")
-                end
+                components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot2.svg")
             end
 
             components.label.setHidden(mainWindow, FACTORY_FORM_LABEL_MOTOR2, motorBHidden)

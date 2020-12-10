@@ -14,6 +14,7 @@ end
 proc Robot2.initMoveToConveyorList()
     with moveToConveyorList
         initList()
+#noformat
         add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
         add(99,  NO_MOVE, 725,     -1550,   NO_MOVE)    ; Move up
         add(99,  -400,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
@@ -21,12 +22,14 @@ proc Robot2.initMoveToConveyorList()
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 900,     -200,    NO_MOVE)    ; Move up
         add(99,  0,       0,       0,       NO_MOVE)    ; Reset
+#format
     end
 end
 
 proc Robot2.initPickup1List()
     with pickup1List
         initList()
+#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
@@ -37,12 +40,14 @@ proc Robot2.initPickup1List()
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 
         add(99,  4700,    250,     -2000,   NO_MOVE)    ; Move up
+#format
     end
 end
 
 proc Robot2.initPickup2List()
     with pickup2List
         initList()
+#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
@@ -53,6 +58,7 @@ proc Robot2.initPickup2List()
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 
         add(99,  4950,    1450,    -450,    NO_MOVE)    ; Move up
+#format
     end
 end
 
@@ -68,7 +74,7 @@ end
 
 proc Robot2.init()
     super()
-    
+
     with robotConfig.motor0
         resetDir    = -1
         layer       = LAYER_3
@@ -76,7 +82,7 @@ proc Robot2.init()
         sensorLayer = LAYER_4
         sensorPort  = OUTPUT_B
     end
-    with robotConfig.motor1    
+    with robotConfig.motor1
         resetDir    = -1
         layer       = LAYER_3
         port        = OUTPUT_D
@@ -91,16 +97,16 @@ proc Robot2.init()
         sensorPort  = OUTPUT_A
     end
     with robotConfig.motor3
-        layer       = LAYER_3
-        port        = OUTPUT_A
+        layer = LAYER_3
+        port  = OUTPUT_A
     end
     with robotConfig.readyBits0
-        layer       = LAYER_3
-        bits        = MOTOR_BITS_CD
+        layer = LAYER_3
+        bits  = MOTOR_BITS_CD
     end
     with robotConfig.readyBits1
-        layer       = LAYER_4
-        bits        = MOTOR_BITS_C
+        layer = LAYER_4
+        bits  = MOTOR_BITS_C
     end
 
     robotConfig.turnReset = 980
@@ -108,10 +114,10 @@ proc Robot2.init()
     initMoveToConveyorList()
     initPickup1List()
     initPickup2List()
-        
+
     addMovesList(@moveToConveyorList)
     addMovesList(@pickup1List)
     addMovesList(@pickup2List)
-    
+
     initSequence()
 end

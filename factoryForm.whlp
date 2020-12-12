@@ -5,6 +5,7 @@
 #include "form/formTabControl.whl"
 #include "form/formTabSequence.whl"
 #include "form/formTabInventory.whl"
+#include "form/formTabOrder.whl"
 
 #include "devices.whl"
 #include "Factory.whl"
@@ -16,6 +17,9 @@
 #include "lib/modules/components/image.whl"
 #include "lib/modules/components/form.whl"
 #include "lib/modules/components/button.whl"
+#include "lib/modules/components/radio.whl"
+#include "lib/modules/components/listItems.whl"
+#include "lib/modules/components/dropdown.whl"
 
 #rangecheck "off"
 #datatype   "int"
@@ -35,6 +39,9 @@
 #define FACTORY_FORM_BUTTON_MOTOR_C2            0xEAB1FA2D
 #define FACTORY_FORM_BUTTON_MOTOR_D1            0x43C6EA33
 #define FACTORY_FORM_BUTTON_MOTOR_D2            0xEDF83F7F
+#define FACTORY_FORM_BUTTON_ORDER_ADD_ITEM      0xAEA12518
+#define FACTORY_FORM_BUTTON_ORDER_CLEAR         0x2F1A9961
+#define FACTORY_FORM_BUTTON_ORDER_RUN           0x25773976
 #define FACTORY_FORM_BUTTON_RESET               0x99C1B371
 #define FACTORY_FORM_BUTTON_RESET_INVENTORY     0x6A2D7F1A
 #define FACTORY_FORM_BUTTON_ROBOT1_LOAD         0xBF050D10
@@ -61,6 +68,8 @@
 #define FACTORY_FORM_BUTTON_STORAGE2            0x72C1241E
 #define FACTORY_FORM_BUTTON_STORAGE3            0x05232AFF
 #define FACTORY_FORM_BUTTON_STORAGE4            0x6585BC25
+#define FACTORY_FORM_DROPDOWN_BODY              0x3123C05D
+#define FACTORY_FORM_DROPDOWN_SEAT              0x0CC22717
 #define FACTORY_FORM_IMAGE1                     0xCB7FFF70
 #define FACTORY_FORM_LABEL_INVENTORY_BODY_BLUE  0x95E4E6FD
 #define FACTORY_FORM_LABEL_INVENTORY_BODY_BROWN 0xF8C8C91F
@@ -72,6 +81,9 @@
 #define FACTORY_FORM_LABEL_MOTOR1               0x4925780C
 #define FACTORY_FORM_LABEL_MOTOR2               0xE8065F64
 #define FACTORY_FORM_LABEL_MOTOR3               0x0728854D
+#define FACTORY_FORM_LABEL_ORDER_BODY           0x1382B970
+#define FACTORY_FORM_LABEL_ORDER_SEAT           0xA8FE3348
+#define FACTORY_FORM_LIST_ITEMS1                0x23C689A4
 #define FACTORY_FORM_MAIN_TABS                  0xC9EA066D
 #define FACTORY_FORM_SELECT_ROBOT               0x9A4E0D42
 #define FACTORY_FORM_TITLE_BODY_BLUE            0xB3574234
@@ -80,6 +92,7 @@
 #define FACTORY_FORM_TITLE_BODY_RED             0xF1403B06
 #define FACTORY_FORM_TITLE_CHASSIS              0x7FB3C67A
 #define FACTORY_FORM_TITLE_CONVEYOR             0x5BD33922
+#define FACTORY_FORM_TITLE_ORDER_ITEMS          0x4EA9B099
 #define FACTORY_FORM_TITLE_ROBOT1               0xDE321435
 #define FACTORY_FORM_TITLE_ROBOT2               0xC6ED624B
 #define FACTORY_FORM_TITLE_ROBOT3               0x70BA54D1

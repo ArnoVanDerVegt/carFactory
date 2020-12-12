@@ -20,6 +20,9 @@
 #define CMD_START_SEQUENCE2          14
 #define CMD_START_SEQUENCE3          15
 #define CMD_START_SEQUENCE4          16
+#define CMD_ORDER_ADD_ITEM           17
+#define CMD_ORDER_CLEAR              18
+#define CMD_ORDER_RUN                19
 
 ; ============================== ROBOT 1 ==============================
 

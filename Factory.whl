@@ -14,14 +14,16 @@
 #include "lib/modules/components/interval.whl"
 
 #include "robot/Robots.whl"
-#include "Conveyor.whl"
 #include "factoryData.whl"
+#include "Conveyor.whl"
+#include "Order.whl"
 #include "inventory/Inventory.whl"
 
 object Factory
     Robots   robots
     Conveyor conveyor
     number needsReset[5]
+    Order order
 end
 
 proc Factory.setFormDisabled(number disabled)
@@ -75,7 +77,7 @@ proc Factory.updateCommand()
             number motorBHidden = FALSE
             number motorCHidden = FALSE
             number motorDHidden = FALSE
-            
+
             if commandIndex == 0
                 motorDHidden = TRUE
                 components.image.setSrc(mainWindow, FACTORY_FORM_IMAGE1, "images/robot1.svg")
@@ -129,6 +131,13 @@ proc Factory.updateCommand()
             robots.startSequence(3, commandIndex)
         case CMD_START_SEQUENCE4:
             robots.startSequence(4, commandIndex)
+        case CMD_ORDER_ADD_ITEM:
+            order.addItem()
+        case CMD_ORDER_CLEAR:
+            order.clear()
+        case CMD_ORDER_RUN:
+            order.run()
+
     end
     command = CMD_NONE
     setFormDisabled(FALSE)

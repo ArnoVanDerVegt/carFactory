@@ -73,7 +73,8 @@
         "halign": "center",
         "value": "",
         "width": "65",
-        "fontSize": 16
+        "fontSize": 16,
+        "hAlign": "left"
     },
     {
         "x": "210",
@@ -91,7 +92,8 @@
         "halign": "center",
         "value": "",
         "width": "65",
-        "fontSize": 16
+        "fontSize": 16,
+        "hAlign": "left"
     },
     {
         "x": "540",
@@ -109,7 +111,8 @@
         "halign": "center",
         "value": "",
         "width": "65",
-        "fontSize": 16
+        "fontSize": 16,
+        "hAlign": "left"
     },
     {
         "x": "210",
@@ -360,7 +363,8 @@
         "name": "TitleRobot1",
         "zIndex": 0,
         "text": "Robot 1",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 150,
@@ -375,7 +379,8 @@
         "name": "TitleRobot2",
         "zIndex": 0,
         "text": "Robot 2",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 280,
@@ -390,7 +395,8 @@
         "name": "TitleRobot3",
         "zIndex": 0,
         "text": "Robot 3",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 410,
@@ -405,7 +411,8 @@
         "name": "TitleRobot4",
         "zIndex": 0,
         "text": "Robot 4",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 20,
@@ -572,7 +579,8 @@
         "name": "TitleConveyor",
         "zIndex": 0,
         "text": "Conveyor",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 540,
@@ -853,7 +861,8 @@
         "name": "TitleStorage",
         "zIndex": 0,
         "text": "Storage",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": "20",
@@ -868,7 +877,8 @@
         "name": "TitleChassis",
         "zIndex": 0,
         "text": "Chassis",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 240,
@@ -883,7 +893,8 @@
         "name": "TitleSeatTan",
         "zIndex": 0,
         "text": "Seat tan",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 130,
@@ -898,7 +909,8 @@
         "name": "TitleSeatGrey",
         "zIndex": 0,
         "text": "Seat grey",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": "350",
@@ -913,7 +925,8 @@
         "name": "TitleBodyRed",
         "zIndex": 0,
         "text": "Body red",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": "460",
@@ -928,7 +941,8 @@
         "name": "TitleBodyBlue",
         "zIndex": 0,
         "text": "Body blue",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": "570",
@@ -943,7 +957,8 @@
         "name": "TitleBodyBrown",
         "zIndex": 0,
         "text": "Body brown",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 680,
@@ -958,7 +973,8 @@
         "name": "TitleBodyGreen",
         "zIndex": 0,
         "text": "Body green",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 20,
@@ -976,7 +992,8 @@
         "text": "4",
         "halign": "left",
         "width": "",
-        "value": ""
+        "value": "",
+        "hAlign": "left"
     },
     {
         "x": 130,
@@ -992,7 +1009,8 @@
         "zIndex": 0,
         "fontSize": "60",
         "text": "4",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 240,
@@ -1008,7 +1026,8 @@
         "zIndex": 0,
         "fontSize": "60",
         "text": "4",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 350,
@@ -1024,7 +1043,8 @@
         "zIndex": 0,
         "fontSize": "60",
         "text": "2",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 460,
@@ -1040,7 +1060,8 @@
         "zIndex": 0,
         "fontSize": "60",
         "text": "2",
-        "halign": "left"
+        "halign": "left",
+        "hAlign": "left"
     },
     {
         "x": 570,
@@ -1057,7 +1078,8 @@
         "fontSize": "60",
         "text": "2",
         "halign": "left",
-        "width": ""
+        "width": "",
+        "hAlign": "left"
     },
     {
         "x": 680,
@@ -1074,7 +1096,8 @@
         "fontSize": "60",
         "text": "2",
         "halign": "left",
-        "width": ""
+        "width": "",
+        "hAlign": "left"
     },
     {
         "x": 20,
@@ -1208,5 +1231,160 @@
         "width": "120",
         "height": "40",
         "onClick": "onFactoryFormButtonRobot4LoadClick"
+    },
+    {
+        "x": 20,
+        "y": 20,
+        "parentId": 6,
+        "id": 68,
+        "uid": "0x4EA9B099",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "title",
+        "name": "TitleOrderItems",
+        "zIndex": 0,
+        "text": "Order items",
+        "hAlign": "left"
+    },
+    {
+        "x": 20,
+        "y": 60,
+        "parentId": 6,
+        "id": 69,
+        "uid": "0x23C689A4",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "listItems",
+        "name": "ListItems1",
+        "zIndex": 0,
+        "items": [
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4"
+        ]
+    },
+    {
+        "x": 20,
+        "y": 160,
+        "parentId": 6,
+        "id": 70,
+        "uid": "0x2F1A9961",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonOrderClear",
+        "zIndex": 0,
+        "value": "Clear",
+        "title": "",
+        "color": "green",
+        "onClick": "onFactoryFormButtonOrderClearClick"
+    },
+    {
+        "x": 20,
+        "y": 200,
+        "parentId": 6,
+        "id": 71,
+        "uid": "0xA8FE3348",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "label",
+        "name": "LabelOrderSeat",
+        "zIndex": 0,
+        "fontSize": 16,
+        "text": "Seat",
+        "hAlign": "left"
+    },
+    {
+        "x": 60,
+        "y": 200,
+        "parentId": 6,
+        "id": 72,
+        "uid": "0x0CC22717",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "dropdown",
+        "name": "DropdownSeat",
+        "zIndex": 0,
+        "items": [
+            "Tan",
+            "Grey"
+        ]
+    },
+    {
+        "x": 140,
+        "y": 200,
+        "parentId": 6,
+        "id": 73,
+        "uid": "0x1382B970",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "label",
+        "name": "LabelOrderBody",
+        "zIndex": 0,
+        "fontSize": 16,
+        "text": "Body",
+        "hAlign": "left"
+    },
+    {
+        "x": 190,
+        "y": 200,
+        "parentId": 6,
+        "id": 74,
+        "uid": "0x3123C05D",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "dropdown",
+        "name": "DropdownBody",
+        "zIndex": 0,
+        "items": [
+            "Red",
+            "Blue",
+            "Green",
+            "Brown"
+        ]
+    },
+    {
+        "x": 280,
+        "y": 200,
+        "parentId": 6,
+        "id": 75,
+        "uid": "0xAEA12518",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonOrderAddItem",
+        "zIndex": 0,
+        "value": "Add item",
+        "title": "",
+        "color": "green",
+        "onClick": "onFactoryFormButtonOrderAddItemClick"
+    },
+    {
+        "x": 20,
+        "y": 270,
+        "parentId": 6,
+        "id": 76,
+        "uid": "0x25773976",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "button",
+        "name": "ButtonOrderRun",
+        "zIndex": 0,
+        "value": "Run order",
+        "title": "",
+        "color": "green",
+        "width": "120",
+        "height": "40",
+        "onClick": "onFactoryFormButtonOrderRunClick"
     }
 ]

@@ -1,0 +1,16 @@
+; Wheel, copyright (c) 2020 - present by {yourName
+; Distributed under an {yourLicense
+
+#include "factoryData.whl"
+
+proc onFactoryFormButtonOrderAddItemClick(number windowHandle)
+    command = CMD_ORDER_ADD_ITEM
+end
+
+proc onFactoryFormButtonOrderClearClick(number windowHandle)
+    command = CMD_ORDER_CLEAR
+end
+
+proc onFactoryFormButtonOrderRunClick(number windowHandle)
+    command = CMD_ORDER_RUN
+end

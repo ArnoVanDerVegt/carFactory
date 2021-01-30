@@ -4,17 +4,46 @@
 #include "lib/modules/components/listItems.whl"
 #include "lib/modules/components/dropdown.whl"
 
+#include "inventory/Inventory.whl"
+
+record OrderItem
+    number seat
+    number body
+end
+
 object Order
+    number    orderLineCount
+    Inventory ^inventory
+end
+
+proc Order.setInventory(Inventory ^inventory)
+    self.inventory = inventory
 end
 
 proc Order.addItem()
-    printS("Add item")
+    if (orderLineCount < 4)
+        number seatColor = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_SEAT)
+        number bodyColor = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_BODY)
+        number n         = seatColor * 4 + bodyColor
+        components.listItems.addItem(mainWindow, FACTORY_FORM_ORDER_LIST_ITEMS, seatAndBodyColor[n])
+        inventory.orderSeat(seatColor)
+        inventory.orderBody(bodyColor)
+        orderLineCount++
+    end
 end
 
 proc Order.clear()
-    printS("Clear")
+    orderLineCount = 0
+    inventory.reset()
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ORDER_RUN, TRUE)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ORDER_RUN, TRUE)
+    components.listItems.clear(mainWindow, FACTORY_FORM_ORDER_LIST_ITEMS)
 end
 
 proc Order.run()
     printS("Run")
+end
+
+proc Order.init()
+    clear()
 end

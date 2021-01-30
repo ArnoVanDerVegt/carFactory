@@ -20,54 +20,55 @@
 #include "inventory/Inventory.whl"
 
 object Factory
-    Robots   robots
-    Conveyor conveyor
-    number needsReset[5]
-    Order order
+    number    needsReset[5] ; Which robot needs to be reset?
+    Robots    robots
+    Conveyor  conveyor
+    Inventory inventory
+    Order     order
 end
 
 proc Factory.setFormDisabled(number disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2,   disabled)
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RESET,      disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A1, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_A2, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B1, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_B2, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C1, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_C2, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D1, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_MOTOR_D2, disabled)
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_RESET, disabled)
 
     components.selectButton.setDisabled(mainWindow, FACTORY_FORM_SELECT_ROBOT, disabled)
 end
 
 proc Factory.setSequenceDisabled()
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1,      needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2,      needsReset[0])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_LOAD,         needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP1, needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_PICKUP2, needsReset[0])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT1_LOAD, needsReset[0])
 
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1,      needsReset[1])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2,      needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP1, needsReset[1])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT2_PICKUP2, needsReset[1])
 
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP1, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP1,      needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_DROP1,        needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP1, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_DROP1, needsReset[2])
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP_DROP2, needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP2,      needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_DROP2,        needsReset[2])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_LOAD,         needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_PICKUP2, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_DROP2, needsReset[2])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT3_LOAD, needsReset[2])
 
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP1, needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP1,      needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_DROP1,        needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP1, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_DROP1, needsReset[3])
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP_DROP2, needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP2,      needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_DROP2,        needsReset[3])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_LOAD,         needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_PICKUP2, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_DROP2, needsReset[3])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ROBOT4_LOAD, needsReset[3])
 
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE1,            needsReset[4])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE2,            needsReset[4])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE3,            needsReset[4])
-    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE4,            needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE1, needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE2, needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE3, needsReset[4])
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_STORAGE4, needsReset[4])
 end
 
 proc Factory.updateCommand()
@@ -108,8 +109,8 @@ proc Factory.updateCommand()
             robots.stopAll()
         case CMD_RESET:
             setFormDisabled(TRUE)
-            number active = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)
-            needsReset[active] = FALSE
+            number active       = components.selectButton.getActive(mainWindow, FACTORY_FORM_SELECT_ROBOT)
+            needsReset [active] = FALSE
             robots.reset()
         case CMD_CONVEYOR_BAR_DOWN:
             conveyor.barDown()
@@ -169,6 +170,9 @@ proc Factory.init()
     mainWindow = components.form.show("factoryForm.wfrm")
     setSequenceDisabled()
     robots.init()
+    inventory.reset()
+    order.setInventory(@inventory)
+    order.init()
 end
 
 Factory factory

@@ -2,3 +2,57 @@
 ; Distributed under an {yourLicense}
 
 #include "inventory/InventoryItem.whl"
+
+object Inventory
+    number seat[2]
+    number body[4]
+end
+
+proc Inventory.updateForm()
+    number n
+
+    components.dropdown.clear(mainWindow, FACTORY_FORM_DROPDOWN_SEAT)
+    for n = 0 to 1
+        if (seat[n] > 0)
+            components.dropdown.addItem(mainWindow, FACTORY_FORM_DROPDOWN_SEAT, n, seatColors[n])
+        end
+    end
+
+    components.dropdown.clear(mainWindow, FACTORY_FORM_DROPDOWN_BODY)
+    for n = 0 to 3
+        if (body[n] > 0)
+            components.dropdown.addItem(mainWindow, FACTORY_FORM_DROPDOWN_BODY, n, bodyColors[n])
+        end
+    end
+end
+
+proc Inventory.reset()
+    number n
+
+    for n = 0 to 1
+        seat[n] = 4
+    end
+
+    for n = 0 to 3
+        body[n] = 2
+    end
+    updateForm()
+end
+
+proc Inventory.getSeat(number color)
+    ret seat[color]
+end
+
+proc Inventory.orderSeat(number color)
+    seat[color]--
+    updateForm()
+end
+
+proc Inventory.getBody(number color)
+    ret body[color]
+end
+
+proc Inventory.orderBody(number color)
+    body[color]--
+    updateForm()
+end

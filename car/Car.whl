@@ -1,0 +1,29 @@
+; Copyright (c) 2021 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "factoryData.whl"
+
+object Car
+    number position
+    number seat
+    number seatReady
+    number body
+    number bodyReady
+end
+
+proc Car.init()
+    position = POSITION_IN_STORAGE
+end
+
+proc Car.order(number seat, number body)
+    position  = POSITION_IN_STORAGE
+    seatReady = FALSE
+    bodyReady = FALSE
+    self.seat = seat
+    self.body = body
+    printS("Order car")
+    printS("Seat:")
+    printS(seatColors[seat])
+    printS("Body:")
+    printS(bodyColors[body])
+end

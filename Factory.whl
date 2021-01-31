@@ -16,7 +16,7 @@
 #include "robot/Robots.whl"
 #include "factoryData.whl"
 #include "Conveyor.whl"
-#include "Order.whl"
+#include "inventory/Order.whl"
 #include "inventory/Inventory.whl"
 
 object Factory
@@ -136,9 +136,8 @@ proc Factory.updateCommand()
             order.addItem()
         case CMD_ORDER_CLEAR:
             order.clear()
-        case CMD_ORDER_RUN:
-            order.run()
-
+;        case CMD_ORDER_RUN:
+;            order.run()
     end
     command = CMD_NONE
     setFormDisabled(FALSE)

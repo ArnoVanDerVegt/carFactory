@@ -1,8 +1,7 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-; ============================== COMMANDS ==============================
-
+; ================================== COMMANDS ==================================
 #define CMD_NONE                      0
 #define CMD_SELECT_ROBOT              1
 #define CMD_REV                       2
@@ -24,8 +23,7 @@
 #define CMD_ORDER_CLEAR              18
 #define CMD_ORDER_RUN                19
 
-; ============================== ROBOT 1 ==============================
-
+; ================================== ROBOT 1 ===================================
 #define ROBOT1_MOVE_TO_CONVEYOR       0
 #define ROBOT1_PICKUP1                1
 #define ROBOT1_PICKUP2                2
@@ -35,8 +33,7 @@
 #define ROBOT1_SEQUENCE_PICKUP2       3
 #define ROBOT1_SEQUENCE_LOAD          6
 
-; ============================== ROBOT 2 ==============================
-
+; ================================== ROBOT 2 ===================================
 #define ROBOT2_MOVE_TO_CONVEYOR       0
 #define ROBOT2_PICKUP1                1
 #define ROBOT2_PICKUP2                2
@@ -44,8 +41,7 @@
 #define ROBOT2_SEQUENCE_PICKUP1       0
 #define ROBOT2_SEQUENCE_PICKUP2       3
 
-; ============================== ROBOT 3 ==============================
-
+; ================================== ROBOT 3 ===================================
 #define ROBOT3_PICKUP1                0
 #define ROBOT3_PICKUP2                1
 #define ROBOT3_MOVE_TO_CONVEYOR       2
@@ -60,8 +56,7 @@
 #define ROBOT3_SEQUENCE_DROP2        16
 #define ROBOT3_SEQUENCE_LOAD         18
 
-; ============================== ROBOT 4 ==============================
-
+; ================================== ROBOT 4 ===================================
 #define ROBOT4_PICKUP1                0
 #define ROBOT4_PICKUP2                1
 #define ROBOT4_MOVE_TO_CONVEYOR       2
@@ -76,7 +71,7 @@
 #define ROBOT4_SEQUENCE_DROP2        16
 #define ROBOT4_SEQUENCE_LOAD         18
 
-; ============================== ROBOT 5 ==============================
+; ================================== ROBOT 5 ===================================
 #define ROBOT5_MOVE_TO1               0
 #define ROBOT5_MOVE_TO2               1
 #define ROBOT5_MOVE_TO3               2
@@ -87,7 +82,7 @@
 #define ROBOT4_SEQUENCE_MOVE_TO3      4
 #define ROBOT4_SEQUENCE_MOVE_TO4      6
 
-; ============================== COMPONENTS ==============================
+; ================================= COMPONENTS =================================
 #define FACTORY_FORM_INTERVAL1                  0xF4BC22B5
 #define FACTORY_FORM_BUTTON_CONVEYOR1TO2        0x218FA9CA
 #define FACTORY_FORM_BUTTON_CONVEYOR2TO3        0xE3CB1067
@@ -165,13 +160,13 @@
 #define FACTORY_FORM_TITLE_STORAGE              0x04C7CA72
 #define FACTORY_FORM_UPDATE_POS_INTERVAL        0xF4BC22B5
 
-; ============================== SEAT COLORS ==============================
+; ================================ SEAT COLORS =================================
 #define SEAT_COLOR_TAN                          0
 #define SEAT_COLOR_GRAY                         1
 
 string seatColors[2] = ["Tan", "Gray"]
 
-; ============================== BODY COLORS ==============================
+; ================================ BODY COLORS =================================
 #define BODY_COLOR_RED                          0
 #define BODY_COLOR_BLUE                         1
 #define BODY_COLOR_BROWN                        2
@@ -189,6 +184,13 @@ string seatAndBodyColor[8] = [
     "Grey seat, brown body",
     "Grey seat, green body"
 ]
+
+; =========================== CAR POSITION IN FACTORY ==========================
+#define POSITION_IN_STORAGE                     0
+#define POSITION_ON_CONVEYOR                    1
+#define POSITION_ROBOT2                         2
+#define POSITION_ROBOT3                         3
+#define POSITION_ROBOT4                         4
 
 number mainWindow
 number command

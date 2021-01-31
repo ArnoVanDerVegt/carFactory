@@ -3,16 +3,18 @@
 
 #include "lib/modules/components/listItems.whl"
 #include "lib/modules/components/dropdown.whl"
+#include "lib/modules/components/button.whl"
 
 #include "inventory/Inventory.whl"
 
-record OrderItem
+record OrderLine
     number seat
     number body
 end
 
 object Order
     number    orderLineCount
+    OrderLine orderLine[4]
     Inventory ^inventory
 end
 
@@ -20,16 +22,23 @@ proc Order.setInventory(Inventory ^inventory)
     self.inventory = inventory
 end
 
+proc Order.addOrderLine(number seat, number body)
+    orderLine[orderLineCount].seat = seat
+    orderLine[orderLineCount].body = body
+    orderLineCount++
+end
+
 proc Order.addItem()
     if (orderLineCount < 4)
-        number seatColor = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_SEAT)
-        number bodyColor = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_BODY)
-        number n         = seatColor * 4 + bodyColor
+        number seat = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_SEAT)
+        number body = components.dropdown.getValue(mainWindow, FACTORY_FORM_DROPDOWN_BODY)
+        number n    = seat * 4 + body
         components.listItems.addItem(mainWindow, FACTORY_FORM_ORDER_LIST_ITEMS, seatAndBodyColor[n])
-        inventory.orderSeat(seatColor)
-        inventory.orderBody(bodyColor)
-        orderLineCount++
+        inventory.addOrderSeat(seat)
+        inventory.addOrderBody(body)
+        addOrderLine(seat, body)
     end
+    components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ORDER_RUN, FALSE)
 end
 
 proc Order.clear()
@@ -38,10 +47,6 @@ proc Order.clear()
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ORDER_RUN, TRUE)
     components.button.setDisabled(mainWindow, FACTORY_FORM_BUTTON_ORDER_RUN, TRUE)
     components.listItems.clear(mainWindow, FACTORY_FORM_ORDER_LIST_ITEMS)
-end
-
-proc Order.run()
-    printS("Run")
 end
 
 proc Order.init()

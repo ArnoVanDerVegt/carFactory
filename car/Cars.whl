@@ -1,0 +1,26 @@
+; Copyright (c) 2021 - present by {yourName}
+; Distributed under an {yourLicense}
+
+#include "car/Car.whl"
+#include "inventory/Order.whl"
+
+object Cars
+    Car car[4]
+end
+
+proc Cars.init()
+    number n
+
+    for n = 0 to 3
+        car[n].init()
+    end
+end
+
+proc Cars.order(Order ^order)
+    printS("Order:")
+    printN(order.orderLineCount)
+    number n
+    for n = 0 to 3
+        car[n].order(order.orderLine[n].seat, order.orderLine[n].body)
+    end
+end

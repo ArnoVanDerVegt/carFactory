@@ -1,11 +1,12 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
-#include "inventory/InventoryItem.whl"
-
 object Inventory
-    number seat[2]
-    number body[4]
+    number base            ; The number of car bases available
+    number seat[2]         ; The number of available seats per color
+    number body[4]         ; The number of bodies available per color
+    number orderSeat[2]    ; The number of seats ordered per color
+    number orderBody[4]    ; The number of bodies ordered per color
 end
 
 proc Inventory.updateForm()
@@ -13,14 +14,14 @@ proc Inventory.updateForm()
 
     components.dropdown.clear(mainWindow, FACTORY_FORM_DROPDOWN_SEAT)
     for n = 0 to 1
-        if (seat[n] > 0)
+        if (orderSeat[n] > 0)
             components.dropdown.addItem(mainWindow, FACTORY_FORM_DROPDOWN_SEAT, n, seatColors[n])
         end
     end
 
     components.dropdown.clear(mainWindow, FACTORY_FORM_DROPDOWN_BODY)
     for n = 0 to 3
-        if (body[n] > 0)
+        if (orderBody[n] > 0)
             components.dropdown.addItem(mainWindow, FACTORY_FORM_DROPDOWN_BODY, n, bodyColors[n])
         end
     end
@@ -29,30 +30,34 @@ end
 proc Inventory.reset()
     number n
 
+    base = 4
+
     for n = 0 to 1
-        seat[n] = 4
+        seat[n]      = 4
+        orderSeat[n] = 4
     end
 
     for n = 0 to 3
-        body[n] = 2
+        body[n]      = 2
+        orderBody[n] = 2
     end
     updateForm()
 end
 
-proc Inventory.getSeat(number color)
-    ret seat[color]
+proc Inventory.getOrderSeat(number color)
+    ret orderSeat[color]
 end
 
-proc Inventory.orderSeat(number color)
-    seat[color]--
+proc Inventory.addOrderSeat(number color)
+    orderSeat[color]--
     updateForm()
 end
 
-proc Inventory.getBody(number color)
-    ret body[color]
+proc Inventory.getOrderBody(number color)
+    ret orderBody[color]
 end
 
-proc Inventory.orderBody(number color)
-    body[color]--
+proc Inventory.addOrderBody(number color)
+    orderBody[color]--
     updateForm()
 end

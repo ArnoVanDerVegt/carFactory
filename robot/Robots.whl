@@ -1,6 +1,8 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
+#include "lib/modules/bit.whl"
+
 #include "robot/Robot1.whl"
 #include "robot/Robot2.whl"
 #include "robot/Robot3.whl"
@@ -13,6 +15,7 @@ record RobotCommand
 end
 
 object Robots
+    number             readyBits
     Robot1             robot1
     Robot2             robot2
     Robot3             robot3
@@ -40,8 +43,15 @@ end
 
 proc Robots.update()
     number i
-    for i = 0 to 4    
+    number bit = 1
+    readyBits = 0
+
+    for i = 0 to 4
         robots[i].updateSequence()
+        if robots[i].isReady
+            readyBits = bitOr(readyBits, bit)
+        end
+        bit *= 2
     end
 end
 

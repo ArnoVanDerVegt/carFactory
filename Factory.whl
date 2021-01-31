@@ -18,6 +18,7 @@
 #include "Conveyor.whl"
 #include "inventory/Order.whl"
 #include "inventory/Inventory.whl"
+#include "car/Cars.whl"
 
 object Factory
     number    needsReset[5] ; Which robot needs to be reset?
@@ -25,6 +26,7 @@ object Factory
     Conveyor  conveyor
     Inventory inventory
     Order     order
+    Cars      cars
 end
 
 proc Factory.setFormDisabled(number disabled)
@@ -136,8 +138,8 @@ proc Factory.updateCommand()
             order.addItem()
         case CMD_ORDER_CLEAR:
             order.clear()
-;        case CMD_ORDER_RUN:
-;            order.run()
+        case CMD_ORDER_RUN:
+            cars.order(@order)
     end
     command = CMD_NONE
     setFormDisabled(FALSE)
@@ -170,6 +172,7 @@ proc Factory.init()
     setSequenceDisabled()
     robots.init()
     inventory.reset()
+    cars.init()
     order.setInventory(@inventory)
     order.init()
 end

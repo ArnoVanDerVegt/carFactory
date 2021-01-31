@@ -12,18 +12,14 @@ object Car
 end
 
 proc Car.init()
-    position = POSITION_IN_STORAGE
+    position = 0
 end
 
-proc Car.order(number seat, number body)
-    position  = POSITION_IN_STORAGE
+proc Car.setOrder(number seat, number body)
     seatReady = FALSE
     bodyReady = FALSE
     self.seat = seat
     self.body = body
-    printS("Order car")
-    printS("Seat:")
     printS(seatColors[seat])
-    printS("Body:")
     printS(bodyColors[body])
 end

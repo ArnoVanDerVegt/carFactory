@@ -1,6 +1,7 @@
 ; Wheel, copyright (c) 2020 - present by {yourName}
 ; Distributed under an {yourLicense}
 
+#include "lib/modules/components/statusLight.whl"
 #include "lib/modules/bit.whl"
 
 #include "robot/Robot1.whl"
@@ -8,6 +9,8 @@
 #include "robot/Robot3.whl"
 #include "robot/Robot4.whl"
 #include "robot/Robot5.whl"
+
+#include "factoryData.whl"
 
 record RobotCommand
     number command
@@ -41,6 +44,25 @@ proc Robots.init()
     robot5.init()
 end
 
+proc Robots.updateStatusLight()
+    number lightComponents[5] = [
+        FACTORY_FORM_STATUS_ROBOT1,
+        FACTORY_FORM_STATUS_ROBOT2,
+        FACTORY_FORM_STATUS_ROBOT3,
+        FACTORY_FORM_STATUS_ROBOT4,
+        FACTORY_FORM_STATUS_ROBOT5
+    ]
+    number i
+
+    for i = 0 to 4
+        number color = 5
+        if robots[i].isReady
+            color = 3
+        end
+        components.statusLight.setColor(mainWindow, lightComponents[i], color)
+    end
+end
+
 proc Robots.update()
     number i
     number bit = 1
@@ -53,6 +75,7 @@ proc Robots.update()
         end
         bit *= 2
     end
+    updateStatusLight()
 end
 
 proc Robots.setActiveRobot(number value)

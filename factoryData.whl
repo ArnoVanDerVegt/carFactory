@@ -159,6 +159,11 @@
 #define FACTORY_FORM_TITLE_SEAT_TAN             0x2A178B54
 #define FACTORY_FORM_TITLE_STORAGE              0x04C7CA72
 #define FACTORY_FORM_UPDATE_POS_INTERVAL        0xF4BC22B5
+#define FACTORY_FORM_STATUS_ROBOT1              0xB1E56533
+#define FACTORY_FORM_STATUS_ROBOT2              0x4110E8B6
+#define FACTORY_FORM_STATUS_ROBOT3              0xBC7EA299
+#define FACTORY_FORM_STATUS_ROBOT4              0x2A8CF3B0
+#define FACTORY_FORM_STATUS_ROBOT5              0x16DB4501
 
 ; ================================ SEAT COLORS =================================
 #define SEAT_COLOR_TAN                          0

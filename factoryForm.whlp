@@ -20,6 +20,8 @@
 #include "lib/modules/components/radio.whl"
 #include "lib/modules/components/listItems.whl"
 #include "lib/modules/components/dropdown.whl"
+#include "lib/modules/components/statusLight.whl"
+#include "lib/modules/components/text.whl"
 
 #rangecheck "off"
 #datatype   "int"

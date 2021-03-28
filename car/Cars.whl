@@ -1,9 +1,13 @@
 ; Copyright (c) 2021 - present by {yourName}
 ; Distributed under an {yourLicense}
 
+#include "lib/modules/components/label.whl"
+#include "lib/modules/components/statusLight.whl"
+#include "lib/modules/bit.whl"
 #include "inventory/Order.whl"
 #include "car/Car.whl"
 #include "robot/Robots.whl"
+#include "factoryData.whl"
 
 #define POSITION_BASE_STORED     0
 #define POSITION_CONVEYOR_ROBOT1 1
@@ -21,6 +25,7 @@ object Cars
     Conveyor ^conveyor
     number   count
     number   isRunningOrder
+    number   isBaseLoaded
     number   positions[10]
 end
 
@@ -31,6 +36,7 @@ proc Cars.init()
     cars[3] = @car3
     count = 0
     isRunningOrder = FALSE
+    isBaseLoaded   = FALSE
     number i
     for i = 0 to 9
         positions[i] = -1
@@ -46,13 +52,59 @@ proc Cars.setConveyor(Conveyor ^conveyor)
 end
 
 proc Cars.order(Order ^order)
+    number bodyLabels[4] = [
+        FACTORY_FORM_CAR1_BODY_LABEL,
+        FACTORY_FORM_CAR2_BODY_LABEL,
+        FACTORY_FORM_CAR3_BODY_LABEL,
+        FACTORY_FORM_CAR4_BODY_LABEL
+    ]
+    number seatLabels[4] = [
+        FACTORY_FORM_CAR1_SEAT_LABEL,
+        FACTORY_FORM_CAR2_SEAT_LABEL,
+        FACTORY_FORM_CAR3_SEAT_LABEL,
+        FACTORY_FORM_CAR4_SEAT_LABEL
+    ]
     number n
     for n = 0 to 3
         with order.orderLine[n]
             cars[n].setOrder(seat, body)
+            components.label.setValueString(mainWindow, bodyLabels[n], bodyColors[body])
+            components.label.setValueString(mainWindow, seatLabels[n], seatColors[seat])
         end
     end
     isRunningOrder = TRUE
+end
+
+proc Cars.updatePositionStatusLights()
+    number positionLabels[5] = [
+        0,
+        FACTORY_FORM_POSITION1_STATUS_LIGHT,
+        FACTORY_FORM_POSITION2_STATUS_LIGHT,
+        FACTORY_FORM_POSITION3_STATUS_LIGHT,
+        FACTORY_FORM_POSITION4_STATUS_LIGHT
+    ]
+    number i
+    for i = 1 to 4
+        number color = 5
+        if (positions[i] == -1)
+            color = 3
+        end
+        components.statusLight.setColor(mainWindow, positionLabels[i], color)
+    end
+end
+
+proc Cars.updateStateLabels()
+    number stateLabels[4] = [
+        FACTORY_FORM_CAR1_STATE_LABEL,
+        FACTORY_FORM_CAR2_STATE_LABEL,
+        FACTORY_FORM_CAR3_STATE_LABEL,
+        FACTORY_FORM_CAR4_STATE_LABEL
+    ]
+    number i
+    for i = 0 to 3
+        number state = cars[i].state
+        components.label.setText(mainWindow, stateLabels[i], carStates[state])
+    end
 end
 
 proc Cars.update()
@@ -65,7 +117,7 @@ proc Cars.update()
     end
     count = 0
     number i
-    for i = 0 to 1
+    for i = 0 to 2
         number state = cars[i].state
         select state
             case CAR_STATE_BASE:
@@ -73,10 +125,15 @@ proc Cars.update()
                     if robots.isRobotReady[0] and robots.isRobotReady[1]
                         positions[POSITION_CONVEYOR_ROBOT1] = i
                         cars[i].state = 1
-                        if (i == 0)
-                            robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
+                        if (i == 2) and (isBaseLoaded == FALSE)
+                            isBaseLoaded = TRUE
+                            robots.startSequence(0, ROBOT1_SEQUENCE_LOAD)
                         else
-                            robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
+                            if (bitAnd(i, 1) == 0)
+                                robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
+                            else
+                                robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
+                            end
                         end
                     end
                 end
@@ -92,7 +149,7 @@ proc Cars.update()
                         positions[POSITION_CONVEYOR_ROBOT2] = i
                         conveyor.move1to2()
                         cars[i].state =  CAR_STATE_CLOSE_SEAT_BAR
-                        positions[POSITION_CONVEYOR_ROBOT1]  = -1
+                        positions[POSITION_CONVEYOR_ROBOT1] = -1
                     end
                 end
                 break
@@ -128,6 +185,8 @@ proc Cars.update()
                             cars[i].count = 0
                             positions[POSITION_CONVEYOR_ROBOT2] = -1
                             if (conveyor.isBarDown)
+                                conveyor.barUp()
+                                conveyor.barDown()
                                 conveyor.barUp()
                             end
                             conveyor.move2to3()
@@ -186,10 +245,14 @@ proc Cars.update()
                     end
                     if (cars[i].body < BODY_COLOR_BROWN)
                         conveyor.move3to4()
+                        positions[POSITION_CONVEYOR_ROBOT3] = -1
+                        positions[POSITION_CONVEYOR_ROBOT4] = i
                     end
-                    cars[i].state = 1000
+                    cars[i].state = CAR_STATE_DONE
                 end
                 break
         end
     end
+    updatePositionStatusLights()
+    updateStateLabels()
 end

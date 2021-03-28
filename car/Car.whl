@@ -12,6 +12,20 @@
 #define CAR_STATE_CLOSE_BODY_BAR        6
 #define CAR_STATE_INSTALL_BODY          7
 #define CAR_STATE_WAIT_FOR_BODY_INSTALL 8
+#define CAR_STATE_DONE                  9
+
+string carStates[10] = [
+    "base",
+    "loading base",
+    "waiting for seat",
+    "close bar for seat",
+    "install seat",
+    "wait install seat",
+    "close bar for body",
+    "install body",
+    "wait install body",
+    "done"
+]
 
 object Car
     number state
@@ -33,6 +47,4 @@ proc Car.setOrder(number seat, number body)
     bodyReady = FALSE
     self.seat = seat
     self.body = body
-    printS(seatColors[seat])
-    printS(bodyColors[body])
 end

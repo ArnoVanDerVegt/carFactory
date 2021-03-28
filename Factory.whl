@@ -160,6 +160,7 @@ end
 
 proc Factory.update()
     robots.update()
+    cars.update()
     if command != CMD_NONE
         updateCommand()
     end
@@ -172,9 +173,12 @@ proc Factory.init()
     setSequenceDisabled()
     robots.init()
     inventory.reset()
+    conveyor.init()
     cars.init()
-    order.setInventory(@inventory)
+    cars.setRobots(@robots)
+    cars.setConveyor(@conveyor)
     order.init()
+    order.setInventory(@inventory)
 end
 
 Factory factory

@@ -6,6 +6,11 @@
 #include "lib/modules/standard.whl"
 
 object Conveyor
+    number isBarDown
+end
+
+proc Conveyor.init()
+    isBarDown = FALSE
 end
 
 proc Conveyor.barMove(number speed)
@@ -17,10 +22,12 @@ end
 
 proc Conveyor.barUp()
     barMove(100)
+    isBarDown = FALSE
 end
 
 proc Conveyor.barDown()
     barMove(-100)
+    isBarDown = TRUE
 end
 
 proc Conveyor.move1to2()

@@ -3,16 +3,29 @@
 
 #include "factoryData.whl"
 
+#define CAR_STATE_BASE                  0
+#define CAR_STATE_LOADING_BASE          1
+#define CAR_STATE_WAITING_FOR_SEAT      2
+#define CAR_STATE_CLOSE_SEAT_BAR        3
+#define CAR_STATE_INSTALL_SEAT          4
+#define CAR_STATE_WAIT_FOR_SEAT_INSTALL 5
+#define CAR_STATE_CLOSE_BODY_BAR        6
+#define CAR_STATE_INSTALL_BODY          7
+#define CAR_STATE_WAIT_FOR_BODY_INSTALL 8
+
 object Car
-    number position
+    number state
+    number count
     number seat
     number seatReady
     number body
     number bodyReady
+    number bodyRobot ; Which robot is installing the body?
 end
 
 proc Car.init()
-    position = 0
+    state = CAR_STATE_BASE
+    count = 0
 end
 
 proc Car.setOrder(number seat, number body)

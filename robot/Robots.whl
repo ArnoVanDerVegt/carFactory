@@ -24,8 +24,10 @@ object Robots
     Robot3             robot3
     Robot4             robot4
     Robot5             robot5
+    number             isRobotReady[5]
     ^RobotWithMoves    robots[5]
     RobotWithMoves     ^activeRobot
+    number             activeRobotIndex
 end
 
 proc Robots.init()
@@ -35,7 +37,8 @@ proc Robots.init()
     robots[3] = @robot4
     robots[4] = @robot5
 
-    activeRobot = robots[0]
+    activeRobotIndex = 0
+    activeRobot      = robots[0]
 
     robot1.init()
     robot2.init()
@@ -56,7 +59,7 @@ proc Robots.updateStatusLight()
 
     for i = 0 to 4
         number color = 5
-        if robots[i].isReady
+        if isRobotReady[i]
             color = 3
         end
         components.statusLight.setColor(mainWindow, lightComponents[i], color)
@@ -71,7 +74,10 @@ proc Robots.update()
     for i = 0 to 4
         robots[i].updateSequence()
         if robots[i].isReady
-            readyBits = bitOr(readyBits, bit)
+            readyBits       = bitOr(readyBits, bit)
+            isRobotReady[i] = TRUE
+        else
+            isRobotReady[i] = FALSE
         end
         bit *= 2
     end
@@ -79,11 +85,15 @@ proc Robots.update()
 end
 
 proc Robots.setActiveRobot(number value)
+    activeRobotIndex = value
     activeRobot = robots[value]
 end
 
 proc Robots.reset()
+    isRobotReady[activeRobotIndex] = FALSE
+    updateStatusLight()
     activeRobot.reset()
+    isRobotReady[activeRobotIndex] = TRUE
 end
 
 proc Robots.rev(number motorIndex)
@@ -99,6 +109,8 @@ proc Robots.stop(number motorIndex)
 end
 
 proc Robots.startSequence(number index, number sequence)
+    isRobotReady[activeRobotIndex] = FALSE
+    updateStatusLight()
     robots[index].startSequence(sequence)
 end
 

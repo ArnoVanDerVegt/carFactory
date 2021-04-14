@@ -1,6 +1,6 @@
 ; @module CarFactory
-; Wheel, copyright (c) 2020 - present by {yourName}
-; Distributed under an {yourLicense}
+; Wheel, copyright (c) 2020 - present by Arno van der Vegt
+; Distributed under an MIT
 #project "Factory form"
 
 #include "form/formTabControl.whl"

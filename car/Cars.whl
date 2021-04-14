@@ -1,5 +1,5 @@
 ; Copyright (c) 2021 - present by {yourName}
-; Distributed under an {yourLicense}
+; Distributed under an MIT
 
 #include "lib/modules/components/label.whl"
 #include "lib/modules/components/statusLight.whl"

@@ -55,22 +55,29 @@ proc RobotWithMoves.addSequence(number robotMovesIndex)
 end
 
 proc RobotWithMoves.startSequence(number index)
-    if sequenceActive == -1
+    if (sequenceActive == -1)
         sequenceActive  = index
         sequenceStarted = FALSE
     end
 end
 
 proc RobotWithMoves.updateSequence()
-    if sequenceActive == -1
+    isFinished = FALSE
+    if (sequenceActive == -1)
+        with robotConfig
+            if motorLayerReadyBits(readyBits0.layer, readyBits0.bits) and motorLayerReadyBits(readyBits1.layer, readyBits1.bits)
+                isFinished = TRUE
+            end
+        end
         isReady = TRUE
         ret
     end
+    isReady = FALSE
 
     number robotMovesIndex
     robotMovesIndex = sequence[sequenceActive]
     if not sequenceStarted
-        if robotMovesIndex == SEQUENCE_END
+        if (robotMovesIndex == SEQUENCE_END)
             sequenceActive  = -1
             sequenceStarted = FALSE
             ret

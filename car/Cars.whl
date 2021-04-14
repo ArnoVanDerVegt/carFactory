@@ -14,6 +14,7 @@
 #define POSITION_CONVEYOR_ROBOT2 2
 #define POSITION_CONVEYOR_ROBOT3 3
 #define POSITION_CONVEYOR_ROBOT4 4
+#define POSITION_CONVEYOR_ROBOT5 5
 
 object Cars
     Car      car0
@@ -27,6 +28,8 @@ object Cars
     number   isRunningOrder
     number   isBaseLoaded
     number   positions[10]
+    number   activeCars
+    number   activeCar
 end
 
 proc Cars.init()
@@ -35,6 +38,8 @@ proc Cars.init()
     cars[2] = @car2
     cars[3] = @car3
     count = 0
+    activeCars = 0
+    activeCar = 0
     isRunningOrder = FALSE
     isBaseLoaded   = FALSE
     number i
@@ -49,6 +54,15 @@ end
 
 proc Cars.setConveyor(Conveyor ^conveyor)
     self.conveyor = conveyor
+end
+
+proc Cars.setStateAndCount(number index, number state, number count)
+    printS("index,state,count")
+    printN(index)
+    printN(state)
+    printN(count)
+    cars[index].state = state
+    cars[index].count = count
 end
 
 proc Cars.order(Order ^order)
@@ -76,15 +90,16 @@ proc Cars.order(Order ^order)
 end
 
 proc Cars.updatePositionStatusLights()
-    number positionLabels[5] = [
+    number positionLabels[6] = [
         0,
         FACTORY_FORM_POSITION1_STATUS_LIGHT,
         FACTORY_FORM_POSITION2_STATUS_LIGHT,
         FACTORY_FORM_POSITION3_STATUS_LIGHT,
-        FACTORY_FORM_POSITION4_STATUS_LIGHT
+        FACTORY_FORM_POSITION4_STATUS_LIGHT,
+        FACTORY_FORM_POSITION5_STATUS_LIGHT
     ]
     number i
-    for i = 1 to 4
+    for i = 1 to 5
         number color = 5
         if (positions[i] == -1)
             color = 3
@@ -107,151 +122,204 @@ proc Cars.updateStateLabels()
     end
 end
 
+proc Cars.updateCar(number index)
+    number state = cars[index].state
+    select state
+        case CAR_STATE_BASE:
+            if (positions[POSITION_CONVEYOR_ROBOT1] == -1) and (positions[POSITION_CONVEYOR_ROBOT2] == -1)
+                if robots.isRobotFinished[0] and robots.isRobotFinished[1]
+                    positions[POSITION_CONVEYOR_ROBOT1] = index
+                    if (index == 2) and (isBaseLoaded == FALSE)
+                        setStateAndCount(index, CAR_STATE_LOADING_BASES, 0)
+                    else
+                        if (bitAnd(index, 1) == 0)
+                            robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
+                        else
+                            robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
+                        end
+                        setStateAndCount(index, CAR_STATE_LOADING_BASE, 10)
+                    end
+                end
+            end
+            break
+        case CAR_STATE_LOADING_BASES:
+            if robots.isRobotFinished[0] and robots.isRobotFinished[1]
+                isBaseLoaded = TRUE
+                robots.startSequence(0, ROBOT1_SEQUENCE_LOAD)
+                positions[POSITION_CONVEYOR_ROBOT1] = -1
+                setStateAndCount(index, CAR_STATE_BASE, 10)
+            end
+            break
+        case CAR_STATE_LOADING_BASE:
+            if robots.isRobotFinished[0]
+                if (activeCars < 2)
+                    activeCars++
+                end
+                setStateAndCount(index, CAR_STATE_WAITING_FOR_SEAT, 0)
+            end
+            break
+        case CAR_STATE_WAITING_FOR_SEAT:
+            if (positions[POSITION_CONVEYOR_ROBOT2] == -1) and (conveyor.isBarDown == FALSE)
+                if robots.isRobotFinished[0] and robots.isRobotFinished[1]
+                    positions[POSITION_CONVEYOR_ROBOT2] = index
+                    positions[POSITION_CONVEYOR_ROBOT1] = -1
+                    conveyor.move1to2()
+                    setStateAndCount(index, CAR_STATE_CLOSE_SEAT_BAR, 0)
+                end
+            end
+            break
+        case CAR_STATE_CLOSE_SEAT_BAR:
+            if (conveyor.isBarDown == FALSE)
+                conveyor.barDown()
+            end
+            setStateAndCount(index, CAR_STATE_INSTALL_SEAT, 0)
+            break
+        case CAR_STATE_INSTALL_SEAT:
+            if (conveyor.isBarDown == FALSE)
+                setStateAndCount(index, CAR_STATE_CLOSE_SEAT_BAR, 0)
+            else
+                setStateAndCount(index, CAR_STATE_WAIT_FOR_SEAT_INSTALL, 5)
+                if (cars[index].seat == SEAT_COLOR_TAN)
+                    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP2)
+                else
+                    robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP1)
+                end
+            end
+            break
+        case CAR_STATE_WAIT_FOR_SEAT_INSTALL:
+            number nextPosition
+            if (cars[index].body >= BODY_COLOR_BROWN)
+                nextPosition = POSITION_CONVEYOR_ROBOT4
+            else
+                nextPosition = POSITION_CONVEYOR_ROBOT3
+            end
+            if robots.isRobotFinished[1]
+                if (positions[POSITION_CONVEYOR_ROBOT3] == -1) and (positions[nextPosition] == -1)
+                    positions[POSITION_CONVEYOR_ROBOT2] = -1
+                    if (conveyor.isBarDown)
+                        conveyor.barUp()
+                    end
+                    conveyor.move2to3()
+                    if (cars[index].body >= BODY_COLOR_BROWN)
+                        conveyor.move3to4()
+                    end
+                    positions[nextPosition] = index
+                    setStateAndCount(index, CAR_STATE_CLOSE_BODY_BAR, 0)
+                end
+            end
+            break
+        case CAR_STATE_CLOSE_BODY_BAR:
+            if (conveyor.isBarDown == FALSE)
+                conveyor.barDown()
+            end
+            setStateAndCount(index, CAR_STATE_INSTALL_BODY, 0)
+            break
+        case CAR_STATE_INSTALL_BODY:
+            if robots.isRobotFinished[1] and robots.isRobotFinished[2] and robots.isRobotFinished[3]
+                if (conveyor.isBarDown == FALSE)
+                    setStateAndCount(index, CAR_STATE_CLOSE_BODY_BAR, 0)
+                else
+                    number body = cars[index].body
+                    select body
+                        case BODY_COLOR_RED:
+                            robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP_DROP2)
+                            setStateAndCount(index, CAR_STATE_WAIT_FOR_BODY_INSTALL, 10)
+                            cars[index].bodyRobot = 2
+                            break
+                        case BODY_COLOR_BLUE:
+                            robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP_DROP1)
+                            setStateAndCount(index, CAR_STATE_WAIT_FOR_BODY_INSTALL, 10)
+                            cars[index].bodyRobot = 2
+                            break
+                        case BODY_COLOR_GREEN:
+                            robots.startSequence(3, ROBOT4_SEQUENCE_PICKUP_DROP2)
+                            setStateAndCount(index, CAR_STATE_WAIT_FOR_BODY_INSTALL, 10)
+                            cars[index].bodyRobot = 3
+                            break
+                        case BODY_COLOR_BROWN:
+                            robots.startSequence(3, ROBOT4_SEQUENCE_PICKUP_DROP1)
+                            setStateAndCount(index, CAR_STATE_WAIT_FOR_BODY_INSTALL, 10)
+                            cars[index].bodyRobot = 3
+                            break
+                    end
+                end
+            end
+            break
+        case CAR_STATE_WAIT_FOR_BODY_INSTALL:
+            number bodyRobot = cars[index].bodyRobot
+            if robots.isRobotFinished[bodyRobot]
+                if (positions[POSITION_CONVEYOR_ROBOT4] == index)
+                    setStateAndCount(index, CAR_STATE_INSTALL_BODY_DONE_BAR_UP, 0)
+                elseif (positions[POSITION_CONVEYOR_ROBOT4] == -1)
+                    if (cars[index].body < BODY_COLOR_BROWN)
+                        if (conveyor.isBarDown)
+                            conveyor.barUp()
+                        end
+                        conveyor.move3to4()
+                        positions[POSITION_CONVEYOR_ROBOT3] = -1
+                        positions[POSITION_CONVEYOR_ROBOT4] = index
+                    end
+                    setStateAndCount(index, CAR_STATE_INSTALL_BODY_DONE_BAR_UP, 0)
+                end
+            end
+            break
+        case CAR_STATE_INSTALL_BODY_DONE_BAR_UP:
+            if (conveyor.isBarDown)
+                conveyor.barUp()
+            end
+            setStateAndCount(index, CAR_STATE_INSTALL_BODY_DONE, 0)
+            break
+        case CAR_STATE_INSTALL_BODY_DONE:
+            if (positions[POSITION_CONVEYOR_ROBOT5] == -1)
+                if robots.isRobotFinished[4]
+                    robots.startSequence(4, ROBOT4_SEQUENCE_MOVE_TO4)
+                    setStateAndCount(index, CAR_STATE_WAITING_FOR_STORAGE, 2)
+                end
+            end
+            break
+        case CAR_STATE_WAITING_FOR_STORAGE:
+            if robots.isRobotFinished[4]
+                if (conveyor.isBarDown == FALSE)
+                    conveyor.move4to5()
+                    positions[POSITION_CONVEYOR_ROBOT4] = -1
+                    positions[POSITION_CONVEYOR_ROBOT5] = index
+                    setStateAndCount(index, CAR_STATE_SELECT_STORAGE, 2)
+                end
+            end
+            break
+        case CAR_STATE_SELECT_STORAGE:
+            if robots.isRobotFinished[4]
+                robots.startSequence(4, ROBOT4_SEQUENCE_MOVE_TO1 + index * 2)
+                setStateAndCount(index, CAR_STATE_WAITING_FOR_SELECT_STORAGE, 0)
+            end
+            break
+        case CAR_STATE_WAITING_FOR_SELECT_STORAGE:
+            if robots.isRobotFinished[4]
+                conveyor.move5()
+                positions[POSITION_CONVEYOR_ROBOT5] = -1
+                setStateAndCount(index, CAR_STATE_FINISHED, 0)
+            end
+            break
+    end
+end
+
 proc Cars.update()
     if not isRunningOrder
         ret
     end
     count++
-    if (count < 50)
+    if (count < 12)
         ret
     end
     count = 0
-    number i
-    for i = 0 to 2
-        number state = cars[i].state
-        select state
-            case CAR_STATE_BASE:
-                if (positions[POSITION_CONVEYOR_ROBOT1] == -1)
-                    if robots.isRobotReady[0] and robots.isRobotReady[1]
-                        positions[POSITION_CONVEYOR_ROBOT1] = i
-                        cars[i].state = 1
-                        if (i == 2) and (isBaseLoaded == FALSE)
-                            isBaseLoaded = TRUE
-                            robots.startSequence(0, ROBOT1_SEQUENCE_LOAD)
-                        else
-                            if (bitAnd(i, 1) == 0)
-                                robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP1)
-                            else
-                                robots.startSequence(0, ROBOT1_SEQUENCE_PICKUP2)
-                            end
-                        end
-                    end
-                end
-                break
-            case CAR_STATE_LOADING_BASE:
-                if robots.isRobotReady[0]
-                    cars[i].state = CAR_STATE_WAITING_FOR_SEAT
-                end
-                break
-            case CAR_STATE_WAITING_FOR_SEAT:
-                if (positions[POSITION_CONVEYOR_ROBOT2] == -1) and (conveyor.isBarDown == FALSE)
-                    if robots.isRobotReady[0] and robots.isRobotReady[1]
-                        positions[POSITION_CONVEYOR_ROBOT2] = i
-                        conveyor.move1to2()
-                        cars[i].state =  CAR_STATE_CLOSE_SEAT_BAR
-                        positions[POSITION_CONVEYOR_ROBOT1] = -1
-                    end
-                end
-                break
-            case CAR_STATE_CLOSE_SEAT_BAR:
-                if (conveyor.isBarDown == FALSE)
-                    conveyor.barDown()
-                end
-                cars[i].state = CAR_STATE_INSTALL_SEAT
-                break
-            case CAR_STATE_INSTALL_SEAT:
-                if (conveyor.isBarDown == FALSE)
-                    cars[i].state = CAR_STATE_CLOSE_SEAT_BAR
-                else
-                    cars[i].state = CAR_STATE_WAIT_FOR_SEAT_INSTALL
-                    if (cars[i].seat == SEAT_COLOR_TAN)
-                        robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP2)
-                    else
-                        robots.startSequence(1, ROBOT2_SEQUENCE_PICKUP1)
-                    end
-                end
-                break
-            case CAR_STATE_WAIT_FOR_SEAT_INSTALL:
-                number nextPosition
-                if (cars[i].body >= BODY_COLOR_BROWN)
-                    nextPosition = POSITION_CONVEYOR_ROBOT4
-                else
-                    nextPosition = POSITION_CONVEYOR_ROBOT3
-                end
-                if robots.isRobotReady[1]
-                    if (positions[POSITION_CONVEYOR_ROBOT3] == -1) and (positions[nextPosition] == -1)
-                        cars[i].count++
-                        if (cars[i].count > 5)
-                            cars[i].count = 0
-                            positions[POSITION_CONVEYOR_ROBOT2] = -1
-                            if (conveyor.isBarDown)
-                                conveyor.barUp()
-                                conveyor.barDown()
-                                conveyor.barUp()
-                            end
-                            conveyor.move2to3()
-                            if (cars[i].body >= BODY_COLOR_BROWN)
-                                conveyor.move3to4()
-                            end
-                            positions[nextPosition] = i
-                            cars[i].state = CAR_STATE_CLOSE_BODY_BAR
-                        end
-                    end
-                end
-                break
-            case CAR_STATE_CLOSE_BODY_BAR:
-                if (conveyor.isBarDown == FALSE)
-                    conveyor.barDown()
-                end
-                cars[i].state = CAR_STATE_INSTALL_BODY
-                break
-            case CAR_STATE_INSTALL_BODY:
-                if (conveyor.isBarDown == FALSE)
-                    cars[i].state = CAR_STATE_CLOSE_BODY_BAR
-                else
-                    if robots.isRobotReady[1] and robots.isRobotReady[2] and robots.isRobotReady[3]
-                        number body = cars[i].body
-                        select body
-                            case BODY_COLOR_RED:
-                                robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP_DROP2)
-                                cars[i].state     = CAR_STATE_WAIT_FOR_BODY_INSTALL
-                                cars[i].bodyRobot = 2
-                                break
-                            case BODY_COLOR_BLUE:
-                                robots.startSequence(2, ROBOT3_SEQUENCE_PICKUP_DROP1)
-                                cars[i].state = CAR_STATE_WAIT_FOR_BODY_INSTALL
-                                cars[i].bodyRobot = 2
-                                break
-                            case BODY_COLOR_GREEN:
-                                robots.startSequence(3, ROBOT4_SEQUENCE_PICKUP_DROP2)
-                                cars[i].state     = CAR_STATE_WAIT_FOR_BODY_INSTALL
-                                cars[i].bodyRobot = 3
-                                break
-                            case BODY_COLOR_BROWN:
-                                robots.startSequence(3, ROBOT4_SEQUENCE_PICKUP_DROP1)
-                                cars[i].state = CAR_STATE_WAIT_FOR_BODY_INSTALL
-                                cars[i].bodyRobot = 3
-                                break
-                        end
-                    end
-                end
-                break
-
-            case CAR_STATE_WAIT_FOR_BODY_INSTALL:
-                number bodyRobot = cars[i].bodyRobot
-                if robots.isRobotReady[bodyRobot]
-                    if (conveyor.isBarDown)
-                        conveyor.barUp()
-                    end
-                    if (cars[i].body < BODY_COLOR_BROWN)
-                        conveyor.move3to4()
-                        positions[POSITION_CONVEYOR_ROBOT3] = -1
-                        positions[POSITION_CONVEYOR_ROBOT4] = i
-                    end
-                    cars[i].state = CAR_STATE_DONE
-                end
-                break
-        end
+    activeCar++
+    if (activeCar > activeCars)
+        activeCar = 0
+    end
+    if (cars[activeCar].count > 0)
+        cars[activeCar].count--
+    else
+        updateCar(activeCar)
     end
     updatePositionStatusLights()
     updateStateLabels()

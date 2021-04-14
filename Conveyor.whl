@@ -35,6 +35,12 @@ proc Conveyor.move1to2()
     motorLayerOn(LAYER_1, OUTPUT_C)
 
     repeat
+        if sensorLayerRead(LAYER_4, OUTPUT_D) != COLOR_WHITE
+            break
+        end
+    end
+    sleep(500)
+    repeat
         if sensorLayerRead(LAYER_4, OUTPUT_D) == COLOR_WHITE
             break
         end
@@ -52,6 +58,12 @@ proc Conveyor.move2to3()
     motorLayerOn(LAYER_1, OUTPUT_C)
     motorLayerOn(LAYER_5, OUTPUT_A)
 
+    repeat
+        if sensorLayerRead(LAYER_6, OUTPUT_D) != COLOR_WHITE
+            break
+        end
+    end
+    sleep(500)
     repeat
         if sensorLayerRead(LAYER_6, OUTPUT_D) == COLOR_WHITE
             break
@@ -72,6 +84,12 @@ proc Conveyor.move3to4()
     motorLayerOn(LAYER_7, OUTPUT_C)
 
     repeat
+        if sensorLayerRead(LAYER_8, OUTPUT_D) != COLOR_WHITE
+            break
+        end
+    end
+    sleep(500)
+    repeat
         if sensorLayerRead(LAYER_8, OUTPUT_D) == COLOR_WHITE
             break
         end
@@ -82,4 +100,33 @@ proc Conveyor.move3to4()
     motorLayerReset(LAYER_7, OUTPUT_C)
     motorLayerSetSpeed(LAYER_7, OUTPUT_C, 25)
     motorLayerMoveTo(LAYER_7, OUTPUT_C, 140)
+end
+
+proc Conveyor.move4to5()
+    motorLayerSetSpeed(LAYER_7, OUTPUT_C, -50)
+    motorLayerSetSpeed(LAYER_10, OUTPUT_A, 50)
+    motorLayerOn(LAYER_7, OUTPUT_C)
+    motorLayerOn(LAYER_10, OUTPUT_A)
+
+    repeat
+        if sensorLayerRead(LAYER_10, OUTPUT_D) != COLOR_WHITE
+            break
+        end
+    end
+    sleep(500)
+    repeat
+        if sensorLayerRead(LAYER_10, OUTPUT_D) == COLOR_WHITE
+            break
+        end
+    end
+
+    motorLayerStop(LAYER_7, OUTPUT_C)
+    motorLayerStop(LAYER_10, OUTPUT_A)
+end
+
+proc Conveyor.move5()
+    motorLayerSetSpeed(LAYER_10, OUTPUT_A, 50)
+    motorLayerOn(LAYER_10, OUTPUT_A)
+    sleep(2000)
+    motorLayerStop(LAYER_10, OUTPUT_A)
 end

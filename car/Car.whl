@@ -3,28 +3,40 @@
 
 #include "factoryData.whl"
 
-#define CAR_STATE_BASE                  0
-#define CAR_STATE_LOADING_BASE          1
-#define CAR_STATE_WAITING_FOR_SEAT      2
-#define CAR_STATE_CLOSE_SEAT_BAR        3
-#define CAR_STATE_INSTALL_SEAT          4
-#define CAR_STATE_WAIT_FOR_SEAT_INSTALL 5
-#define CAR_STATE_CLOSE_BODY_BAR        6
-#define CAR_STATE_INSTALL_BODY          7
-#define CAR_STATE_WAIT_FOR_BODY_INSTALL 8
-#define CAR_STATE_DONE                  9
+#define CAR_STATE_BASE                       0
+#define CAR_STATE_LOADING_BASES              1
+#define CAR_STATE_LOADING_BASE               2
+#define CAR_STATE_WAITING_FOR_SEAT           3
+#define CAR_STATE_CLOSE_SEAT_BAR             4
+#define CAR_STATE_INSTALL_SEAT               5
+#define CAR_STATE_WAIT_FOR_SEAT_INSTALL      6
+#define CAR_STATE_CLOSE_BODY_BAR             7
+#define CAR_STATE_INSTALL_BODY               8
+#define CAR_STATE_WAIT_FOR_BODY_INSTALL      9
+#define CAR_STATE_INSTALL_BODY_DONE_BAR_UP   10
+#define CAR_STATE_INSTALL_BODY_DONE          11
+#define CAR_STATE_WAITING_FOR_STORAGE        12
+#define CAR_STATE_SELECT_STORAGE             13
+#define CAR_STATE_WAITING_FOR_SELECT_STORAGE 14
+#define CAR_STATE_FINISHED                   15
 
-string carStates[10] = [
-    "base",
-    "loading base",
-    "waiting for seat",
-    "close bar for seat",
-    "install seat",
-    "wait install seat",
-    "close bar for body",
-    "install body",
-    "wait install body",
-    "done"
+string carStates[16] = [
+    "base",                        ; 0
+    "loading bases",               ; 1
+    "loading base",                ; 2
+    "waiting for seat",            ; 3
+    "close bar for seat",          ; 4
+    "install seat",                ; 5
+    "wait install seat",           ; 6
+    "close bar for body",          ; 7
+    "install body",                ; 8
+    "wait install body",           ; 9
+    "install body done bar up",    ; 10
+    "install body done",           ; 11
+    "waiting for storage",         ; 12
+    "select storage",              ; 13
+    "waiting for select storage",  ; 14
+    "finished"                     ; 15
 ]
 
 object Car

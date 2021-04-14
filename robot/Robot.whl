@@ -49,6 +49,7 @@ end
 object Robot
     RobotConfig robotConfig
     number      isReady
+    number      isFinished
 end
 
 proc Robot.init()

@@ -14,40 +14,35 @@ end
 proc Robot2.initMoveToConveyorList()
     with moveToConveyorList
         initList()
-#noformat
         add(99,  2450,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
         add(99,  NO_MOVE, 725,     -1550,   NO_MOVE)    ; Move up
         add(99,  -400,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
-        add(99,  NO_MOVE, 2000,    -2600,   NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 1900,    -2600,   NO_MOVE)    ; Move down
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 900,     -200,    NO_MOVE)    ; Move up
         add(99,  0,       0,       0,       NO_MOVE)    ; Reset
-#format
     end
 end
 
 proc Robot2.initPickup1List()
     with pickup1List
         initList()
-#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
         add(99,  2550,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
-        add(99,  NO_MOVE, 950,     -2600,   NO_MOVE)    ; Move down
+        add(99,  NO_MOVE, 950,     -2700,   NO_MOVE)    ; Move down
         add(99,  4800,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Move to position rack
         add(99,  NO_MOVE, 2200,    -4100,   NO_MOVE)    ; Move down
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 
         add(99,  4700,    250,     -2000,   NO_MOVE)    ; Move up
-#format
     end
 end
 
 proc Robot2.initPickup2List()
     with pickup2List
         initList()
-#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
@@ -58,7 +53,6 @@ proc Robot2.initPickup2List()
         add(50,  NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Close hand
 
         add(99,  4950,    1450,    -450,    NO_MOVE)    ; Move up
-#format
     end
 end
 

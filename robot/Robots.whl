@@ -25,6 +25,7 @@ object Robots
     Robot4             robot4
     Robot5             robot5
     number             isRobotReady[5]
+    number             isRobotFinished[5]
     ^RobotWithMoves    robots[5]
     RobotWithMoves     ^activeRobot
     number             activeRobotIndex
@@ -79,6 +80,7 @@ proc Robots.update()
         else
             isRobotReady[i] = FALSE
         end
+        isRobotFinished[i] = robots[i].isFinished
         bit *= 2
     end
     updateStatusLight()

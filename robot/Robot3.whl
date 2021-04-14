@@ -16,7 +16,6 @@ end
 proc Robot3.initPickup1List()
     with pickup1List
         initList()
-#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 800,     -1800,   NO_MOVE)    ; Move down
 
@@ -26,14 +25,12 @@ proc Robot3.initPickup1List()
 
         add(99,  NO_MOVE, 150,     -800,    NO_MOVE)    ; Move up
         add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
-#format
     end
 end
 
 proc Robot3.initPickup2List()
     with pickup2List
         initList()
-#noformat
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
         add(99,  NO_MOVE, 1800,    -1000,   NO_MOVE)    ; Move down
 
@@ -43,29 +40,25 @@ proc Robot3.initPickup2List()
 
         add(99,  NO_MOVE, 1100,    -200,    NO_MOVE)    ; Move up
         add(99,  NO_MOVE, 0,       0,       NO_MOVE)    ; Move up
-#format
     end
 end
 
 proc Robot3.initMoveToConveyorList()
     with moveToConveyorList
         initList()
-#noformat
         add(99,  -500,    NO_MOVE, NO_MOVE, NO_MOVE)    ; Turn to conveyor
         add(0,   NO_MOVE, NO_MOVE, NO_MOVE, HAND_CLOSE) ; Stop hand
-#format
     end
 end
 
 proc Robot3.initDropList()
     with dropList
         initList()
-#noformat
         add(99,  NO_MOVE, 600,     -1550,   NO_MOVE)    ; Move down
         add(-75, NO_MOVE, NO_MOVE, NO_MOVE, HAND_OPEN)  ; Open hand
+        add(99,  -100,    700,     NO_MOVE, NO_MOVE)    ; Push
         add(99,  NO_MOVE, NO_MOVE, -200,    NO_MOVE)    ; Move up
         add(99,  0,       0,       0,       NO_MOVE)    ; Reset
-#format
     end
 end
 

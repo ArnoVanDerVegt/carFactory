@@ -14,14 +14,15 @@
 #define CMD_CONVEYOR_FROM_1_TO_2      9
 #define CMD_CONVEYOR_FROM_2_TO_3     10
 #define CMD_CONVEYOR_FROM_3_TO_4     11
-#define CMD_START_SEQUENCE0          12
-#define CMD_START_SEQUENCE1          13
-#define CMD_START_SEQUENCE2          14
-#define CMD_START_SEQUENCE3          15
-#define CMD_START_SEQUENCE4          16
-#define CMD_ORDER_ADD_ITEM           17
-#define CMD_ORDER_CLEAR              18
-#define CMD_ORDER_RUN                19
+#define CMD_CONVEYOR_FROM_4_TO_5     12
+#define CMD_START_SEQUENCE0          13
+#define CMD_START_SEQUENCE1          14
+#define CMD_START_SEQUENCE2          15
+#define CMD_START_SEQUENCE3          16
+#define CMD_START_SEQUENCE4          17
+#define CMD_ORDER_ADD_ITEM           18
+#define CMD_ORDER_CLEAR              19
+#define CMD_ORDER_RUN                20
 
 ; ================================== ROBOT 1 ===================================
 #define ROBOT1_MOVE_TO_CONVEYOR       0
@@ -184,6 +185,7 @@
 #define FACTORY_FORM_POSITION2_STATUS_LIGHT     0x669EB0F3
 #define FACTORY_FORM_POSITION3_STATUS_LIGHT     0xA4EB805F
 #define FACTORY_FORM_POSITION4_STATUS_LIGHT     0x1A8C7DB2
+#define FACTORY_FORM_POSITION5_STATUS_LIGHT     0x1A83BADF
 #define FACTORY_FORM_POSITION_TITLE             0xF2E2B9A6
 
 ; ================================ SEAT COLORS =================================
@@ -195,10 +197,10 @@ string seatColors[2] = ["Tan", "Gray"]
 ; ================================ BODY COLORS =================================
 #define BODY_COLOR_RED                          0
 #define BODY_COLOR_BLUE                         1
-#define BODY_COLOR_BROWN                        2
-#define BODY_COLOR_GREEN                        3
+#define BODY_COLOR_GREEN                        2
+#define BODY_COLOR_BROWN                        3
 
-string bodyColors[4] = ["Red", "Blue", "Brown", "Green"]
+string bodyColors[4] = ["Red", "Blue", "Green", "Brown"]
 
 string seatAndBodyColor[8] = [
     "Tan seat, red body",
@@ -207,8 +209,8 @@ string seatAndBodyColor[8] = [
     "Tan seat, green body",
     "Grey seat, red body",
     "Grey seat, blue body",
-    "Grey seat, brown body",
-    "Grey seat, green body"
+    "Grey seat, green body",
+    "Grey seat, brown body"
 ]
 
 ; =========================== CAR POSITION IN FACTORY ==========================

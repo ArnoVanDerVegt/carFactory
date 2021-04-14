@@ -1786,5 +1786,19 @@
         "name": "Position4StatusLight",
         "zIndex": 0,
         "color": "green"
+    },
+    {
+        "x": 580,
+        "y": 30,
+        "parentId": 6,
+        "id": 102,
+        "uid": "0x1A83BADF",
+        "tabIndex": 0,
+        "hidden": false,
+        "disabled": false,
+        "type": "statusLight",
+        "name": "Position5StatusLight",
+        "zIndex": 0,
+        "color": "green"
     }
 ]
